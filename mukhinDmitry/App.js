@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Pull request ready!</Text>
+      <Text>Restoring final boss</Text>
       <StatusBar style="auto" />
     </View>
   );
