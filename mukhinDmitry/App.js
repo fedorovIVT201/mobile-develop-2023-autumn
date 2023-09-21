@@ -1,55 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
-import { 
-	SafeAreaView,
-	StyleSheet,
-	Text,
-	View,
-	Button
-} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import TabNavigator from './components/navbar/TabNavigator'
 
-const colorStep = (bgColor) => {
-	let bgStr = bgColor.substr(1,2);
-	bgStr = (bgStr * 1 + 5).toString();
-	bgStr = bgStr + bgStr + bgStr;
-	return "#" + bgStr
-}
-
-export default function App() {
-	const [bgColor, setBgColor] = useState("#000000")
+export default function kzrApp() {
 	return (
-		<SafeAreaView>
-			<View>
-				<Text style = {styles.rnTitle}>
-					Lab 1. Color lightener
-				</Text>
-				<View style={[styles.rnBox, {backgroundColor: bgColor}]}>
-				</View>
-				<Button 
-					style = {styles.rnButton}
-					onPress={() => setBgColor(colorStep(bgColor))}
-					title="Try me"
-					color={bgColor}
-					accessibilityLabel="Just give it a try"
-				/>
-			</View>
-		</SafeAreaView>
+		<NavigationContainer>
+			<TabNavigator />
+		</NavigationContainer>
 	);
-}
-
-const styles = StyleSheet.create({
-	rnButton: {
-		marginTop: 64,
-		paddingHorizontal: 24,
-	},
-	rnTitle: {
-		marginTop: 32,
-		fontSize: 24,
-		fontWeight: '600',
-		textAlign: 'center',
-	},
-	rnBox: {
-		height: 100,
-		margin: 50,
-	}
-});
+};
