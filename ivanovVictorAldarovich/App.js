@@ -1,13 +1,22 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { useState } from "react";
+import { StyleSheet, View } from "react-native";
+
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Lab1 from "./screens/Lab1";
+import Lab2 from "./screens/Lab2";
+
+import { NavigationContainer } from "@react-navigation/native";
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>100 лет страданий</Text>
-      <Text>Иванов Виктор ИВТ-20-2</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="Лабораторная 1" component={Lab1} />
+        <Tab.Screen name="Лабораторная 2" component={Lab2} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
 
@@ -17,5 +26,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  button: {
+    backgroundColor: "#007AFF",
+    padding: 10,
+    borderRadius: 5,
   },
 });
