@@ -19,13 +19,13 @@ const KzrLab1= () => {
 	return (
 		<SafeAreaView>
 			<View>
-				<Text style = {styles.rnTitle}>
+				<Text style = {styles.kzrTitle}>
 					Lab 1. Color lightener
 				</Text>
-				<View style={[styles.rnBox, {backgroundColor: bgColor}]}>
+				<View style={[styles.kzrBox, {backgroundColor: bgColor}]}>
 				</View>
 				<Button 
-					style = {styles.rnButton}
+					style = {styles.kzrButton}
 					onPress={() => setBgColor(colorStep(bgColor))}
 					title="Try me"
 					color={bgColor}
@@ -37,17 +37,17 @@ const KzrLab1= () => {
 }
 
 const styles = StyleSheet.create({
-	rnButton: {
+	kzrButton: {
 		marginTop: 64,
 		paddingHorizontal: 24,
 	},
-	rnTitle: {
+	kzrTitle: {
 		marginTop: 32,
 		fontSize: 24,
 		fontWeight: '600',
 		textAlign: 'center',
 	},
-	rnBox: {
+	kzrBox: {
 		height: 100,
 		margin: 50,
 	}

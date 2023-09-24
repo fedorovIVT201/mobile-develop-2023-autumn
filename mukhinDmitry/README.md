@@ -1,0 +1,19 @@
+# Description:
+
+This repository consist of restoring old project for Mobile development study project
+
+# Author:
+
+Mukhin Dmitry
+
+# Friendly reminder:
+
+If you have found some implementation in this project or it helped you a bit please mention it in your commits to the fork
+
+# Tasks:
+
+0. Init project using expo and make your first pull request from fork to main repository: https://docs.expo.dev/tutorial/create-your-first-app/
+
+1. Implement one case of using useState function: https://react.dev/reference/react/useState
+
+2. Implement simple To-Do list with using useEffect function: https://react.dev/reference/react/useEffect

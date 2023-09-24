@@ -1,5 +1,6 @@
 import { StyleSheet, Image, Text } from 'react-native';
 import KzrLab1 from '../labs/lab1/Lab1'
+import KzrLab2 from '../labs/lab2/Lab2'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Tab = createBottomTabNavigator();
@@ -38,6 +39,19 @@ const TabNavigator = () => {
 					},
 					tabBarIcon: () => {
 						return <Image source = {require('../../assets/navbar/tab-1.png')} style={styles.icon} />;
+					},
+				}}
+			/>
+			<Tab.Screen name='Lab 2'
+				component={KzrLab2}
+				options={{
+					title: 'Simple To-Do list',
+					headerTitleStyle: {
+						fontWeight: 'bold',
+						color: '#FFFFFF'
+					},
+					tabBarIcon: () => {
+						return <Image source = {require('../../assets/navbar/tab-2.png')} style={styles.icon} />;
 					},
 				}}
 			/>
