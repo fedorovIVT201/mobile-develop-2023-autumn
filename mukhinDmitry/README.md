@@ -17,3 +17,5 @@ If you have found some implementation in this project or it helped you a bit ple
 1. Implement one case of using useState function: https://react.dev/reference/react/useState
 
 2. Implement simple To-Do list with using useEffect function: https://react.dev/reference/react/useEffect
+
+3. Implement useMemo and useCallback examples: https://react.dev/reference/react/useMemo https://react.dev/reference/react/useCallback

@@ -6,6 +6,7 @@ import {
 	View,
 	Button
 } from 'react-native';
+import RoundedButton from '../../common/buttons/RoundedButton'
 
 const colorStep = (bgColor) => {
 	let bgStr = bgColor.substr(1,2);
@@ -17,31 +18,32 @@ const colorStep = (bgColor) => {
 const KzrLab1= () => {
 	const [bgColor, setBgColor] = useState("#000000")
 	return (
-		<SafeAreaView>
-			<View>
-				<Text style = {styles.kzrTitle}>
-					Lab 1. Color lightener
-				</Text>
-				<View style={[styles.kzrBox, {backgroundColor: bgColor}]}>
-				</View>
-				<Button 
-					style = {styles.kzrButton}
-					onPress={() => setBgColor(colorStep(bgColor))}
-					title="Try me"
-					color={bgColor}
-					accessibilityLabel="Just give it a try"
-				/>
+		<SafeAreaView style={styles.kzrSafeArea}>
+			<View style={[styles.kzrBox, {backgroundColor: bgColor}]}>
 			</View>
+			<RoundedButton
+				style = {styles.kzrButton}
+				onPress={() => setBgColor(colorStep(bgColor))}
+				title="Try me"
+				/>
 		</SafeAreaView>
 	);
 }
 
 const styles = StyleSheet.create({
+	kzrSafeArea: {
+		backgroundColor: "#333333",
+		height: "100%",
+		display: 'flex',
+		flexDirection: 'column',
+		justifyContent: 'center'
+	},
 	kzrButton: {
 		marginTop: 64,
 		paddingHorizontal: 24,
 	},
 	kzrTitle: {
+		color: '#FFFFFF',
 		marginTop: 32,
 		fontSize: 24,
 		fontWeight: '600',
