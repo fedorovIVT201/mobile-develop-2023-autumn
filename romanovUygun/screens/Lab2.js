@@ -9,6 +9,7 @@ import {
   Image,
 } from "react-native";
 import axios from "axios";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const Lab2 = () => {
   const [loading, setLoading] = useState(false);
