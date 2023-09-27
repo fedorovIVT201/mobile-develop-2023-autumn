@@ -21,6 +21,16 @@ export default function App() {
           ),
         }}
         <Tab.Screen name="Lab2" component={Lab2} />
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View>
+              <Image
+                source={require("./icons/donut.png")}
+                style={styles.img}
+              />
+            </View>
+          ),
+        }}
       </Tab.Navigator>
     </NavigationContainer>
   );
