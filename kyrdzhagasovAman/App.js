@@ -1,34 +1,17 @@
-import { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import Button from "./components/Button";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
+import Lab1 from "./screens/Lab1";
+import Lab2 from "./screens/Lab2";
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <View style={styles.container}>
-      <Text>{count}</Text>
-      <Button
-        onPress={() => {
-          setCount(count + 1);
-        }}
-        title={"Кнопка"}
-      ></Button>
-      <Button
-        onPress={() => {
-          setCount(0);
-        }}
-        title={"Reset"}
-      ></Button>
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="lab1" component={Lab1} />
+        <Tab.Screen name="lab2" component={Lab2} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
