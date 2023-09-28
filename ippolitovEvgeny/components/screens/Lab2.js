@@ -1,15 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import TodoItem from "../TodoItem";
+import Loading from "../Loading";
 
 const Lab2 = ({ navigation }) => {
   const [tasks, setTasks] = useState([]);
+  const [IsLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
     fetch("https://jsonplaceholder.typicode.com/todos")
       .then((response) => response.json())
       .then((data) => {
         setTasks(data);
+      })
+      .catch((err) => {
+        console.log(err);
+        Alert.alert("Error", "Unable data");
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, []);
 
@@ -20,6 +30,10 @@ const Lab2 = ({ navigation }) => {
       )
     );
   };
+
+  if (IsLoading) {
+    return <Loading />;
+  }
 
   return (
     <View style={styles.container}>
