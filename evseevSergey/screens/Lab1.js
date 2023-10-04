@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {Alert, Button, Text, View} from 'react-native';
+import { SafeAreaView } from "react-native-safe-area-context";
 import { State } from 'react-native-gesture-handler';
 
 var text_list = ["stop","pressing","this","button","no, seriously","PLEASE","DON'T","I SAY STOP","F#CK IT, I\'M OUT!"];
@@ -9,7 +10,7 @@ var i = 0;
 
 const Lab1 = ()=>{
     return(
-        <View
+        <SafeAreaView
             style={{
                 justifyContent: "center",
                 alignItems: "center",
@@ -53,7 +54,7 @@ const Lab1 = ()=>{
                 title="I'm just a button"
 
             />
-        </View>
+        </SafeAreaView>
     )
 }
 export default Lab1;
