@@ -1,5 +1,11 @@
 import React, { useState, useMemo, useEffect } from "react";
-import { TouchableOpacity, SafeAreaView, Text, StyleSheet, View } from "react-native";
+import {
+  TouchableOpacity,
+  SafeAreaView,
+  Text,
+  StyleSheet,
+  View,
+} from "react-native";
 
 const Lab3 = () => {
   const [data, setData] = useState([{ Description: "lol" }]);
@@ -52,7 +58,6 @@ const Lab3 = () => {
       {data.map((d, i) => (
         <Text key={i}>{d.Description}</Text>
       ))}
-      
     </SafeAreaView>
   );
 };
