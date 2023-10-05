@@ -1,5 +1,7 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useState } from "react";
+import ColorButton from "../components/buttons/ColorButton";
+import ButtonsContainer from "../components/ButtonsContainer";
 
 const Lab1 = () => {
   const [imageSize, setImageSize] = useState(100);
@@ -37,29 +39,11 @@ const Lab1 = () => {
         source={require("../imgs/logo1.png")}
         style={{ width: imageSize, height: imageSize }}
       />
-      <View style={styles.buttonsContainer}>
-        <TouchableOpacity
-          style={styles.sizeButtons}
-          onPress={decreaseImageSize}
-        >
-          <Text style={styles.textButton}>-</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.sizeButtons}
-          onPress={increaseImageSize}
-        >
-          <Text style={styles.textButton}>+</Text>
-        </TouchableOpacity>
-      </View>
-      <TouchableOpacity
-        style={styles.changeColorButton}
-        onPress={handleColorButtonClick}
-      >
-        <Image
-          style={styles.changeColorImg}
-          source={require("../imgs/chngcolor.png")}
-        />
-      </TouchableOpacity>
+      <ButtonsContainer
+        decreaseImageSize={decreaseImageSize}
+        increaseImageSize={increaseImageSize}
+      />
+      <ColorButton onPress={handleColorButtonClick} />
     </View>
   );
 };
@@ -71,38 +55,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   }),
-  sizeButtons: {
-    height: 40,
-    width: 100,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 14,
-    backgroundColor: "orange",
-    marginHorizontal: 10,
-  },
-  buttonsContainer: {
-    flexDirection: "row",
-    marginTop: 300,
-    position: "absolute",
-    bottom: 80,
-  },
-  changeColorButton: {
-    width: 50,
-    height: 50,
-    right: 30,
-    position: "absolute",
-    top: 80,
-    borderWidth: 2,
-    borderColor: "black",
-    borderRadius: 10,
-  },
-  changeColorImg: {
-    width: 50,
-    height: 50,
-  },
-  textButton: {
-    fontSize: 32,
-  },
 });
 
 export default Lab1;
