@@ -1,25 +1,16 @@
-import {StatusBar} from 'expo-status-bar';
-import {Button, StyleSheet, Text, TextComponent, View} from 'react-native';
-import {useEffect, useState} from "react";
+import {NavigationContainer} from "@react-navigation/native";
+import CreateBottomTabNavigator from "@react-navigation/bottom-tabs/src/navigators/createBottomTabNavigator";
+import Lab1 from "./screens/lab1";
+import Lab2 from "./screens/lab2";
 
 export default function App() {
-    let [count, setCount] = useState(0);
-    
+    const Tab = CreateBottomTabNavigator()
     return (
-        <View style={styles.container}>
-            <Text>Open up App.js to start working on your app!</Text>
-            <StatusBar style="auto"/>
-            <Text>{count}</Text>
-            <Button title="+" onPress={() => {setCount(count + 1)}}></Button>
-        </View>
+        <NavigationContainer>
+            <Tab.Navigator>
+                <Tab.Screen name={"lab1"} component={Lab1}></Tab.Screen>
+                <Tab.Screen name={"lab2"} component={Lab2}></Tab.Screen>
+            </Tab.Navigator>
+        </NavigationContainer>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
