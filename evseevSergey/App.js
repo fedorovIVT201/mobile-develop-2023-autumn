@@ -8,7 +8,7 @@ const Tab = createBottomTabNavigator();
   return (
    <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="Lab111" component={Lab1} />
+        <Tab.Screen name="Lab1" component={Lab1} />
       </Tab.Navigator>
    </NavigationContainer>
   );
