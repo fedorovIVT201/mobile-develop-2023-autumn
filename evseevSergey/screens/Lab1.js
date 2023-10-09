@@ -8,8 +8,8 @@ var i = 0;
 
 //const [text, setText] = useState("");
 
-const Lab1 = ()=>{
-    return(
+const Lab1 = () => {
+    return (
         <SafeAreaView
             style={{
                 justifyContent: "center",

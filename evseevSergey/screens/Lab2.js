@@ -1,72 +1,48 @@
-import React, { useState } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import {
-    View,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    FlatList,
-    StyleSheet,
-} from "react-native";
-import { Button } from "react-native";
-
-const DATA = [
-    {
-        id : '0',
-        title : 'Object 1',
-    }
-]
-
-let nextid=0;
+import React, {useState} from "react";
+import { StyleSheet, View, FlatList, Text} from "react-native";
+import Header from "../components/Header";
+import ListItem from "../components/ListItem";
+import Form from "../components/Form";
 
 const Lab2 = () =>{
+    const [listOfItems, setlistOfItems] = useState([
+        {text: "Купить молоко", key: "1"},
+        {text: "Помыть машину", key: "2"},
+        {text: "Почистить картошку", key: "3"},
+        {text: "Сходить в магазин", key: "4"},
+        
+    ])
 
-    const [text, onChangeText] = React.useState('Just a text');
-    const [DATA,setDATA] = useState([]);
+    const addHandler = (text) => {
+        setlistOfItems((list) => {
+            return [
+                {text: text, key: Math.random().toString(36).substring(7)},
+                ...list
+            ]
+        })
+    }
+    
+    const deleteHandler = (key) => {
+        setlistOfItems((list) => {
+            return list.filter(listOfItems => listOfItems.key != key )
+        })
+    }
 
-    return(
-        <SafeAreaView
-        style={{
-            justifyContent:"center",
-            alignContent:"center",
-            flex:1,
-        }}>
-            <TextInput
-            style = {styles.input}
-            onChangeText={onChangeText}
-            value={text}
-            />
-            <Button
-                title="Add activity"
-                onPress={()=>{
-                    setDATA([...DATA,{id: nextid++,title:text}])
-                }}
-            />
-            <FlatList
-                data = {DATA}
-                renderItem={itemData=>(
-                <View style={{flexDirection:"row",justifyContent:"space-between"}}>
-                    <Text>{itemData.item.id+' '+itemData.item.title}</Text>
-                    <TouchableOpacity onPress={()=>{
-                        nextid--;
-                        setDATA(
-                            DATA.filter(a => a.id !== itemData.item.id)
-                          );
-                    }}>
-                        <Text>Delete</Text>
-                    </TouchableOpacity>
-                </View>
-                )}/>
-        </SafeAreaView>
-    );
-};
+    return (
+        <View>
+            <Header/>
+            <Form addHandler={addHandler} />
+            <View>
+                <FlatList data={listOfItems} renderItem={({item})=>(
+                    <ListItem el = {item} deleteHandler={deleteHandler}/>
+                )} />
+            </View>
+        </View>
+    )
+}
+export default Lab2;
 
 const styles = StyleSheet.create({
-    input: {
-        height:40,
-        margin:12,
-        borderWidth:1,
-        padding:10,
-    },
-});
-export default Lab2;
+
+
+})
