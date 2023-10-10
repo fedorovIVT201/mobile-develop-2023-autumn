@@ -9,10 +9,14 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo-google-fonts/ibm-plex-mono": "^0.2.3",
+    "@fontsource/ibm-plex-mono": "^5.0.8",
     "@react-navigation/bottom-tabs": "^6.5.9",
     "@react-navigation/native": "^6.1.8",
     "axios": "^1.5.0",
     "expo": "~49.0.10",
+    "expo-app-loading": "^2.1.1",
+    "expo-font": "~11.4.0",
     "expo-status-bar": "~1.6.0",
     "prettier": "^3.0.3",
     "react": "18.2.0",

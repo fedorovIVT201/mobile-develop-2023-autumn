@@ -6,34 +6,38 @@ import {
   StatusBar,
   StyleSheet,
 } from "react-native";
+import Button from "../components/Button";
+import {
+  useFonts,
+  IBMPlexMono_400Regular,
+} from "@expo-google-fonts/ibm-plex-mono";
 
 const Lab1 = () => {
+  let [fontsLoaded] = useFonts({
+    IBMPlexMono_400Regular,
+  });
   const [count, setCount] = useState(0);
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: 30, marginBottom: 15 }}>{count}</Text>
-      <TouchableOpacity
-        style={styles.buttonGray}
-        onPress={() => setCount(count + 5)}
-      >
-        <Text>Button +5</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={styles.buttonGray}
-        onPress={() => setCount(count + 10)}
-      >
-        <Text>Button +10</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={styles.buttonGray}
-        onPress={() => setCount(count - 3)}
-      >
-        <Text>Button 123123-3 </Text>
-      </TouchableOpacity>
-
-      <StatusBar style="auto" />
+      <View style={styles.blackcontainer}>
+        <View style={styles.numbercontainer}>
+          <Text
+            style={{
+              fontSize: 34,
+              fontFamily: "IBMPlexMono_400Regular",
+              color: "#F4D994",
+            }}
+          >
+            {count}
+          </Text>
+        </View>
+        <View style={styles.buttonontainer}>
+          <Button title="+100" onPress={() => setCount(count + 100)} />
+          <Button title="-100" onPress={() => setCount(count - 100)} />
+          <Button title="-50" onPress={() => setCount(count - 50)} />
+          <StatusBar style="auto" />
+        </View>
+      </View>
     </View>
   );
 };
@@ -41,18 +45,29 @@ const Lab1 = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    marginTop: 100,
+    backgroundColor: "#F7F6F1",
     alignItems: "center",
-    justifyContent: "center",
   },
-  buttonGray: {
-    marginBottom: 10,
-    height: 50,
-    borderRadius: 10,
-    width: 100,
+  blackcontainer: {
+    marginTop: 20,
+    height: 380,
+    width: 330,
     alignItems: "center",
-    backgroundColor: "gray",
     justifyContent: "center",
+    backgroundColor: "#241808",
+    borderRadius: 20,
+  },
+  buttoncontainer: {
+    flex: 1,
+    margin: 15,
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  numbercontainer: {
+    flex: 1,
+    marginTop: 64,
+    alignItems: "center",
   },
 });
 

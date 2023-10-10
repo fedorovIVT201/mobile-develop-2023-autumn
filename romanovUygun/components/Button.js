@@ -1,16 +1,24 @@
 import { Text, TouchableOpacity, ActivityIndicator } from "react-native";
+import {
+  useFonts,
+  IBMPlexMono_400Regular,
+} from "@expo-google-fonts/ibm-plex-mono";
 
 const Button = ({ onPress, title, loading }) => {
+  let [fontsLoaded] = useFonts({
+    IBMPlexMono_400Regular,
+  });
+
   return (
     <TouchableOpacity
       disabled={loading}
       style={{
-        marginBottom: 10,
-        height: 50,
-        borderRadius: 10,
-        width: 250,
+        margin: 12,
+        height: 45,
+        borderRadius: 20,
+        width: 290,
         alignItems: "center",
-        backgroundColor: "gray",
+        backgroundColor: "rgba(244, 217, 148, 1)",
         justifyContent: "center",
       }}
       onPress={onPress}
@@ -18,7 +26,15 @@ const Button = ({ onPress, title, loading }) => {
       {loading ? (
         <ActivityIndicator />
       ) : (
-        <Text style={{ color: "white" }}>{title}</Text>
+        <Text
+          style={{
+            color: "rgba(36, 24, 8, 1)",
+            fontFamily: "IBMPlexMono_400Regular",
+            fontSize: 24,
+          }}
+        >
+          {title}
+        </Text>
       )}
     </TouchableOpacity>
   );
