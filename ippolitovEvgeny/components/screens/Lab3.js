@@ -8,7 +8,7 @@ import {
 } from "react-native";
 
 const Lab3 = () => {
-  const [data, setData] = useState([{ Description: "lol" }]);
+  const [data, setData] = useState([{ Description: "" }]);
 
   const fetchData = async () => {
     try {
@@ -30,6 +30,7 @@ const Lab3 = () => {
   useEffect(() => {
     console.log(data[0]);
   }, [data]);
+
 
   return (
     <SafeAreaView>
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
     color: "white",
   },
   colorChangeButton: {
-    backgroundColor: "lightblue",
+    backgroundColor: "#1E78FF",
     padding: 10,
     margin: 5,
     borderRadius: 5,
