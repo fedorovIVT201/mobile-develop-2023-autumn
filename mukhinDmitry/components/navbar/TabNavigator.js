@@ -2,6 +2,7 @@ import { StyleSheet, Image, Text } from 'react-native'
 import KzrLab1 from '../labs/lab1/Lab1'
 import KzrLab2 from '../labs/lab2/Lab2'
 import KzrLab3 from '../labs/lab3/Lab3'
+import KzrLab4 from '../labs/lab4/Lab4'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 const Tab = createBottomTabNavigator()
@@ -39,7 +40,7 @@ const TabNavigator = () => {
         name="Lab 1"
         component={KzrLab1}
         options={{
-          title: 'Color lightener',
+          title: 'Color randomizer (React Redux)',
           headerTitleStyle: {
             fontWeight: 'bold',
             color: '#FFFFFF',
@@ -86,6 +87,25 @@ const TabNavigator = () => {
             return (
               <Image
                 source={require('../../assets/navbar/tab-1.png')}
+                style={styles.icon}
+              />
+            )
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Lab 4"
+        component={KzrLab4}
+        options={{
+          title: 'React Redux Listener',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: '#FFFFFF',
+          },
+          tabBarIcon: () => {
+            return (
+              <Image
+                source={require('../../assets/navbar/tab-2.png')}
                 style={styles.icon}
               />
             )

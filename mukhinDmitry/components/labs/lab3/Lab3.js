@@ -1,13 +1,10 @@
 import { useMemo, useCallback, useState } from 'react'
 import { SafeAreaView, StyleSheet, Text } from 'react-native'
 import RoundedButton from '../../common/buttons/RoundedButton'
-import 'react-native-console-time-polyfill'
 
 const expensiveFunction = (kzrTimerName) => {
-  console.time(kzrTimerName)
   let i = 0
   while (i < 20000000) i++
-  console.timeLog(kzrTimerName)
   return i
 }
 

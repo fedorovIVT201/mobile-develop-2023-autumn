@@ -1,22 +1,19 @@
-import { useState } from 'react'
-import { SafeAreaView, StyleSheet, Text, View, Button } from 'react-native'
+import { SafeAreaView, StyleSheet, View } from 'react-native'
+import { useSelector, useDispatch } from 'react-redux'
 import RoundedButton from '../../common/buttons/RoundedButton'
-
-const colorStep = (bgColor) => {
-  let bgStr = bgColor.substr(1, 2)
-  bgStr = (bgStr * 1 + 5).toString()
-  bgStr = bgStr + bgStr + bgStr
-  return '#' + bgStr
-}
+import { randomize } from '../lab4/Slice'
 
 const KzrLab1 = () => {
-  const [bgColor, setBgColor] = useState('#000000')
+  const bgColor = useSelector((state) => state.KzrSlice.value)
+  const dispatch = useDispatch()
   return (
     <SafeAreaView style={styles.kzrSafeArea}>
       <View style={[styles.kzrBox, { backgroundColor: bgColor }]}></View>
       <RoundedButton
         style={styles.kzrButton}
-        onPress={() => setBgColor(colorStep(bgColor))}
+        onPress={() => {
+          dispatch(randomize())
+        }}
         title="Try me"
       />
     </SafeAreaView>
