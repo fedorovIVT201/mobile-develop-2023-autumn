@@ -25,7 +25,6 @@ export default function ButtonsContainer({
 const styles = StyleSheet.create({
   buttonsContainer: {
     flexDirection: "row",
-    marginTop: 300,
     position: "absolute",
     bottom: 80,
   },
