@@ -1,60 +1,25 @@
-import React, { useState } from 'react';
-import {Alert, Button, Text, View} from 'react-native';
-import { SafeAreaView } from "react-native-safe-area-context";
-import { State } from 'react-native-gesture-handler';
-
-var text_list = ["stop","pressing","this","button","no, seriously","PLEASE","DON'T","I SAY STOP","F#CK IT, I\'M OUT!"];
-var i = 0;
-
-//const [text, setText] = useState("");
+import { useState } from "react";
+import { Button, Text, View } from "react-native";
 
 const Lab1 = () => {
-    return (
-        <SafeAreaView
-            style={{
-                justifyContent: "center",
-                alignItems: "center",
-                flex:1,
-                flexDirection:'column',
-                gap:10,
-            }}
-        >
-            <Text
-                style={{
-                    justifyContent: "center",
-                    alignItems: "center",
-                }}
-            >{}</Text>
-            <Button
-                style={{
-                    justifyContent: "center",
-                    alignItems: "center",
-                }}
-                onPress={() => {
-                    if(i<text_list.length){
-                        Alert.alert(text_list[i])
-                        i++;
-                    }else if(i>=text_list.length&&i<69){
-                        i++;
-                    }
-                    else if(i==69){
-                        Alert.alert("...")
-                        let textToChange = ""
-                       /* for(j = 0;j<69;j++)
-                        {
-                            textToChange+=toString(j);
-                            //setText(text=>text=textToChange)
-                        }*/
-                        //Alert.alert("like it?")
-                        i++;
-                    }else{
-                        return NaN
-                    }
-                }}
-                title="I'm just a button"
-
-            />
-        </SafeAreaView>
-    )
-}
+  const [count, setCount] = useState(0);
+  return (
+    <View
+      style={{
+        justifyContent: "center",
+        alignItems: "center",
+        flex: 1,
+        gap: 10,
+      }}
+    >
+      <Text>{count}</Text>
+      <Button
+        onPress={() => {
+          setCount(count + 1);
+        }}
+        title={"I'm just a button"}
+      />
+    </View>
+  );
+};
 export default Lab1;

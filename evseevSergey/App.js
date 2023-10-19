@@ -1,17 +1,25 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Lab1 from './screens/Lab1.js';
-import Lab2 from './screens/Lab2.js';
-const Tab = createBottomTabNavigator();
+import { useState } from "react";
+import { Button, Text, View } from "react-native";
 
-  export default function App(){
+const Lab1 = () => {
+  const [count, setCount] = useState(0);
   return (
-   <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Lab1" component={Lab1}/>
-        <Tab.Screen name="Lab2" component={Lab2}/>
-      </Tab.Navigator>
-   </NavigationContainer>
+    <View
+      style={{
+        justifyContent: "center",
+        alignItems: "center",
+        flex: 1,
+        gap: 10,
+      }}
+    >
+      <Text>{count}</Text>
+      <Button
+        onPress={() => {
+          setCount(count + 1);
+        }}
+        title={"I'm just a button"}
+      />
+    </View>
   );
 };
+export default Lab1;
