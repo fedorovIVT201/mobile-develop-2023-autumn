@@ -35,7 +35,15 @@ export default function Lab1() {
           Random chuckjoke
         </Text>
       </TouchableOpacity>
-      <Text style={{ width: 350, top: 20, fontSize: 15, textAlign: "center", color: "black" }}>
+      <Text
+        style={{
+          width: 350,
+          top: 20,
+          fontSize: 15,
+          textAlign: "center",
+          color: "black",
+        }}
+      >
         {chuck.joke}
       </Text>
     </View>
