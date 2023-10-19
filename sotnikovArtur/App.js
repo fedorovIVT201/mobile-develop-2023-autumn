@@ -1,52 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useState } from 'react';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
+import Lab1 from "./screens/Lab1";
+import Lab2 from "./screens/Lab2";
 
-export default function Lab1() {
-    const [count, setCount] = useState(0)
-    return (
-        <View style={[styles.container]}>
-        <Text style={{fontSize:50, fontFamily: 'Verdana'}}>{count}</Text>
+const Tab = createBottomTabNavigator();
 
-        <View style={styles.buttonsContainer}>
-            <TouchableOpacity style={styles.buttonGray} onPress={() => setCount(count - 10)}>
-                <Text style={{fontSize:25, fontFamily: 'Verdana'}}>-10</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.buttonGray} onPress={() => setCount(count + 10)}>
-                <Text style={{fontSize:25, fontFamily: 'Verdana'}}>+10</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.buttonGray} onPress={() => setCount(0)}>
-                <Text style={{fontSize:25, fontFamily: 'Verdana'}}>Reset</Text>
-            </TouchableOpacity>
-        </View>
-        
-        <StatusBar style="auto" />
-        </View>
-    );
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="Lab1" component={Lab1} />
+        <Tab.Screen name="Lab2" component={Lab2} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'orange',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  buttonsContainer: {
-    marginTop: 20,
-    display: 'flex',
-    flexDirection: 'row'
-  },
-  buttonGray: {
-    margin: 20,
-    height:50, 
-    borderRadius:10,
-    width:100,
-    alignItems:'center',
-    backgroundColor:'gray',
-    justifyContent:'center',
-    backgroundColor: 'lightblue'
-  },
-});
