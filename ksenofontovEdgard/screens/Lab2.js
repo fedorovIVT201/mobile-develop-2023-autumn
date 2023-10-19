@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 30,
     fontFamily: "Verdana",
-    width: window.innerWidth - 40,
+    width: window.innerWidth,
     textAlign: "center",
   },
 });
