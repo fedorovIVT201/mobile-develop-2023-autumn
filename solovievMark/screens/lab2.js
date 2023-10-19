@@ -17,9 +17,9 @@ var i = 0;
 const lab2 = () => {
   const [city, setCity] = useState(cities[i]);
   const [forecast, setForecast] = useState({
-    temp: "",
-    humidity: "",
-    wind_speed: "",
+    temp: "0",
+    humidity: "0",
+    wind_speed: "0",
   });
 
   const getForecast = () => {
@@ -58,20 +58,24 @@ const lab2 = () => {
 
   return (
     <View style={styles.container}>
-      <Text>
+      <Text style={{ fontSize: 20, fontFamily: "Roboto" }}>
         Город: {city}
         <br />
         Температура: {forecast.temp}°C
         <br />
         Влажность: {forecast.humidity}%<br />
-        Скорость ветра: {forecast.wind_speed}ms
+        Скорость ветра: {forecast.wind_speed}m/s
       </Text>
       <View style={styles.buttonsCon}>
         <TouchableOpacity style={styles.button} onPress={previousCity}>
-          <Text style={{ color: "white" }}>Previous city</Text>
+          <Text style={{ color: "black", fontFamily: "Verdana" }}>
+            Previous city
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={nextCity}>
-          <Text style={{ color: "white" }}>Next city</Text>
+          <Text style={{ color: "black", fontFamily: "Verdana" }}>
+            Next city
+          </Text>
         </TouchableOpacity>
       </View>
       <StatusBar style="auto" />
@@ -84,15 +88,16 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems: "center",
     justifyContent: "center",
+    marginTop: 10,
   },
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "lightpink",
     alignItems: "center",
     justifyContent: "center",
   },
   button: {
-    backgroundColor: "#007AFF",
+    backgroundColor: "lightblue",
     padding: 10,
     borderRadius: 5,
     margin: 10,
