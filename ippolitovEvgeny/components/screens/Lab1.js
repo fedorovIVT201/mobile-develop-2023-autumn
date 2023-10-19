@@ -4,13 +4,14 @@ import { View, Text, TouchableOpacity, StatusBar, StyleSheet, ScrollView } from 
 const Lab1 = ({ navigation }) => {
   const [bgColor, setBgColor] = useState("");
 
-  const colorButton = (color) => {
+  const colorButton = (color, text) => {
+    const textColor = color === "white" ? "black" : "white";
     return (
       <TouchableOpacity
         style={[styles.colorChangeButton, { backgroundColor: color }]}
         onPress={() => setBgColor(color)}
       >
-        <Text>{color}</Text>
+        <Text style={{ color: textColor }}>{text}</Text>
       </TouchableOpacity>
     );
   };
@@ -18,11 +19,10 @@ const Lab1 = ({ navigation }) => {
   return (
     <View style={[styles.container, { backgroundColor: bgColor }]}>
       <View style={styles.buttonContainer}>
-        {colorButton("white")}
-        {colorButton("red")}
-        {colorButton("blue")}
+        {colorButton("white", "white")}
+        {colorButton("#FF1717", "red")}
+        {colorButton("#1E78FF", "blue")}
       </View>
-      <StatusBar style="auto" />
     </View>
   );
 };
@@ -37,16 +37,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
   },
-  text: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "white",
-  },
   colorChangeButton: {
     padding: 10,
-    margin: 5,
+    margin: 9,
     borderRadius: 5,
-    width: 100, // Set a fixed width for all buttons
+    width: 100,
     justifyContent: "center",
     alignItems: "center",
   },
