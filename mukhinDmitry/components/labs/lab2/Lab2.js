@@ -15,18 +15,16 @@ const KzrLab2 = () => {
     })
     return data
   }
-
-  const getData = (async = () => {
-    console.log('getData is called')
+  const getData = async () => {
     fetch('https://jsonplaceholder.typicode.com/users/1/todos')
-      .then((response) => response.json())
-      .then((json) => {
-        setData(formatData(json))
-      })
-      .catch((error) => {
-        console.error(error)
-      })
-  })
+    .then((response) => response.json())
+    .then((json) => {
+      setData(formatData(json));
+    })
+    .catch((error) => {
+      console.error(error);
+    })
+  }
 
   const addItem = () => {
     console.log('additem called')
