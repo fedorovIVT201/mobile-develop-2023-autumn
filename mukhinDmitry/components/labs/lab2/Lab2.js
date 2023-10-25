@@ -17,13 +17,13 @@ const KzrLab2 = () => {
   }
   const getData = async () => {
     fetch('https://jsonplaceholder.typicode.com/users/1/todos')
-    .then((response) => response.json())
-    .then((json) => {
-      setData(formatData(json));
-    })
-    .catch((error) => {
-      console.error(error);
-    })
+      .then((response) => response.json())
+      .then((json) => {
+        setData(formatData(json))
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 
   const addItem = () => {

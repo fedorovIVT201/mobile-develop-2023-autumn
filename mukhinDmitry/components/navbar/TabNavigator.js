@@ -3,6 +3,10 @@ import KzrLab1 from '../labs/lab1/Lab1'
 import KzrLab2 from '../labs/lab2/Lab2'
 import KzrLab3 from '../labs/lab3/Lab3'
 import KzrLab4 from '../labs/lab4/Lab4'
+import KzrLab51 from '../labs/lab5/Register'
+import KzrLab52 from '../labs/lab5/Login'
+import KzrLab53 from '../labs/lab5/Update'
+import KzrLab54 from '../labs/lab5/Me'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 const Tab = createBottomTabNavigator()
@@ -106,6 +110,63 @@ const TabNavigator = () => {
             return (
               <Image
                 source={require('../../assets/navbar/tab-2.png')}
+                style={styles.icon}
+              />
+            )
+          },
+        }}
+      />
+      <Tab.Screen
+        name="SignUp"
+        component={KzrLab51}
+        options={{
+          title: 'Apollo: Register',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: '#FFFFFF',
+          },
+          tabBarIcon: () => {
+            return (
+              <Image
+                source={require('../../assets/navbar/tab-1.png')}
+                style={styles.icon}
+              />
+            )
+          },
+        }}
+      />
+      <Tab.Screen
+        name="LogIn"
+        component={KzrLab52}
+        options={{
+          title: 'Apollo: Login',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: '#FFFFFF',
+          },
+          tabBarIcon: () => {
+            return (
+              <Image
+                source={require('../../assets/navbar/tab-2.png')}
+                style={styles.icon}
+              />
+            )
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Update"
+        component={KzrLab53}
+        options={{
+          title: 'Apollo: Update user',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            color: '#FFFFFF',
+          },
+          tabBarIcon: () => {
+            return (
+              <Image
+                source={require('../../assets/navbar/tab-1.png')}
                 style={styles.icon}
               />
             )
