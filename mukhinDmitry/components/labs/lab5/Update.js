@@ -16,7 +16,7 @@ import { UPDATE_USER } from '../../../sql/mutations/UpdateMutation'
 const KzrUpdate = () => {
   const dispatch = useDispatch()
   const [login, setLogin] = useState(
-    useSelector((state) => state.kzrSlice.login),
+    useSelector((state) => state.KzrSlice.login),
   )
   const [password, setPassword] = useState(null)
   const [name, setName] = useState(null)
