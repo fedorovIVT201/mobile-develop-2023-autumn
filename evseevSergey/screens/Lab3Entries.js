@@ -1,27 +1,27 @@
-import {
-  ActivityIndicator,
-  Button,
-  SafeAreaView,
-  Text,
-  View,
-} from "react-native";
+import { ActivityIndicator, Button, SafeAreaView, Text } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
-import WebView from "react-native-webview";
-import exp from "constants";
 
 const Lab3Entries = () => {
   const [data, setData] = useState([]);
+  const [dataMemo, setDataMemo] = useState([]);
   const [loading, setLoading] = useState(false);
-  const refresh = () => {
-    setLoading = true;
-    axios.get("https://api.publicapis.org/entries").then((res) => {
-      setLoading(false);
-    });
+  const [loadingMemo, setLoadingMemo] = useState(false);
+  const refresh = async () => {
+    setLoading(true);
+    const res = await axios
+      .get("https://api.publicapis.org/entries")
+      .finally(() => setLoading(false));
+    setData(res.data.entries);
   };
-  const refreshWithMemo = useCallback(() => {
-    refresh();
+  const refreshWithMemo = useCallback(async () => {
+    setLoadingMemo(true);
+    const res = await axios
+      .get("https://api.publicapis.org/entries")
+      .finally(() => setLoadingMemo(false));
+    setDataMemo(res.data.entries);
   }, []);
+
   useEffect(() => {}, []);
   return (
     <SafeAreaView style={{ flex: 1, gap: 10 }}>
@@ -29,11 +29,6 @@ const Lab3Entries = () => {
         title={"Refresh"}
         onPress={() => {
           refresh();
-        }}
-      />
-      <Button
-        title={"Refresh with memo"}
-        onPress={() => {
           refreshWithMemo();
         }}
       />
@@ -42,6 +37,17 @@ const Lab3Entries = () => {
         <ActivityIndicator />
       ) : (
         data.map((item, index) => {
+          return (
+            <Text style={{ color: "black" }} key={index}>
+              {item.Description}
+            </Text>
+          );
+        })
+      )}
+      {loadingMemo ? (
+        <ActivityIndicator />
+      ) : (
+        dataMemo.map((item, index) => {
           return (
             <Text style={{ color: "black" }} key={index}>
               {item.Description}
