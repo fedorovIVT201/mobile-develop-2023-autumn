@@ -67,7 +67,7 @@ const Lab2 = () => {
 
 const styles = StyleSheet.create({
   breedDetails: {
-    margin: 15,
+    margin: 20,
   },
   detailsText: {
     color: "rgba(36, 24, 8, 1)",
@@ -82,10 +82,10 @@ const styles = StyleSheet.create({
 
   breedPost: {
     flexDirection: "row",
-    margin: 15,
-    width: 350,
+    margin: 22,
+    marginBottom: 0,
     backgroundColor: "#FFFFFF",
-    borderRadius: 30,
+    borderRadius: 25,
   },
   text: {
     color: "grey",
