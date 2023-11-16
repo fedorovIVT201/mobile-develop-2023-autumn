@@ -13,10 +13,10 @@ const Button = ({ onPress, title, loading }) => {
     <TouchableOpacity
       disabled={loading}
       style={{
-        margin: 12,
-        height: 45,
-        borderRadius: 20,
-        width: 290,
+        marginTop: 22,
+        height: 38,
+        borderRadius: 25,
+        width: 272,
         alignItems: "center",
         backgroundColor: "rgba(244, 217, 148, 1)",
         justifyContent: "center",
@@ -30,7 +30,7 @@ const Button = ({ onPress, title, loading }) => {
           style={{
             color: "rgba(36, 24, 8, 1)",
             fontFamily: "IBMPlexMono_400Regular",
-            fontSize: 24,
+            fontSize: 18,
           }}
         >
           {title}
