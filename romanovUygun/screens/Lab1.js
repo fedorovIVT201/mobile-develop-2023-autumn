@@ -5,6 +5,7 @@ import {
   View,
   StatusBar,
   StyleSheet,
+  useCallback,
 } from "react-native";
 import Button from "../components/Button";
 import {
@@ -17,6 +18,11 @@ const Lab1 = () => {
     IBMPlexMono_400Regular,
   });
   const [count, setCount] = useState(0);
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.blackcontainer}>
@@ -45,27 +51,26 @@ const Lab1 = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 100,
+
+    marginTop: 128,
+
     backgroundColor: "#F7F6F1",
     alignItems: "center",
   },
   blackcontainer: {
-    marginTop: 20,
-    height: 380,
-    width: 330,
+    flex: 1,
+    maxHeight: 358,
+    width: 316,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#241808",
-    borderRadius: 20,
+    borderRadius: 25,
   },
   buttoncontainer: {
-    flex: 1,
-    margin: 15,
+    margin: 22,
     alignItems: "center",
-    marginBottom: 20,
   },
   numbercontainer: {
-    flex: 1,
     marginTop: 64,
     alignItems: "center",
   },
