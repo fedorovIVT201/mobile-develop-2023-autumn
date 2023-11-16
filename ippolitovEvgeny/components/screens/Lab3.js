@@ -31,11 +31,10 @@ const Lab3 = () => {
     console.log(data[0]);
   }, [data]);
 
-
   return (
     <SafeAreaView>
       <TouchableOpacity style={styles.colorChangeButton} onPress={refresh}>
-        <Text>Обновить</Text>
+        <Text style={styles.text}>Обновить</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -44,7 +43,7 @@ const Lab3 = () => {
           setData(await datamemo);
         }}
       >
-        <Text>useMemo</Text>
+        <Text style={styles.text}>useMemo</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -53,7 +52,7 @@ const Lab3 = () => {
           setData([]);
         }}
       >
-        <Text>Удалить</Text>
+        <Text style={styles.text}>Удалить</Text>
       </TouchableOpacity>
 
       {data.map((d, i) => (
@@ -70,14 +69,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    fontSize: 24,
-    fontWeight: "bold",
+    fontSize: 12,
     color: "white",
   },
   colorChangeButton: {
     backgroundColor: "#1E78FF",
     padding: 10,
-    margin: 5,
+    margin: 10,
     borderRadius: 5,
   },
 });
