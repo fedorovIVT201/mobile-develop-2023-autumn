@@ -21,7 +21,8 @@
     "react-native-screens": "~3.22.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "eslint": "^8.53.0"
   },
   "private": true
 }
