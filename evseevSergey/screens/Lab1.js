@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { Button, Text, View } from "react-native";
 
-
-const Lab1 = ()=>{
-    const [count,setCount] = useState(0);
-    return(
-        <View
+const Lab1 = () => {
+  const [count, setCount] = useState(0);
+  return (
+    <View
       style={{
         justifyContent: "center",
         alignItems: "center",
@@ -21,6 +20,6 @@ const Lab1 = ()=>{
         title={"I'm just a button"}
       />
     </View>
-    )
-}
+  );
+};
 export default Lab1;
