@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StatusBar, StyleSheet, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StatusBar,
+  StyleSheet,
+  ScrollView,
+} from "react-native";
 
 const Lab1 = ({ navigation }) => {
   const [bgColor, setBgColor] = useState("");

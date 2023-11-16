@@ -31,7 +31,6 @@ const Lab3 = () => {
     console.log(data[0]);
   }, [data]);
 
-
   return (
     <SafeAreaView>
       <TouchableOpacity style={styles.colorChangeButton} onPress={refresh}>
