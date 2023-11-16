@@ -14,12 +14,11 @@ const Lab2 = () => {
   const [loading, setLoading] = useState(false);
 
   const getNewPic = () => {
-    //setLoading(true);
+    setLoading(true);
     axios
       .get("https://api.thecatapi.com/v1/images/search")
       .then((resp) => {
         setCat(resp.data[0]);
-        //console.log(cat.url);
       })
       .finally(() => {
         setLoading(false);
@@ -30,7 +29,12 @@ const Lab2 = () => {
   }, []);
 
   return (
-    <View style={{ justifyContent: "center", alignItems: "center" }}>
+    <View
+      style={{
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <Image
         source={{ uri: cat.url }}
         style={{ width: 400, height: 400, marginBottom: 15 }}
@@ -45,4 +49,5 @@ const Lab2 = () => {
     </View>
   );
 };
+
 export default Lab2;
