@@ -38,7 +38,4 @@ yarn-error.*
 .vscode/
 
 # .idea
-.idea/
-
-# idea
 *.idea

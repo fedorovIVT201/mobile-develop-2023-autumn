@@ -9,9 +9,7 @@ import Lab3Entries from "./screens/Lab3Entries.js";
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-export default function App() {
   return (
-    <NavigationContainer>
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen name="Lab1" component={Lab1} />
@@ -19,7 +17,6 @@ export default function App() {
         <Tab.Screen name="Lab3" component={Lab3} />
         <Tab.Screen name="Lab3Entries" component={Lab3Entries} />
       </Tab.Navigator>
-    </NavigationContainer>
     </NavigationContainer>
   );
 }
