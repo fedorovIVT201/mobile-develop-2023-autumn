@@ -2,7 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useEffect, useState } from "react";
 
-export default function Lab1() {
+export default function Lab2() {
   const [idea, setIdea] = useState({ item: "No idea yet" });
 
   const getIdea = () => {
@@ -36,25 +36,24 @@ export default function Lab1() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 2,
+    flex: 1,
     backgroundColor: "rgba(204, 153, 204)",
     alignItems: "center",
     justifyContent: "center",
   },
   buttonStyle: {
-    position: "absolute",
-    top: 20,
-    height: 60,
-    width: 300,
-    borderRadius: 20,
+    paddingHorizontal: 15,
+    paddingVertical: 15,
+    borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "lightblue",
   },
   text: {
+    marginTop: 15,
     fontSize: 30,
     fontFamily: "Verdana",
-    width: window.innerWidth,
+    width: "80%",
     textAlign: "center",
   },
 });
