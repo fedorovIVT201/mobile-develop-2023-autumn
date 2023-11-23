@@ -4,20 +4,44 @@ import axios from "axios";
 import Button from "../components/Button";
 
 const Lab2 = () => {
-    useEffect(() => {
-        document.title = `You clicked ${count} times`;
-    });
+  const [fact, setFact] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const getFunc = () => {
+    setLoading(true);
+    axios
+      .get("https://catfact.ninja/fact")
+      .then((data) => {
+        setFact(data?.data?.fact);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  useEffect(() => {
+    getFunc();
+  }, []);
+  return (
     <View
       style={{
+        padding: 14,
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
         gap: 10,
-      }}></View>;
-    <Button
+      }}
+    >
+      <Text style={{ textAlign: "center" }}>{fact}</Text>
+      <Button
+        loading={loading}
+        title={"Обновить"}
         onPress={() => {
-          setCount(count + 1);
+          getFunc();
         }}
-        title={"Кнопка"}
-      ></Button>
+      />
+    </View>
+  );
 }
+
+export default Lab2;
