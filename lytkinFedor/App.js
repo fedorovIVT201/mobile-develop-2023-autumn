@@ -1,8 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, Button} from 'react-native';
 import {useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import toDoList from "./labs/toDoList";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 function HomeScreen() {
   const [count, setCount] = useState(0);
@@ -43,16 +45,20 @@ function HomeScreen() {
 }
 
 const Stack = createNativeStackNavigator();
-
+const Tab = createBottomTabNavigator()
 export default function App() {
   return (
       <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen name="Home" component={HomeScreen} />
-          </Stack.Navigator>
+        <Tab.Navigator>
+          <Tab.Screen
+              name='Home'
+              component={HomeScreen}/>
+          <Tab.Screen
+              name='ToDo'
+              component={toDoList}/>
+        </Tab.Navigator>
       </NavigationContainer>
   );
-
 }
 
 
