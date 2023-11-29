@@ -13,17 +13,18 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useMutation } from '@apollo/client'
 import { setLoginValue } from '../lab4/Slice'
 import { AUTH } from '../../../sql/mutations/LoginMutation'
+import { useNavigation } from "@react-navigation/native"
 
 const KzrLogin = () => {
+  const nav = useNavigation()
   const dispatch = useDispatch()
   const [login, setLogin] = useState(null)
   const [password, setPassword] = useState(null)
-  const [state, setState] = useState(0)
 
   const [auth, { loading }] = useMutation(AUTH, {
     onCompleted: async ({ authUser }) => {
       await AsyncStorage.setItem('token', authUser.token)
-      setState(1)
+      nav.replace('Tab')
       console.log('Login succeded')
     },
     onError: ({ message }) => {
@@ -68,16 +69,8 @@ const KzrLogin = () => {
       })
   }
 
-  if (state) {
-    return (
-      <SafeAreaView style={styles.kzrMain}>
-        <View>
-          <Text style={styles.kzrButtonText}>Successful login</Text>
-        </View>
-      </SafeAreaView>
-    )
-  } else {
-    return (
+  return (
+    <SafeAreaView style={styles.kzrMain}>
       <SafeAreaView style={styles.kzrMain}>
         <View style={styles.kzrCenter}>
           <TextInput
@@ -102,8 +95,8 @@ const KzrLogin = () => {
           </Pressable>
         </View>
       </SafeAreaView>
-    )
-  }
+    </SafeAreaView>
+  )
 }
 
 const styles = StyleSheet.create({
