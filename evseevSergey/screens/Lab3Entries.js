@@ -88,9 +88,9 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "black",
-    borderWidth: 1,
-    borderColor: "black",
-    width: "95%",
-    height: "50%",
+    // borderWidth: 1,
+    // borderColor: "black",
+    // width: "95%",
+    // height: "50%",
   },
 });

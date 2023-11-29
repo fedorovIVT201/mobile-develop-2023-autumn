@@ -68,7 +68,7 @@ export const styles = StyleSheet.create({
   },
   img: {
     width: "90%",
-    height: "50%",
+    height: "45%",
     borderWidth: 1,
     borderColor: "black",
     marginTop: "25%",
