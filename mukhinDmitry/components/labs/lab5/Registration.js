@@ -9,13 +9,16 @@ import {
   ActivityIndicator,
 } from 'react-native'
 import { useDispatch } from 'react-redux'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useMutation } from '@apollo/client'
 import { REG } from '../../../sql/mutations/RegisterMutation'
 import { AUTH } from '../../../sql/mutations/LoginMutation'
 import { useNavigation } from "@react-navigation/native"
+import { setLoginValue } from '../lab4/Slice'
 
 const KzrRegistration = () => {
   const nav = useNavigation()
+  const dispatch = useDispatch()
   const [login, setLogin] = useState(null)
   const [password, setPassword] = useState(null)
   const [name, setName] = useState(null)
@@ -83,7 +86,7 @@ const KzrRegistration = () => {
   }
 
   const onAuth = () => {
-    console.log('onAuth')
+    dispatch(setLoginValue(login))
     if (isDataCorrect())
       auth({
         variables: {
