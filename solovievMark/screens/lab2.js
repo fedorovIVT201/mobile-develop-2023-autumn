@@ -14,7 +14,8 @@ var cities = [
   "Tokyo",
 ];
 var i = 0;
-const lab2 = () => {
+const Lab2 = () => {
+  const [loading, setLoading] = useState(true);
   const [city, setCity] = useState(cities[i]);
   const [forecast, setForecast] = useState({
     temp: "0",
@@ -23,6 +24,7 @@ const lab2 = () => {
   });
 
   const getForecast = () => {
+    setLoading(true);
     fetch("https://api.api-ninjas.com/v1/weather?city=" + city, {
       method: "GET",
       headers: {
@@ -32,9 +34,11 @@ const lab2 = () => {
     })
       .then((response) => response.json())
       .then((json) => setForecast(json))
-      .catch((error) => console.error(error));
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false));
   };
   const nextCity = () => {
+    setLoading(true);
     if (i < cities.length - 1) {
       i++;
       setCity(cities[i]);
@@ -44,6 +48,7 @@ const lab2 = () => {
     }
   };
   const previousCity = () => {
+    setLoading(true);
     if (i > 0) {
       i--;
       setCity(cities[i]);
@@ -58,22 +63,26 @@ const lab2 = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: 20, fontFamily: "Roboto" }}>
-        Город: {city}
-        <br />
-        Температура: {forecast.temp}°C
-        <br />
-        Влажность: {forecast.humidity}%<br />
-        Скорость ветра: {forecast.wind_speed}m/s
-      </Text>
+      {loading ? (
+        <Text style={{ fontSize: 20, fontFamily: "Roboto" }}>Загрузка...</Text>
+      ) : (
+        <Text style={{ fontSize: 20, fontFamily: "Roboto" }}>
+          Город: {city}
+          {"\n"}
+          Температура: {forecast.temp}°C
+          {"\n"}
+          Влажность: {forecast.humidity}%{"\n"}
+          Скорость ветра: {forecast.wind_speed}m/s
+        </Text>
+      )}
       <View style={styles.buttonsCon}>
         <TouchableOpacity style={styles.button} onPress={previousCity}>
-          <Text style={{ color: "black", fontFamily: "Verdana" }}>
+          <Text style={{ color: "black", fontFamily: "Roboto" }}>
             Previous city
           </Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={nextCity}>
-          <Text style={{ color: "black", fontFamily: "Verdana" }}>
+          <Text style={{ color: "black", fontFamily: "Roboto" }}>
             Next city
           </Text>
         </TouchableOpacity>
@@ -85,7 +94,7 @@ const lab2 = () => {
 const styles = StyleSheet.create({
   buttonsCon: {
     flexDirection: "row",
-    height: 50,
+    height: 70,
     alignItems: "center",
     justifyContent: "center",
     marginTop: 10,
@@ -103,4 +112,4 @@ const styles = StyleSheet.create({
     margin: 10,
   },
 });
-export default lab2;
+export default Lab2;
