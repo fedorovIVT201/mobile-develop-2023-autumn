@@ -1,4 +1,10 @@
-import { ActivityIndicator, Button, SafeAreaView, Text } from "react-native";
+import {
+  ActivityIndicator,
+  TouchableOpacity,
+  ScrollView,
+  Text,
+  StyleSheet,
+} from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 
@@ -24,21 +30,24 @@ const Lab3Entries = () => {
 
   useEffect(() => {}, []);
   return (
-    <SafeAreaView style={{ flex: 1, gap: 10 }}>
-      <Button
-        title={"Refresh"}
+    <ScrollView contentContainerStyle={styles.main}>
+      <TouchableOpacity
         onPress={() => {
           refresh();
           refreshWithMemo();
         }}
-      />
-
+        style={styles.button}
+      >
+        <Text style={{ color: "white", fontWeight: "600", fontSize: 18 }}>
+          REFRESH
+        </Text>
+      </TouchableOpacity>
       {loading ? (
         <ActivityIndicator />
       ) : (
         data.map((item, index) => {
           return (
-            <Text style={{ color: "black" }} key={index}>
+            <Text style={styles.text} key={index}>
               {item.Description}
             </Text>
           );
@@ -49,13 +58,39 @@ const Lab3Entries = () => {
       ) : (
         dataMemo.map((item, index) => {
           return (
-            <Text style={{ color: "black" }} key={index}>
+            <Text style={styles.text} key={index}>
               {item.Description}
             </Text>
           );
         })
       )}
-    </SafeAreaView>
+    </ScrollView>
   );
 };
 export default Lab3Entries;
+
+const styles = StyleSheet.create({
+  main: {
+    backgroundColor: "rgb(217,217,217)",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    flex: 1,
+    marginTop: "-5%",
+  },
+  button: {
+    backgroundColor: "black",
+    borderRadius: 15,
+    width: "90%",
+    height: "10%",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: "10%",
+  },
+  text: {
+    color: "black",
+    borderWidth: 1,
+    borderColor: "black",
+    width: "95%",
+    height: "50%",
+  },
+});

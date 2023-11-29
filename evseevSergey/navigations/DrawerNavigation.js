@@ -1,39 +1,37 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { StyleSheet } from "react-native";
+import { View } from "react-native";
 import Lab1 from "../screens/Lab1";
 import Lab2 from "../screens/Lab2";
 import Lab3 from "../screens/Lab3";
 import Lab3Entries from "../screens/Lab3Entries";
-import { Colors } from "react-native/Libraries/NewAppScreen";
-import { ColorSpace } from "react-native-reanimated";
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = () => {
   return (
-    <Drawer.Navigator>
-      <Drawer.Screen
-        name="Lab1"
-        component={Lab1}
-        options={{
-          headerTitleAlign: "center",
-          headerStyle: { backgroundColor: "green" },
-        }}
-      />
-      <Drawer.Screen
-        name="Lab2"
-        component={Lab2}
-        options={{ headerTitleAlign: "center" }}
-      />
-      <Drawer.Screen
-        name="Lab3"
-        component={Lab3}
-        options={{ headerTitleAlign: "center" }}
-      />
-      <Drawer.Screen
-        name="Lab3Entries"
-        component={Lab3Entries}
-        options={{ headerTitleAlign: "center" }}
-      />
+    <Drawer.Navigator
+      screenOptions={{
+        drawerStyle: {
+          backgroundColor: "#D9D9D9",
+          width: "50%",
+        },
+        drawerItemStyle: {
+          marginLeft: "-1%",
+        },
+        headerShown: "false",
+        drawerActiveTintColor: "black",
+        drawerActiveBackgroundColor: "rgb(245,245,245)",
+        drawerInactiveTintColor: "white",
+        headerStyle: {
+          backgroundColor: "black",
+        },
+        headerTintColor: "white",
+        headerTitleAlign: "center",
+      }}
+    >
+      <Drawer.Screen name="Lab1" component={Lab1} />
+      <Drawer.Screen name="Lab2" component={Lab2} />
+      <Drawer.Screen name="Lab3" component={Lab3} />
+      <Drawer.Screen name="Lab3Entries" component={Lab3Entries} />
     </Drawer.Navigator>
   );
 };
