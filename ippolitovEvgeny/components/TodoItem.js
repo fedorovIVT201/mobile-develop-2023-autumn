@@ -1,16 +1,18 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import CheckBox from 'expo-checkbox';
+import CheckBox from "expo-checkbox";
 
 const TodoItem = ({ task, completed, onToggle }) => {
   return (
-    <View style={[styles.container, { borderBottomWidth: 1, borderColor: "#ccc" }]}>
+    <View
+      style={[styles.container, { borderBottomWidth: 1, borderColor: "#ccc" }]}
+    >
       <Text style={styles.taskText}>{task}</Text>
       <CheckBox
         value={completed}
         onValueChange={onToggle}
         style={styles.checkBox}
-        color={'#1E78FF'}
+        color={"#1E78FF"}
       />
     </View>
   );
@@ -18,8 +20,8 @@ const TodoItem = ({ task, completed, onToggle }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginBottom: 10,
     paddingVertical: 10,
   },
@@ -28,7 +30,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   checkBox: {
-    marginLeft: 'auto',
+    marginLeft: "auto",
   },
 });
 

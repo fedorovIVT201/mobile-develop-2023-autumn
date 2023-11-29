@@ -39,41 +39,43 @@ const Lab3 = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.blackcontainer}>
-        <Button title="Refresh" onPress={refresh} />
-        <Button
-          title="UseMemo"
-          onPress={async () => {
-            setData(await memo);
-          }}
-        />
-        <Button
-          title="Delete"
-          onPress={() => {
-            setData([]);
-          }}
-        />
-      </View>
-      <View style={styles.whitecontainer}>
-        <View
-          style={{
-            margin: 15,
-          }}
-        >
-          {data.map((d, i) => (
-            <Text
-              key={i}
-              style={{
-                color: "rgba(36, 24, 8, 1)",
-                fontFamily: "IBMPlexMono_400Regular",
-                fontSize: 12,
-              }}
-            >
-              {d.API} {d.Description}
-            </Text>
-          ))}
+      <ScrollView>
+        <View style={styles.blackcontainer}>
+          <Button title="Refresh" onPress={refresh} />
+          <Button
+            title="UseMemo"
+            onPress={async () => {
+              setData(await memo);
+            }}
+          />
+          <Button
+            title="Delete"
+            onPress={() => {
+              setData([]);
+            }}
+          />
         </View>
-      </View>
+        <View style={styles.whitecontainer}>
+          <View
+            style={{
+              margin: 15,
+            }}
+          >
+            {data.map((d, i) => (
+              <Text
+                key={i}
+                style={{
+                  color: "rgba(36, 24, 8, 1)",
+                  fontFamily: "IBMPlexMono_400Regular",
+                  fontSize: 12,
+                }}
+              >
+                {d.API} {d.Description}
+              </Text>
+            ))}
+          </View>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -85,22 +87,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   blackcontainer: {
-    marginTop: 20,
-    height: 220,
-    width: 330,
+    height: 202,
+    margin: 22,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#241808",
-    borderRadius: 20,
+    borderRadius: 25,
   },
   whitecontainer: {
-    marginTop: 20,
-    height: 500,
-    width: 330,
+    margin: 22,
+    marginTop: 0,
     alignItems: "center",
-
     backgroundColor: "#ffff",
-    borderRadius: 20,
+    borderRadius: 25,
   },
 });
 
