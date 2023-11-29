@@ -3,7 +3,7 @@ import {StyleSheet, Text, View, TouchableOpacity, Button} from 'react-native';
 import {useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import toDoList from "./labs/toDoList";
+import toDoList from "./labs/lab2";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 function HomeScreen() {
