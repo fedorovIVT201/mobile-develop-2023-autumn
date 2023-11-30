@@ -7,57 +7,61 @@ export default function Lab1() {
 
   return (
     <View style={styles.container}>
-      <Text>{count}</Text>
-      <Button
-        onPress={() => {
+      <View style={styles.whitecontainer}>
+        <Text style={styles.text}>{count}</Text>
+        <Button
+          onPress={() => {
             setCount(count + 1);
-        }}
-        title={"+ 1"}
+          }}
+          title={"+ 1"}
         />
-      <Button
-        onPress={() => {
+        <Button
+          onPress={() => {
             setCount(count - 1);
-        }}
-        title={"- 1"}
+          }}
+          title={"- 1"}
         />
-      <Button
-        onPress={() => {
+        <Button
+          onPress={() => {
             setCount(count * 2);
-        }}
-        title={"* 2"}
+          }}
+          title={"* 2"}
         />
-      <Button
-        onPress={() => {
+        <Button
+          onPress={() => {
             setCount(count / 2);
-        }}
-        title={"/ 2"}
+          }}
+          title={"/ 2"}
         />
-      <Button
-        onPress={() => {
+        <Button
+          onPress={() => {
             setCount(count * 0);
-        }}
-        title={"Reset"}
+          }}
+          title={"Reset"}
         />
+      </View>
     </View>
   );
-};
+}
 const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
     flex: 1,
     gap: 10,
+    backgroundColor: "rgb(221, 201, 180)",
   },
   text: {
-    color: "white", 
-    fontSize: 24
+    marginTop: 10,
+    marginBottom: 10,
+    color: "rgba(42, 61, 69, 1)",
+    fontSize: 32,
   },
-  button: {
-    height: 40,
-    width: 200,
+  whitecontainer: {
+    width: 296,
+    height: 330,
     alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 14,
-    backgroundColor: "red",
+    backgroundColor: "rgba(188, 172, 155, 1)",
+    borderRadius: 40,
   },
 });

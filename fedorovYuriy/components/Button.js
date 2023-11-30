@@ -5,19 +5,22 @@ const Button = ({ onPress, title, loading }) => {
     <TouchableOpacity
       disabled={loading}
       style={{
-        height: 40,
-        width: 200,
+        marginBottom: 15,
+        height: 35,
+        width: 153,
         alignItems: "center",
         justifyContent: "center",
-        borderRadius: 14,
-        backgroundColor: "red",
+        borderRadius: 163,
+        backgroundColor: "rgba(193, 124, 116, 1)",
       }}
       onPress={onPress}
     >
       {loading ? (
         <ActivityIndicator />
       ) : (
-        <Text style={{ color: "white" }}>{title}</Text>
+        <Text style={{ color: "rgba(42, 61, 69, 1)", fontSize: 24 }}>
+          {title}
+        </Text>
       )}
     </TouchableOpacity>
   );
