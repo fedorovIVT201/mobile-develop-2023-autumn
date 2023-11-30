@@ -1,85 +1,235 @@
 import React ,{useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text,  View, SafeAreaView,TouchableOpacity,Image,FlatList} from 'react-native';
+import { StyleSheet, Text,  View, SafeAreaView,TouchableOpacity,Image,FlatList, Dimensions} from 'react-native';
 import Header from './components/Header';
+import * as Font from 'expo-font';
+import Lent from './components/Lent';
+import Stories from './components/Stories';
+import Rec from './components/Rec';
+import AppLoading from 'expo-app-loading';
+import Profile from './components/Profile';
+
+const fonts = () => Font.loadAsync({
+  'mp-eb': require('./assets/fonts/Manrope-ExtraBold.ttf'),
+  'mp-b': require('./assets/fonts/Manrope-Bold.ttf'),
+  'mp-m': require('./assets/fonts/Manrope-Medium.ttf')
+})
+
 
 
 export default function App() {
-
+  const [fonts,setFont] = useState(false);
   const pages = ['Главная','Рекомендации','','Новая публикация','Que']
   const [page,setPage] = useState(0)
   const [stories, setStories] = useState([
-    {name: 'Google', anons: 'Google привет', full: 'Google приветствует нас', key: '1',img:'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png'},
-    {name: 'Apple', anons: 'Apple привет', full: 'Apple приветствует нас', key: '2',img:'https://cheboksary.rebro-store.ru/upload/resize_cache/webp/upload/iblock/d56/d563a4964acb299cb0d85b2f0550513b.webp'},
-    {name: 'Facebook', anons: 'Facebook привет', full: 'Facebook приветствует нас', key: '3',img:'https://www.internetmatters.org/wp-content/uploads/2021/03/facebook-logo-new.png'},
-  ]);
+    {name: '#Que',
+    key: '1',img:'https://s1.hostingkartinok.com/uploads/images/2023/11/493bd745f989bb76fd6b72ee2c5595c8.png'},
+    {name: '#Que',
+    key: '2',img:'https://s1.hostingkartinok.com/uploads/images/2023/11/493bd745f989bb76fd6b72ee2c5595c8.png'},
+    {name: '#Que',
+    key: '3',img:'https://s1.hostingkartinok.com/uploads/images/2023/11/493bd745f989bb76fd6b72ee2c5595c8.png'},
+    {name: '#Que',
+    key: '4',img:'https://s1.hostingkartinok.com/uploads/images/2023/11/493bd745f989bb76fd6b72ee2c5595c8.png'},
+    {name: '#Que',
+    key: '5',img:'https://s1.hostingkartinok.com/uploads/images/2023/11/493bd745f989bb76fd6b72ee2c5595c8.png'},
+    {name: '#Que',
+    key: '6',img:'https://s1.hostingkartinok.com/uploads/images/2023/11/493bd745f989bb76fd6b72ee2c5595c8.png'},
+ ]);
   const [posts, setPosts] = useState([
-    {name: 'Google', anons: 'Google привет', full: 'Google приветствует нас', key: '1',img:'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png'},
-    {name: 'Apple', anons: 'Apple привет', full: 'Apple приветствует нас', key: '2',img:'https://cheboksary.rebro-store.ru/upload/resize_cache/webp/upload/iblock/d56/d563a4964acb299cb0d85b2f0550513b.webp'},
-    {name: 'Facebook', anons: 'Facebook привет', full: 'Facebook приветствует нас', key: '3',img:'https://www.internetmatters.org/wp-content/uploads/2021/03/facebook-logo-new.png'},
+    {name: 'Que', restaurant_name: '#QueRestaurant', grade:'5',text: 'Бизнес-модель', 
+    key: '1',img:'https://s1.hostingkartinok.com/uploads/images/2023/11/627da4bb2276556e59133720b857c9bb.png', pic:'https://s1.hostingkartinok.com/uploads/images/2023/11/8e000d421a0df181a604c986c606616e.png',likes:'100',comments:'5',saves:'80'},
+    {name: 'Que', restaurant_name: '#QueRestaurant', grade:'5',text: 'Бизнес-модель', 
+    key: '2',img:'https://s1.hostingkartinok.com/uploads/images/2023/11/627da4bb2276556e59133720b857c9bb.png', pic:'https://s1.hostingkartinok.com/uploads/images/2023/11/8e000d421a0df181a604c986c606616e.png',likes:'100',comments:'5',saves:'80'},
+    {name: 'Que', restaurant_name: '#QueRestaurant', grade:'5',text: 'Бизнес-модель', 
+    key: '3',img:'https://s1.hostingkartinok.com/uploads/images/2023/11/627da4bb2276556e59133720b857c9bb.png', pic:'https://s1.hostingkartinok.com/uploads/images/2023/11/8e000d421a0df181a604c986c606616e.png',likes:'100',comments:'5',saves:'80'},
+    {name: 'Que', restaurant_name: '#QueRestaurant', grade:'5',text: 'Бизнес-модель', 
+    key: '4',img:'https://s1.hostingkartinok.com/uploads/images/2023/11/627da4bb2276556e59133720b857c9bb.png', pic:'https://s1.hostingkartinok.com/uploads/images/2023/11/8e000d421a0df181a604c986c606616e.png',likes:'100',comments:'5',saves:'80'},
+    {name: 'Que', restaurant_name: '#QueRestaurant', grade:'5',text: 'Бизнес-модель', 
+    key: '5',img:'https://s1.hostingkartinok.com/uploads/images/2023/11/627da4bb2276556e59133720b857c9bb.png', pic:'https://s1.hostingkartinok.com/uploads/images/2023/11/8e000d421a0df181a604c986c606616e.png',likes:'100',comments:'5',saves:'80'},
+    {name: 'Que', restaurant_name: '#QueRestaurant', grade:'5',text: 'Бизнес-модель', 
+    key: '6',img:'https://s1.hostingkartinok.com/uploads/images/2023/11/627da4bb2276556e59133720b857c9bb.png', pic:'https://s1.hostingkartinok.com/uploads/images/2023/11/8e000d421a0df181a604c986c606616e.png',likes:'100',comments:'5',saves:'80'},
+    {name: 'Que', restaurant_name: '#QueRestaurant', grade:'5',text: 'Бизнес-модель', 
+    key: '7',img:'https://s1.hostingkartinok.com/uploads/images/2023/11/627da4bb2276556e59133720b857c9bb.png', pic:'https://s1.hostingkartinok.com/uploads/images/2023/11/8e000d421a0df181a604c986c606616e.png',likes:'100',comments:'5',saves:'80'},
+    {name: 'Que', restaurant_name: '#QueRestaurant', grade:'5',text: 'Бизнес-модель', 
+    key: '8',img:'https://s1.hostingkartinok.com/uploads/images/2023/11/627da4bb2276556e59133720b857c9bb.png', pic:'https://s1.hostingkartinok.com/uploads/images/2023/11/8e000d421a0df181a604c986c606616e.png',likes:'100',comments:'5',saves:'80'},
+    {name: 'Que', restaurant_name: '#QueRestaurant', grade:'5',text: 'Бизнес-модель', 
+    key: '9',img:'https://s1.hostingkartinok.com/uploads/images/2023/11/476291df723c5c4d0797398a60849376.png', pic:'https://s1.hostingkartinok.com/uploads/images/2023/11/8e000d421a0df181a604c986c606616e.png',likes:'100',comments:'5',saves:'80'},
+    {name: 'Que', restaurant_name: '#QueRestaurant', grade:'5',text: 'Бизнес-модель', 
+    key: '10',img:'https://s1.hostingkartinok.com/uploads/images/2023/11/476291df723c5c4d0797398a60849376.png', pic:'https://s1.hostingkartinok.com/uploads/images/2023/11/8e000d421a0df181a604c986c606616e.png',likes:'100',comments:'5',saves:'80'},
+    {name: 'Que', restaurant_name: '#QueRestaurant', grade:'5',text: 'Бизнес-модель', 
+    key: '12',img:'https://s1.hostingkartinok.com/uploads/images/2023/11/476291df723c5c4d0797398a60849376.png', pic:'https://s1.hostingkartinok.com/uploads/images/2023/11/8e000d421a0df181a604c986c606616e.png',likes:'100',comments:'5',saves:'80'},
+    {name: 'Que', restaurant_name: '#QueRestaurant', grade:'5',text: 'Бизнес-модель', 
+    key: '13',img:'https://s1.hostingkartinok.com/uploads/images/2023/11/476291df723c5c4d0797398a60849376.png', pic:'https://s1.hostingkartinok.com/uploads/images/2023/11/8e000d421a0df181a604c986c606616e.png',likes:'100',comments:'5',saves:'80'},
+    {name: 'Que', restaurant_name: '#QueRestaurant', grade:'5',text: 'Бизнес-модель', 
+    key: '14',img:'https://s1.hostingkartinok.com/uploads/images/2023/11/476291df723c5c4d0797398a60849376.png', pic:'https://s1.hostingkartinok.com/uploads/images/2023/11/8e000d421a0df181a604c986c606616e.png',likes:'100',comments:'5',saves:'80'},
+    {name: 'Que', restaurant_name: '#QueRestaurant', grade:'5',text: 'Бизнес-модель', 
+    key: '15',img:'https://s1.hostingkartinok.com/uploads/images/2023/11/476291df723c5c4d0797398a60849376.png', pic:'https://s1.hostingkartinok.com/uploads/images/2023/11/8e000d421a0df181a604c986c606616e.png',likes:'100',comments:'5',saves:'80'},
+    {name: 'Que', restaurant_name: '#QueRestaurant', grade:'5',text: 'Бизнес-модель', 
+    key: '16',img:'https://s1.hostingkartinok.com/uploads/images/2023/11/476291df723c5c4d0797398a60849376.png', pic:'https://s1.hostingkartinok.com/uploads/images/2023/11/8e000d421a0df181a604c986c606616e.png',likes:'100',comments:'5',saves:'80'},
   ]);
 
-  title = pages[page]
-  return (
-    <SafeAreaView style={styles.main}>
-      
-      <StatusBar style="auto" />
+  var title = pages[page];
+  if(fonts){
+    if(page==0){
+      return (
+        <SafeAreaView style={styles.main}>
+          
+          <StatusBar style="auto" />
+    
+    
+          <Header title={title} page = {page}/>
+    
+          <Stories stories={stories}/>
+    
+    
+          <Lent post={posts}/>
+    
+    
+    
+    
+    
+          <View style={styles.footer}>
+                <TouchableOpacity onPress={()=>setPage(0)}>
+                    <Image 
+                    style={styles.icon}
+                    source={require('./assets/footer-icons/Home.png')}
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={()=>setPage(1)}>
+                    <Image 
+                    
+                    style={styles.icon}
+                    source={require('./assets/footer-icons/Rec.png')}
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={()=>setPage(3)}>
+                    <Image 
+                    
+                    style={styles.icon}
+                    source={require('./assets/footer-icons/NewPost.png')}
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={()=>setPage(4)}>
+                    <Image 
+                    
+                    style={styles.icon}
+                    source={require('./assets/footer-icons/Profile.png')}
+                    />
+                </TouchableOpacity>
+            </View>
+    
+        </SafeAreaView>
+    
+      );
+    }else if(page == 1){
+  
+      return (
+        <SafeAreaView style={styles.main}>
+          
+          <StatusBar style="auto" />
+  
+    
+          <Header title={title} page = {page}/>
+    
+          <Rec post={posts}/>
+  
+    
+    
+    
+    
+    
+    
+          <View style={styles.footer}>
+                <TouchableOpacity onPress={()=>setPage(0)}>
+                    <Image 
+                    style={styles.icon}
+                    source={require('./assets/footer-icons/Home.png')}
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={()=>setPage(1)}>
+                    <Image 
+                    
+                    style={styles.icon}
+                    source={require('./assets/footer-icons/Rec.png')}
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={()=>setPage(0)}>
+                    <Image 
+                    
+                    style={styles.icon}
+                    source={require('./assets/footer-icons/NewPost.png')}
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={()=>setPage(4)}>
+                    <Image 
+                    
+                    style={styles.icon}
+                    source={require('./assets/footer-icons/Profile.png')}
+                    />
+                </TouchableOpacity>
+            </View>
+    
+        </SafeAreaView>
+      );
+    }else if(page == 4){
+  
+      return (
+        <SafeAreaView style={styles.main}>
+          
+        <StatusBar style="auto" />
+  
+    
+        
+        <Profile/>
+  
+        
+    
+        
 
-
-      <Header title={title} page = {page}/>
-
-      <View style={styles.stories}>
-
-      </View>
-
-
-      <View style={styles.lent}>
-        <FlatList data={posts} renderItem={({item}) => (
-          <TouchableOpacity style={styles.item} onPress={()=> navigation.navigate('FullInfo',item)}>
-            <Image style={styles.image} source={{uri:item.img}}/>
-            <Text style={styles.title}>{item.name}</Text>
-            <Text style={styles.anons}>{item.anons}</Text>
-          </TouchableOpacity>
-        )}/>
-      </View>
-
-
-
-
-
-      <View style={styles.footer}>
-            <TouchableOpacity onPress={()=>setPage(0)}>
-                <Image 
-                style={styles.icon}
-                source={require('./assets/footer-icons/Home.png')}
-                />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={()=>setPage(1)}>
-                <Image 
-                
-                style={styles.icon}
-                source={require('./assets/footer-icons/Rec.png')}
-                />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={()=>setPage(2)}>
-                <Image 
-                
-                style={styles.icon}
-                source={require('./assets/footer-icons/NewPost.png')}
-                />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={()=>setPage(3)}>
-                <Image 
-                
-                style={styles.icon}
-                source={require('./assets/footer-icons/Profile.png')}
-                />
-            </TouchableOpacity>
-        </View>
-
-    </SafeAreaView>
-
-  );
+        <Rec post={posts}/>
+          <View style={styles.footer}>
+                <TouchableOpacity onPress={()=>setPage(0)}>
+                    <Image 
+                    style={styles.icon}
+                    source={require('./assets/footer-icons/Home.png')}
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={()=>setPage(1)}>
+                    <Image 
+                    
+                    style={styles.icon}
+                    source={require('./assets/footer-icons/Rec.png')}
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={()=>setPage(0)}>
+                    <Image 
+                    
+                    style={styles.icon}
+                    source={require('./assets/footer-icons/NewPost.png')}
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={()=>setPage(4)}>
+                    <Image 
+                    
+                    style={styles.icon}
+                    source={require('./assets/footer-icons/Profile.png')}
+                    />
+                </TouchableOpacity>
+            </View>
+    
+        </SafeAreaView>
+      );
+    }
+  }else{
+    return(
+      <AppLoading startAsync={fonts} 
+      onFinish={() => setFont(true)}
+      onError={console.warn}
+      />
+    );
+  }
+  
+  
 }
 
 const styles = StyleSheet.create({
@@ -88,19 +238,7 @@ const styles = StyleSheet.create({
     flexDirection:'column',
     justifyContent:'space-between'
   },
-  stories:{
-    height:134,
-    borderBottomLeftRadius:24,
-    borderBottomRightRadius:24,
-    backgroundColor:'white'
-  },
-  lent:{
-    flex:1,
-    marginTop:8,
-    backgroundColor:'white'
-  },
   footer:{
-    alignSelf:'center',
     height:64,
     width:'100%',
     justifyContent:'space-around',
@@ -116,6 +254,6 @@ title:{
 icon:{
     width:30,
     height:30
-}
+},
 
 });

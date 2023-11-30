@@ -28,6 +28,51 @@ export default function Header({title, page}) {
             </View>
         
           );
+    }else if(page==1){
+      return (
+        <View style={styles.header}>
+            <Text style={styles.title}>
+                {title}
+            </Text>
+            <TouchableOpacity>
+                <Image 
+                style={styles.icon}
+                source={require('../assets/header-icons/find.png')}
+                />
+            </TouchableOpacity>
+        </View>
+    
+      );
+    }else if(page==3){
+      return (
+        <View style={styles.header}>
+            <Text style={styles.title}>
+                {title}
+            </Text>
+            <TouchableOpacity>
+                <Image 
+                style={styles.icon}
+                source={require('../assets/header-icons/notif.png')}
+                />
+            </TouchableOpacity>
+        </View>
+    
+      );
+    }else if(page==4){
+      return (
+        <View style={styles.header}>
+            <Text style={styles.title}>
+                {title}
+            </Text>
+            <TouchableOpacity>
+                <Image 
+                style={styles.icon}
+                source={require('../assets/header-icons/notif.png')}
+                />
+            </TouchableOpacity>
+        </View>
+    
+      );
     }
 
   }else{
@@ -56,9 +101,10 @@ const styles = StyleSheet.create({
         fontSize:28
     },
     icon:{
-        width:20,
+        width:24,
         height:24,
-        marginRight:21
+        marginRight:21,
+        resizeMode:'contain'
     }
 
 });
