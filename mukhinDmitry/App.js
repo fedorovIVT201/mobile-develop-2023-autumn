@@ -1,5 +1,7 @@
+import 'react-native-gesture-handler'
 import { NavigationContainer } from '@react-navigation/native'
-import TabNavigator from './components/navbar/TabNavigator'
+import TabNavigator from './components/navbar/TabNavigation'
+import MainStackNavigator from './components/navbar/MainStackNavigation'
 import KzrStore from './components/labs/lab4/Store'
 import { Provider } from 'react-redux'
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client'
@@ -15,7 +17,7 @@ export default function kzrApp() {
     <ApolloProvider client={client}>
       <Provider store={KzrStore}>
         <NavigationContainer>
-          <TabNavigator />
+          <MainStackNavigator />
         </NavigationContainer>
       </Provider>
     </ApolloProvider>

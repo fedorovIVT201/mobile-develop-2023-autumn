@@ -14,7 +14,7 @@ const authLink = setContext(async (_, { headers }) => {
 })
 
 const httpLink = new HttpLink({
-//   uri: 'https://nefu-server.herokuapp.com/',
+  //   uri: 'https://nefu-server.herokuapp.com/',
   uri: 'http://194.59.247.134:1414/',
   credentials: 'same-origin',
   headers: {
