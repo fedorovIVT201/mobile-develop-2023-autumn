@@ -4,6 +4,7 @@ import {
   ScrollView,
   Text,
   StyleSheet,
+  SafeAreaView,
 } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
@@ -30,7 +31,7 @@ const Lab3Entries = () => {
 
   useEffect(() => {}, []);
   return (
-    <ScrollView contentContainerStyle={styles.main}>
+    <SafeAreaView style={styles.main}>
       <TouchableOpacity
         onPress={() => {
           refresh();
@@ -42,29 +43,33 @@ const Lab3Entries = () => {
           REFRESH
         </Text>
       </TouchableOpacity>
-      {loading ? (
-        <ActivityIndicator />
-      ) : (
-        data.map((item, index) => {
-          return (
-            <Text style={styles.text} key={index}>
-              {item.Description}
-            </Text>
-          );
-        })
-      )}
-      {loadingMemo ? (
-        <ActivityIndicator />
-      ) : (
-        dataMemo.map((item, index) => {
-          return (
-            <Text style={styles.text} key={index}>
-              {item.Description}
-            </Text>
-          );
-        })
-      )}
-    </ScrollView>
+      <ScrollView
+        contentContainerStyle={{ alignItems: "center", marginTop: "5%" }}
+      >
+        {loading ? (
+          <ActivityIndicator />
+        ) : (
+          data.map((item, index) => {
+            return (
+              <Text style={styles.text} key={index}>
+                {item.Description}
+              </Text>
+            );
+          })
+        )}
+        {loadingMemo ? (
+          <ActivityIndicator />
+        ) : (
+          dataMemo.map((item, index) => {
+            return (
+              <Text style={styles.text} key={index}>
+                {item.Description}
+              </Text>
+            );
+          })
+        )}
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 export default Lab3Entries;
@@ -72,10 +77,9 @@ export default Lab3Entries;
 const styles = StyleSheet.create({
   main: {
     backgroundColor: "rgb(217,217,217)",
-    justifyContent: "flex-start",
     alignItems: "center",
-    flex: 1,
     marginTop: "-5%",
+    flex: 1,
   },
   button: {
     backgroundColor: "black",
