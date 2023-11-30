@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flex: 1,
     gap: 10,
+    backgroundColor: "rgb(221, 201, 180)",
   },
 });
 export default Lab3;
