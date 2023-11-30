@@ -1,4 +1,11 @@
-import { ActivityIndicator, Button, SafeAreaView, Text } from "react-native";
+import {
+  ActivityIndicator,
+  TouchableOpacity,
+  ScrollView,
+  Text,
+  StyleSheet,
+  SafeAreaView,
+} from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 
@@ -24,38 +31,70 @@ const Lab3Entries = () => {
 
   useEffect(() => {}, []);
   return (
-    <SafeAreaView style={{ flex: 1, gap: 10 }}>
-      <Button
-        title={"Refresh"}
+    <SafeAreaView style={styles.main}>
+      <TouchableOpacity
         onPress={() => {
           refresh();
           refreshWithMemo();
         }}
-      />
-
-      {loading ? (
-        <ActivityIndicator />
-      ) : (
-        data.map((item, index) => {
-          return (
-            <Text style={{ color: "black" }} key={index}>
-              {item.Description}
-            </Text>
-          );
-        })
-      )}
-      {loadingMemo ? (
-        <ActivityIndicator />
-      ) : (
-        dataMemo.map((item, index) => {
-          return (
-            <Text style={{ color: "black" }} key={index}>
-              {item.Description}
-            </Text>
-          );
-        })
-      )}
+        style={styles.button}
+      >
+        <Text style={{ color: "white", fontWeight: "600", fontSize: 18 }}>
+          REFRESH
+        </Text>
+      </TouchableOpacity>
+      <ScrollView
+        contentContainerStyle={{ alignItems: "center", marginTop: "5%" }}
+      >
+        {loading ? (
+          <ActivityIndicator />
+        ) : (
+          data.map((item, index) => {
+            return (
+              <Text style={styles.text} key={index}>
+                {item.Description}
+              </Text>
+            );
+          })
+        )}
+        {loadingMemo ? (
+          <ActivityIndicator />
+        ) : (
+          dataMemo.map((item, index) => {
+            return (
+              <Text style={styles.text} key={index}>
+                {item.Description}
+              </Text>
+            );
+          })
+        )}
+      </ScrollView>
     </SafeAreaView>
   );
 };
 export default Lab3Entries;
+
+const styles = StyleSheet.create({
+  main: {
+    backgroundColor: "rgb(217,217,217)",
+    alignItems: "center",
+    marginTop: "-5%",
+    flex: 1,
+  },
+  button: {
+    backgroundColor: "black",
+    borderRadius: 15,
+    width: "90%",
+    height: "10%",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: "10%",
+  },
+  text: {
+    color: "black",
+    // borderWidth: 1,
+    // borderColor: "black",
+    // width: "95%",
+    // height: "50%",
+  },
+});
