@@ -2,7 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useState } from "react";
 
-const lab1 = () => {
+const Lab1 = () => {
   const [count, setCount] = useState(0);
 
   const addCount = () => {
@@ -41,4 +41,4 @@ const styles = StyleSheet.create({
     margin: 10,
   },
 });
-export default lab1;
+export default Lab1;
