@@ -19,7 +19,8 @@ return (
                 <View style={styles.bgFill}>
                 <Image style={styles.filler} source={require('../assets/rec4.png')}/>
                     <Text style={styles.prName}>
-                        Que
+                        Que {"\n"}
+                        (designed by Darina Tagrova)
                     </Text>
 
                 </View>
