@@ -1,34 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
-import { useState } from 'react';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
+import { AntDesign} from "@expo/vector-icons"
+import Lab1 from "./screens/lab1";
+import Lab2 from "./screens/lab2";
 
+const Tab = createBottomTabNavigator();
 
 export default function App() {
-  
-  const [displayText, setDisplayText] = useState('Hello');
-
-  const changeText = () => {
-    if (displayText === 'Hello') {
-      setDisplayText('world!');
-    } else {
-      setDisplayText('Hello');
-    }
-  };
-  
   return (
-    <View style={styles.container}>
-      <Text>{displayText}</Text>
-      <Button title='Press' onPress={changeText}/>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen 
+          name="lab1" 
+          component={Lab1}
+          options={{
+            tabBarIcon: () =>(
+              <AntDesign name="bars" size={24} color="black" />
+            )
+          }} 
+        />
+        <Tab.Screen 
+          name="lab2" 
+          component={Lab2}
+          options={{
+            tabBarIcon: () =>(
+              <AntDesign name="barschart" size={24} color="black" />
+            )
+          }} 
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
