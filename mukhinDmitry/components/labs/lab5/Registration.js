@@ -8,10 +8,17 @@ import {
   TextInput,
   ActivityIndicator,
 } from 'react-native'
+import { useDispatch } from 'react-redux'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useMutation } from '@apollo/client'
 import { REG } from '../../../sql/mutations/RegisterMutation'
+import { AUTH } from '../../../sql/mutations/LoginMutation'
+import { useNavigation } from "@react-navigation/native"
+import { setLoginValue } from '../lab4/Slice'
 
-const KzrRegister = () => {
+const KzrRegistration = () => {
+  const nav = useNavigation()
+  const dispatch = useDispatch()
   const [login, setLogin] = useState(null)
   const [password, setPassword] = useState(null)
   const [name, setName] = useState(null)
@@ -19,6 +26,7 @@ const KzrRegister = () => {
   const [reg, { loading }] = useMutation(REG, {
     onCompleted: async () => {
       console.log('Register completed')
+      onAuth()
     },
     onError: ({ message }) => {
       console.log(message)
@@ -32,6 +40,21 @@ const KzrRegister = () => {
       console.log('Registration error')
     },
   })
+  const [auth, { logLoading }] = useMutation(AUTH, {
+    onCompleted: async ({ authUser }) => {
+      await AsyncStorage.setItem('token', authUser.token)
+      nav.replace('Tab')
+      console.log('Login succeded')
+    },
+    onError: ({ message }) => {
+      console.log(message)
+      if (message === 'GraphQL error: Incorrect password') {
+        console.log('Incorrect password')
+        return null
+      }
+      console.log('Something went wrong')
+    },
+  })
 
   const isDataCorrect = () => {
     if (login === '') {
@@ -42,12 +65,14 @@ const KzrRegister = () => {
       console.log('Null password')
       return false
     }
+    console.log('data correct')
     return true
   }
-
-  if (loading) return <ActivityIndicator color="#82D2FF" />
+  if (loading) return <ActivityIndicator color="#82D2FF" style={styles.kzrMain} />
+  if (logLoading) return <ActivityIndicator color="#82D2FF" style={styles.kzrMain} />
 
   const createUser = () => {
+    console.log('createUser')
     if (isDataCorrect())
       reg({
         variables: {
@@ -58,6 +83,20 @@ const KzrRegister = () => {
           },
         },
       })
+  }
+
+  const onAuth = () => {
+    dispatch(setLoginValue(login))
+    if (isDataCorrect())
+      auth({
+        variables: {
+          data: {
+            login,
+            password,
+          },
+        },
+      })
+    nav.replace('Tab')
   }
 
   return (
@@ -133,4 +172,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default KzrRegister
+export default KzrRegistration
