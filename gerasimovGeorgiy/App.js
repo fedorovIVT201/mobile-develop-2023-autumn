@@ -1,17 +1,19 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import MainStackNavigation from "./navigations/MainStackNavigation";
 import { NavigationContainer } from "@react-navigation/native";
-import Lab1 from "./screens/Lab1";
-import Lab2 from "./screens/Lab2";
-
-const Tab = createBottomTabNavigator();
+import Toast from "react-native-toast-message";
+const client = new ApolloClient({
+  uri: "http://194.59.247.134:1414/",
+  cache: new InMemoryCache(),
+});
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Lab1" component={Lab1} />
-        <Tab.Screen name="Lab2" component={Lab2} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <ApolloProvider client={client}>
+      <NavigationContainer>
+        <MainStackNavigation />
+      </NavigationContainer>
+      <Toast />
+    </ApolloProvider>
   );
 }
