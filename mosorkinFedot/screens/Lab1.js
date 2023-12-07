@@ -5,7 +5,7 @@ import ButtonsContainer from "../components/ButtonsContainer";
 
 const Lab1 = () => {
   const [imageSize, setImageSize] = useState(100);
-  const [backgroundColor, setBackgroundColor] = useState("#FFFFFF");
+  const [backgroundColor, setBackgroundColor] = useState("#AD66D5");
 
   const handleColorButtonClick = () => {
     setBackgroundColor(generateRandomColor());

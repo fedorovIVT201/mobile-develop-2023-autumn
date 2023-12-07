@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   memoButtons: {
-    marginTop: 30,
+    marginTop: 20,
     height: 40,
     width: 100,
     alignItems: "center",
