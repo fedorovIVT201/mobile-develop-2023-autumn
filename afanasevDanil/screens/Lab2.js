@@ -2,7 +2,7 @@ import { Text, View } from "react-native";
 import { useEffect, useState } from "react";
 import Button from "../components/Button";
 import axios from "axios";
-
+import React from 'react';
 const Lab2 = () => {
     const [fact, setFact] = useState("");
     const [loading, setLoading] = useState(false);
