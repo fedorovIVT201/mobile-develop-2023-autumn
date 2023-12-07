@@ -7,6 +7,7 @@ import {
   IBMPlexMono_400Regular,
 } from "@expo-google-fonts/ibm-plex-mono";
 import { TextInput } from "react-native-gesture-handler";
+import { useMutation } from "@apollo/client";
 
 const Login = () => {
   const [login, onChangeLogin] = useState("Login");
@@ -18,7 +19,7 @@ const Login = () => {
   if (!fontsLoaded) {
     return null;
   }
-
+  //задание заюзать редакс либо другие стейт менеджеры
   const nav = useNavigation();
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>

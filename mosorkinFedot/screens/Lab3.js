@@ -5,6 +5,8 @@ import {
   SafeAreaView,
   View,
   TouchableOpacity,
+  ScrollView,
+  StyleSheet,
 } from "react-native";
 import MemoButton from "../components/buttons/MemoButton";
 import axios from "axios";
@@ -35,9 +37,16 @@ const Lab3 = () => {
     setTimerMemo(Date.now() - start);
   }, []);
 
-  useEffect(() => {}, []);
   return (
-    <SafeAreaView style={{ flex: 1, gap: 10 }}>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.textContainer}>
+        <Text style={styles.textContainer}>
+          Время загрузки без useMemo: {timer} ms
+        </Text>
+        <Text style={styles.textContainer}>
+          Время загрузки с useMemo: {timerMemo} ms
+        </Text>
+      </View>
       <MemoButton
         text={"Обновить"}
         onPress={() => {
@@ -45,37 +54,53 @@ const Lab3 = () => {
           refreshWithMemo();
         }}
       />
-      <Text style={{ fontSize: 20 }}>
-        Время загрузки без useMemo: {timer} ms
-      </Text>
-      <Text style={{ fontSize: 20 }}>
-        Время загрузки с useMemo: {timerMemo} ms
-      </Text>
-
-      {loading ? (
-        <ActivityIndicator />
-      ) : (
-        data.map((item, index) => {
-          return (
-            <Text style={{ color: "black" }} key={index}>
-              {item.Description}
-            </Text>
-          );
-        })
-      )}
-      {loadingMemo ? (
-        <ActivityIndicator />
-      ) : (
-        dataMemo.map((item, index) => {
-          return (
-            <Text style={{ color: "black" }} key={index}>
-              {item.Description}
-            </Text>
-          );
-        })
-      )}
+      <ScrollView style={styles.dataContainer}>
+        {loading ? (
+          <ActivityIndicator />
+        ) : (
+          data.map((item, index) => {
+            return (
+              <Text style={{ color: "black", fontSize: 14 }} key={index}>
+                {item.Description}
+              </Text>
+            );
+          })
+        )}
+        {loadingMemo ? (
+          <ActivityIndicator />
+        ) : (
+          dataMemo.map((item, index) => {
+            return (
+              <Text style={{ color: "black", fontSize: 14 }} key={index}>
+                {item.Description}
+              </Text>
+            );
+          })
+        )}
+      </ScrollView>
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#AD66D5",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  textContainer: {
+    marginTop: 20,
+    marginHorizontal: 20,
+    fontSize: 16,
+  },
+  dataContainer: {
+    marginTop: 20,
+    marginHorizontal: 20,
+    backgroundColor: "#FFFFFF",
+    padding: 10,
+    marginBottom: 80,
+  },
+});
 
 export default Lab3;

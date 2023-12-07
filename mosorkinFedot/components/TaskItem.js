@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { View } from "react-native";
 import { CheckBox } from "react-native-elements";
 import { StyleSheet } from "react-native";
 
@@ -12,7 +12,7 @@ const TaskItem = ({ item, toggleTask }) => (
         backgroundColor: "transparent",
         borderWidth: 0,
       }}
-      textStyle={{ color: item.checked ? "#ccc" : "#fff" }}
+      textStyle={{ color: item.checked ? "#ccc" : "#000000", fontSize: 20 }}
     />
   </View>
 );
@@ -23,13 +23,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     height: 60,
-    width: "100%",
-    marginVertical: 5,
-    backgroundColor: "#5F4BB6",
+    marginTop: 20,
+    marginHorizontal: 20,
+    backgroundColor: "#FFD300",
     borderRadius: 15,
   },
   completedTask: {
-    backgroundColor: "#86A5D9",
+    backgroundColor: "#A65400",
+    fontColor: "#000000",
   },
 });
 

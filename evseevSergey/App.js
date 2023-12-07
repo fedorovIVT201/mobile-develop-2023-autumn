@@ -1,22 +1,19 @@
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
+import "react-native-gesture-handler";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Lab1 from "./screens/Lab1.js";
-import Lab2 from "./screens/Lab2.js";
-import Lab3 from "./screens/Lab3.js";
-import Lab3Entries from "./screens/Lab3Entries.js";
-
+import TabNavigation from "./navigations/TabNavigation";
+import DrawerNavigation from "./navigations/DrawerNavigation";
+import { NavigationContainer } from "@react-navigation/native";
+import { View } from "react-native";
+import { StatusBar } from "expo-status-bar";
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Lab1" component={Lab1} />
-        <Tab.Screen name="Lab2" component={Lab2} />
-        <Tab.Screen name="Lab3" component={Lab3} />
-        <Tab.Screen name="Lab3Entries" component={Lab3Entries} />
-      </Tab.Navigator>
+      <View>
+        <StatusBar backgroundColor="rgb(217,217,217)" />
+      </View>
+      <DrawerNavigation />
     </NavigationContainer>
   );
 }

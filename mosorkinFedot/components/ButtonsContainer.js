@@ -9,12 +9,12 @@ export default function ButtonsContainer({
   return (
     <View style={styles.buttonsContainer}>
       <SizeButton
-        style={styles.sizeButtons}
+        style={styles.sizeButtonLeft}
         onPress={decreaseImageSize}
         text="-"
       />
       <SizeButton
-        style={styles.sizeButtons}
+        style={styles.sizeButtonRight}
         onPress={increaseImageSize}
         text="+"
       />
@@ -26,15 +26,26 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     flexDirection: "row",
     position: "absolute",
-    bottom: 80,
+    bottom: 100,
   },
-  sizeButtons: {
+  sizeButtonLeft: {
     height: 40,
     width: 100,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 14,
-    backgroundColor: "orange",
-    marginHorizontal: 10,
+    backgroundColor: "#FFD300",
+    marginLeft: 60,
+    marginRight: 20,
+  },
+  sizeButtonRight: {
+    height: 40,
+    width: 100,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 14,
+    backgroundColor: "#FFD300",
+    marginRight: 60,
+    marginLeft: 20,
   },
 });

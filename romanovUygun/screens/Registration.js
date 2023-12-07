@@ -4,27 +4,57 @@ import Button from "../components/Button";
 import { useNavigation } from "@react-navigation/native";
 import { useEffect } from "react";
 import { TextInput } from "react-native-gesture-handler";
+import { gql, useMutation } from "@apollo/client";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+//регисрация логин ендпоинты
+const REGISTER = gql`
+  mutation ($data: RegistrationUserInput!) {
+    registerUser(data: $data) {
+      token
+    }
+  }
+`;
 
 const Registration = () => {
-  const [login, onChangeLogin] = useState("Login");
-  const [pass, onChangePass] = useState("Password");
+  const [login, setLogin] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
 
+  const [mutateFunction, { data, loading, error }] = useMutation(REGISTER);
   const nav = useNavigation();
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    <View
+      style={{
+        margin: 22,
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <View style={styles.colorcontainer}>
         <View style={styles.buttoncontainer}>
           <TextInput
+            value={login}
+            onChangeText={(text) => setLogin(text)}
             style={styles.input}
-            onChangeText={onChangeLogin}
             textAlign="center"
             allowFontScaling
             placeholder="Login"
             placeholderTextColor="#CCCCCA"
           />
           <TextInput
+            value={name}
+            onChangeText={(text) => setName(text)}
             style={styles.input}
-            onChangeText={onChangePass}
+            textAlign="center"
+            allowFontScaling
+            placeholder="Password"
+            placeholderTextColor="#CCCCCA"
+          />
+          <TextInput
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+            style={styles.input}
             textAlign="center"
             allowFontScaling
             placeholder="Password"
@@ -33,7 +63,28 @@ const Registration = () => {
           <Button
             title="Sign Up"
             onPress={() => {
-              nav.replace("Login");
+              mutateFunction({
+                variables: {
+                  data: {
+                    login,
+                    name,
+                    password,
+                  },
+                },
+              })
+                .then((data) => {
+                  console.log(data);
+                  const token = data?.data?.regsterUser?.token;
+
+                  const storeData = async () => {
+                    try {
+                      await AsyncStorage.setItem("token", token);
+                    } catch (e) {}
+                  };
+                  storeData();
+                  nav.goBack();
+                })
+                .catch((e) => {});
             }}
           />
         </View>

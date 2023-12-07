@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { View, StyleSheet } from 'react-native';
-import TaskList from '../components/TaskList';
+import { View, StyleSheet } from "react-native";
+import TaskList from "../components/TaskList";
 
 const Lab2 = () => {
   const [data, setData] = useState([]);
@@ -32,7 +32,7 @@ const Lab2 = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#202a25",
+    backgroundColor: "#AD66D5",
   },
 });
 

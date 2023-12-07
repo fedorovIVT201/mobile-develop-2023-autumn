@@ -4,12 +4,23 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Lab1 from "../screens/Lab1";
 import Lab2 from "../screens/Lab2";
 import Lab3 from "../screens/Lab3";
+import Lab4 from "../screens/Lab4";
+import LabSettings from "../screens/LabSettings";
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          position: "absolute",
+          elevation: 0,
+          height: 60,
+        },
+      }}
+    >
       <Tab.Screen
         name="Lab1"
         component={Lab1}
@@ -46,6 +57,34 @@ const TabNavigator = () => {
             <View>
               <Image
                 source={require("../imgs/lab3icon.png")}
+                style={styles.img}
+              />
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Lab4"
+        component={Lab4}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View>
+              <Image
+                source={require("../imgs/lab4icon.png")}
+                style={styles.img}
+              />
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={LabSettings}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View>
+              <Image
+                source={require("../imgs/settings.png")}
                 style={styles.img}
               />
             </View>
