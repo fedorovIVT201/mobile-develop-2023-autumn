@@ -4,6 +4,7 @@ import { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import lab2 from "./labs/lab2";
+import lab3 from "./labs/lab3";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 function HomeScreen() {
@@ -56,6 +57,7 @@ export default function App() {
       <Tab.Navigator>
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="ToDo" component={lab2} />
+        <Tab.Screen name="UseMemo" component={lab3} />
       </Tab.Navigator>
     </NavigationContainer>
   );
