@@ -1,4 +1,4 @@
-import { Text, TouchableOpacity, ActivityIndicator } from "react-native";
+import React,{ Text, TouchableOpacity, ActivityIndicator } from "react-native";
 
 const Button = ({ onPress, title, loading }) => {
     return (
@@ -10,7 +10,7 @@ const Button = ({ onPress, title, loading }) => {
                 alignItems: "center",
                 justifyContent: "center",
                 borderRadius: 14,
-                backgroundColor: "red",
+                backgroundColor: "blue",
             }}
             onPress={onPress}
         >
