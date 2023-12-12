@@ -4,7 +4,7 @@ import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import Button from "../components/Button";
 
 const Registration = () => {
-  const [login, setLogin] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
 
@@ -23,8 +23,8 @@ const Registration = () => {
       <Text>Логин</Text>
       <TextInput
         style={{ backgroundColor: "white", width: "95%", padding: 6 }}
-        value={login}
-        onChangeText={(text) => setLogin(text)}
+        value={username}
+        onChangeText={(text) => setUsername(text)}
       />
 
       <Text>Пароль</Text>
@@ -42,11 +42,12 @@ const Registration = () => {
         value={password2}
         onChangeText={(text) => setPassword2(text)}
       />
+
+      <Button title={"Регистрироваться"} onPress={() => nav.replace("Tab")} />
       <Text>Есть аккаунт?</Text>
       <TouchableOpacity onPress={() => nav.replace("Login")}>
         <Text style={{ color: "blue", borderBottomColor: "blue" }}>Войти</Text>
       </TouchableOpacity>
-      <Button title={"Регистрироваться"} onPress={() => nav.replace("Tab")} />
     </View>
   );
 };

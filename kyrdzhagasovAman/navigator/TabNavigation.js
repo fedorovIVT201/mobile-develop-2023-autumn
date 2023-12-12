@@ -8,7 +8,7 @@ import Lab3 from "../screens/Lab3";
 import Lab3Part1 from "../screens/Lab3Part1";
 import Lab3Part2 from "../screens/Lab3Part2";
 import Settings from "../screens/Settings";
-
+import Lab4 from "../screens/Lab4";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -54,45 +54,54 @@ const TabNavigation = () => {
   }
 
   return (
-      <Tab.Navigator>
-        <Tab.Screen
-          name="lab1"
-          component={Lab1}
-          options={{
-            title: "Лабораторная работа №1",
-            tabBarLabel: "Лаб 1",
-            tabBarActiveTintColor: "green",
-          }}
-        />
-        <Tab.Screen
-          name="lab2"
-          component={Lab2}
-          options={{
-            title: "Лабораторная работа №2",
-            tabBarLabel: "Лаб 2",
-            tabBarActiveTintColor: "green",
-          }}
-        />
-        <Tab.Screen
-          name="lab3"
-          component={Lab3Stack}
-          options={({ route }) => ({
-            headerTitle: getHeaderTitle(route),
-            tabBarLabel: "Лаб 3",
-            tabBarActiveTintColor: "green",
-            headerShown: false,
-          })}
-        />
-        <Tab.Screen
-          name="Settings"
-          component={Settings}
-          options={{
-            title: "Настройки",
-            tabBarLabel: "Настройки",
-            tabBarActiveTintColor: "green",
-          }}
-        />
-      </Tab.Navigator>
+    <Tab.Navigator>
+      <Tab.Screen
+        name="lab1"
+        component={Lab1}
+        options={{
+          title: "Лабораторная работа №1",
+          tabBarLabel: "Лаб 1",
+          tabBarActiveTintColor: "green",
+        }}
+      />
+      <Tab.Screen
+        name="lab2"
+        component={Lab2}
+        options={{
+          title: "Лабораторная работа №2",
+          tabBarLabel: "Лаб 2",
+          tabBarActiveTintColor: "green",
+        }}
+      />
+      <Tab.Screen
+        name="lab3"
+        component={Lab3Stack}
+        options={({ route }) => ({
+          headerTitle: getHeaderTitle(route),
+          tabBarLabel: "Лаб 3",
+          tabBarActiveTintColor: "green",
+          headerShown: false,
+        })}
+      />
+      <Tab.Screen
+        name="lab4"
+        component={Lab4}
+        options={{
+          title: "Профиль",
+          tabBarLabel: "Профиль",
+          tabBarActiveTintColor: "green",
+        }}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={Settings}
+        options={{
+          title: "Настройки",
+          tabBarLabel: "Настройки",
+          tabBarActiveTintColor: "green",
+        }}
+      />
+    </Tab.Navigator>
   );
 };
 
