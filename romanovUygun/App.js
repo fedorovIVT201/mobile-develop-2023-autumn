@@ -1,37 +1,20 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useState } from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import MainStackNavigation from "./navigations/MainStackNavigation";
 import { NavigationContainer } from "@react-navigation/native";
-import Lab1 from "./screens/Lab1";
-import Lab2 from "./screens/Lab2";
-import Ionicons from "@expo/vector-icons/Ionicons";
-
-const Tab = createBottomTabNavigator();
+import store from "./reduxComponents/store";
+import { Provider } from "react-redux";
+const client = new ApolloClient({
+  uri: "http://194.59.247.134:1414/",
+  cache: new InMemoryCache(),
+});
 export default function App() {
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconColor, iconName;
-
-            if (route.name === "Lab1") {
-              iconName = "book";
-              iconColor = "gray";
-            } else if (route.name === "Lab2") {
-              iconName = "book-outline";
-              iconColor = "black";
-            }
-            return <Ionicons name={iconName} size={32} color={iconColor} />;
-          },
-          tabBarActiveTintColor: "rgb(	173, 216, 230)",
-          tabBarInactiveTintColor: "gray",
-        })}
-      >
-        <Tab.Screen name="Lab1" component={Lab1} />
-        <Tab.Screen name="Lab2" component={Lab2} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <ApolloProvider client={client}>
+        <NavigationContainer>
+          <MainStackNavigation />
+        </NavigationContainer>
+      </ApolloProvider>
+    </Provider>
   );
 }

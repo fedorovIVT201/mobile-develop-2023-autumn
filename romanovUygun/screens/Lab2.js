@@ -10,11 +10,16 @@ import {
 } from "react-native";
 import axios from "axios";
 import Ionicons from "@expo/vector-icons/Ionicons";
-
+import {
+  useFonts,
+  IBMPlexMono_400Regular,
+} from "@expo-google-fonts/ibm-plex-mono";
 const Lab2 = () => {
   const [loading, setLoading] = useState(false);
   const dummyURL = "https://catfact.ninja/breeds";
-
+  let [fontsLoaded] = useFonts({
+    IBMPlexMono_400Regular,
+  });
   const [breeds, setBreeds] = useState([]);
   useEffect(() => {
     axios
@@ -34,17 +39,23 @@ const Lab2 = () => {
   console.log(breeds);
 
   return (
-    <View>
+    <View
+      style={{
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       <ScrollView>
         {breeds.map((breed) => {
           return (
             <View style={styles.breedPost}>
               <View style={styles.breedDetails}>
-                <Text style={styles.title}> {breed.breed}</Text>
-                <Text> Country: {breed.country}</Text>
-                <Text> OriginL: {breed.origin}</Text>
-                <Text> Coat: {breed.coat}</Text>
-                <Text> Pattern: {breed.coat}</Text>
+                <Text style={styles.titleText}>{breed.breed}</Text>
+                <Text style={styles.detailsText}>Country: {breed.country}</Text>
+                <Text style={styles.detailsText}>OriginL: {breed.origin}</Text>
+                <Text style={styles.detailsText}>Coat: {breed.coat}</Text>
+                <Text style={styles.detailsText}>Pattern: {breed.coat}</Text>
               </View>
             </View>
           );
@@ -56,17 +67,25 @@ const Lab2 = () => {
 
 const styles = StyleSheet.create({
   breedDetails: {
-    margin: 10,
+    margin: 20,
   },
-  title: {
-    fontSize: 20,
-    color: "black",
+  detailsText: {
+    color: "rgba(36, 24, 8, 1)",
+    fontFamily: "IBMPlexMono_400Regular",
+    fontSize: 14,
   },
+  titleText: {
+    color: "rgba(36, 24, 8, 1)",
+    fontFamily: "IBMPlexMono_400Regular",
+    fontSize: 24,
+  },
+
   breedPost: {
     flexDirection: "row",
-    margin: 5,
-
-    borderBottomWidth: 1,
+    margin: 22,
+    marginBottom: 0,
+    backgroundColor: "#FFFFFF",
+    borderRadius: 25,
   },
   text: {
     color: "grey",

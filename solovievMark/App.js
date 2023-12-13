@@ -1,45 +1,64 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useState } from 'react';
+import { StyleSheet, Image, View } from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
+import Lab1 from "./screens/lab1";
+import Lab2 from "./screens/lab2";
+import Lab3 from "./screens/lab3";
 
+const Tab = createBottomTabNavigator();
 export default function App() {
-  const [count, setCount] = useState(0);
-
-  const addCount = () => {
-    setCount((prev) => prev + 10);
-  };
-
-  const decreseCount = () => {
-    setCount((prev) => prev - 10);
-  };
-
   return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.button} onPress={addCount}>
-        <Text>+10</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={decreseCount}>
-        <Text>-10</Text>
-      </TouchableOpacity>
-      <Text>{count}</Text>
-
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen
+          name="Lab1"
+          component={Lab1}
+          options={{
+            tabBarIcon: () => {
+              return (
+                <Image
+                  source={require("./images/more.png")}
+                  style={styles.img}
+                />
+              );
+            },
+          }}
+        />
+        <Tab.Screen
+          name="Lab2"
+          component={Lab2}
+          options={{
+            tabBarIcon: () => {
+              return (
+                <Image
+                  source={require("./images/cloudy.png")}
+                  style={{ height: 30, width: 30 }}
+                />
+              );
+            },
+          }}
+        />
+        <Tab.Screen
+          name="Lab3"
+          component={Lab3}
+          options={{
+            tabBarIcon: () => {
+              return (
+                <Image
+                  source={require("./images/writing.png")}
+                  style={styles.img}
+                />
+              );
+            },
+          }}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  button: {
-    backgroundColor: "#007AFF",
-    padding: 10,
-    borderRadius: 5,
-    margin: 10
+  img: {
+    height: 20,
+    width: 20,
   },
 });
-
