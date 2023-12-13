@@ -27,7 +27,7 @@ const Lab1 = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#2F3C5F',
     alignItems: 'center',
     justifyContent: 'center',
   },
