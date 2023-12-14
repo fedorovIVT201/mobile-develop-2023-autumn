@@ -2,8 +2,6 @@ import { useNavigation } from "@react-navigation/native";
 import { useEffect } from "react";
 import { ActivityIndicator, View } from "react-native";
 
-
-
 const Splash = () => {
   const nav = useNavigation();
   const expensiveCalculation = () => {
@@ -14,12 +12,16 @@ const Splash = () => {
     return result;
   };
   useEffect(() => {
-    expensiveCalculation()
+    expensiveCalculation();
     if (true) {
       nav.replace("Login");
     }
   });
-  return <View><ActivityIndicator/></View>;
+  return (
+    <View>
+      <ActivityIndicator />
+    </View>
+  );
 };
 
 export default Splash;

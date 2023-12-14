@@ -1,16 +1,22 @@
-
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 import { useSelector } from "react-redux";
 
-
 const Lab4 = () => {
+  const [storageData, setStorageData] = useState("");
+  useEffect(() => {
+    async function asd() {
+      setStorageData(await AsyncStorage.getItem("token"));
+    }
+    asd();
+  });
+  const count = useSelector((state) => {
+    console.log("state", state);
+    return state.accessToken;
+  });
 
-    const count = useSelector((state) => {
-        console.log(state)
-         return state.accessToken
-        });
-        console.log(AsyncStorage.getItem("token"))
+  console.log(count);
   return (
     <View
       style={{
@@ -21,8 +27,10 @@ const Lab4 = () => {
         gap: 10,
       }}
     >
+      <Text>reduxData</Text>
       <Text>{count}</Text>
-      <Text>{JSON.stringify(AsyncStorage.getItem("token"))}</Text>
+      <Text>asyncstorageData</Text>
+      <Text>{storageData}</Text>
     </View>
   );
 };

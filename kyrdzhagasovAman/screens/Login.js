@@ -16,10 +16,11 @@ const Login = () => {
 
   const signIn = async () => {
     await login(username, password)
-      .then((data) => {
-        AsyncStorage.setItem("token", data.token);
-        dispatch({ type: 'LOGIN_SUCCESS', payload: data });
-        console.log(data)
+      .then(async (data) => {
+        console.log();
+        await AsyncStorage.setItem("token", data.token);
+        dispatch({ type: "LOGIN_SUCCESS", payload: data });
+        console.log(data);
         if (AsyncStorage.getItem("token")) {
           nav.replace("Tab");
         } else {
