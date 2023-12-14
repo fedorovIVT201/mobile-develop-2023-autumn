@@ -10,7 +10,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { setBgColor } from "../Redux/colorSlice";
 
-const Lab1 = ({ navigation }) => {
+const Lab4 = ({ navigation }) => {
   const dispatch = useDispatch();
   const bgColor = useSelector((state) => state.color.bgColor);
 
@@ -30,8 +30,8 @@ const Lab1 = ({ navigation }) => {
     <View style={[styles.container, { backgroundColor: bgColor }]}>
       <View style={styles.buttonContainer}>
         {colorButton("white", "white")}
-        {colorButton("#FF1717", "red")}
-        {colorButton("#1E78FF", "blue")}
+        {colorButton("#00FF00", "green")}
+        {colorButton("#FFD700", "yellow")}
       </View>
     </View>
   );
@@ -57,4 +57,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Lab1;
+export default Lab4;
