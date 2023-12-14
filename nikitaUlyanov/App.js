@@ -5,9 +5,10 @@ import Header from './components/Header';
 import * as Font from 'expo-font';
 import Lent from './components/Lent';
 import Stories from './components/Stories';
-import Rec from './components/Rec';
+import Rec from './screens/Rec';
 import AppLoading from 'expo-app-loading';
-import Profile from './components/Profile';
+import Profile from './screens/Profile';
+import Lab2 from './screens/UseEffect';
 
 const fonts = () => Font.loadAsync({
   'mp-eb': require('./assets/fonts/Manrope-ExtraBold.ttf'),
@@ -19,7 +20,7 @@ const fonts = () => Font.loadAsync({
 
 export default function App() {
   const [fonts,setFont] = useState(false);
-  const pages = ['Главная','Рекомендации','','Новая публикация','Que']
+  const pages = ['Главная','Рекомендации','','To do List','Que']
   const [page,setPage] = useState(0)
   const [stories, setStories] = useState([
     {name: '#Que',
@@ -84,37 +85,37 @@ export default function App() {
     
           <Lent post={posts}/>
     
-    
-    
-    
-    
           <View style={styles.footer}>
-                <TouchableOpacity onPress={()=>setPage(0)}>
+                <TouchableOpacity style={{alignItems:'center'}} onPress={()=>setPage(0)}>
                     <Image 
                     style={styles.icon}
                     source={require('./assets/footer-icons/Home.png')}
                     />
+                    <Text>Main</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={()=>setPage(1)}>
+                <TouchableOpacity style={{alignItems:'center'}} onPress={()=>setPage(1)}>
                     <Image 
                     
                     style={styles.icon}
                     source={require('./assets/footer-icons/Rec.png')}
                     />
+                    <Text>Wall</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={()=>setPage(3)}>
+                <TouchableOpacity style={{alignItems:'center'}} onPress={()=>setPage(3)}>
                     <Image 
                     
                     style={styles.icon}
                     source={require('./assets/footer-icons/NewPost.png')}
                     />
+                    <Text>TodoList</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={()=>setPage(4)}>
+                <TouchableOpacity style={{alignItems:'center'}} onPress={()=>setPage(4)}>
                     <Image 
                     
                     style={styles.icon}
                     source={require('./assets/footer-icons/Profile.png')}
                     />
+                    <Text>Profile</Text>
                 </TouchableOpacity>
             </View>
     
@@ -137,40 +138,89 @@ export default function App() {
     
     
     
-    
-    
           <View style={styles.footer}>
-                <TouchableOpacity onPress={()=>setPage(0)}>
-                    <Image 
-                    style={styles.icon}
-                    source={require('./assets/footer-icons/Home.png')}
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={()=>setPage(1)}>
-                    <Image 
-                    
-                    style={styles.icon}
-                    source={require('./assets/footer-icons/Rec.png')}
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={()=>setPage(0)}>
-                    <Image 
-                    
-                    style={styles.icon}
-                    source={require('./assets/footer-icons/NewPost.png')}
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={()=>setPage(4)}>
-                    <Image 
-                    
-                    style={styles.icon}
-                    source={require('./assets/footer-icons/Profile.png')}
-                    />
-                </TouchableOpacity>
-            </View>
+            <TouchableOpacity style={{alignItems:'center'}} onPress={()=>setPage(0)}>
+              <Image 
+                style={styles.icon}
+                source={require('./assets/footer-icons/Home.png')}
+              />
+              <Text>Main</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{alignItems:'center'}} onPress={()=>setPage(1)}>
+              <Image          
+                style={styles.icon}
+                source={require('./assets/footer-icons/Rec.png')}
+              />
+              <Text>Wall</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{alignItems:'center'}} onPress={()=>setPage(3)}>
+              <Image 
+                style={styles.icon}
+                source={require('./assets/footer-icons/NewPost.png')}
+              />
+              <Text>TodoList</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{alignItems:'center'}} onPress={()=>setPage(4)}>
+              <Image 
+                style={styles.icon}
+                source={require('./assets/footer-icons/Profile.png')}
+              />
+              <Text>Profile</Text>
+            </TouchableOpacity>
+          </View>
     
         </SafeAreaView>
       );
+    }else if(page == 3){
+      return(
+        <SafeAreaView style={styles.main}>
+            
+          <StatusBar style="auto" />
+
+
+          <Header title={title} page = {page}/>
+
+          
+          <Lab2/>
+
+
+
+
+
+
+          <View style={styles.footer}>
+            <TouchableOpacity style={{alignItems:'center'}} onPress={()=>setPage(0)}>
+              <Image 
+              style={styles.icon}
+              source={require('./assets/footer-icons/Home.png')}
+              />
+              <Text>Main</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{alignItems:'center'}} onPress={()=>setPage(1)}>
+              <Image          
+              style={styles.icon}
+              source={require('./assets/footer-icons/Rec.png')}
+              />
+              <Text>Wall</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{alignItems:'center'}} onPress={()=>setPage(3)}>
+              <Image 
+                style={styles.icon}
+                source={require('./assets/footer-icons/NewPost.png')}
+                />
+                <Text>TodoList</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{alignItems:'center'}} onPress={()=>setPage(4)}>
+              <Image 
+                style={styles.icon}
+                source={require('./assets/footer-icons/Profile.png')}
+              />
+              <Text>Profile</Text>
+            </TouchableOpacity>
+          </View>
+
+        </SafeAreaView>
+        );
     }else if(page == 4){
   
       return (
@@ -187,35 +237,36 @@ export default function App() {
         
 
         <Rec post={posts}/>
-          <View style={styles.footer}>
-                <TouchableOpacity onPress={()=>setPage(0)}>
-                    <Image 
-                    style={styles.icon}
-                    source={require('./assets/footer-icons/Home.png')}
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={()=>setPage(1)}>
-                    <Image 
-                    
-                    style={styles.icon}
-                    source={require('./assets/footer-icons/Rec.png')}
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={()=>setPage(0)}>
-                    <Image 
-                    
-                    style={styles.icon}
-                    source={require('./assets/footer-icons/NewPost.png')}
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={()=>setPage(4)}>
-                    <Image 
-                    
-                    style={styles.icon}
-                    source={require('./assets/footer-icons/Profile.png')}
-                    />
-                </TouchableOpacity>
-            </View>
+        <View style={styles.footer}>
+        <TouchableOpacity style={{alignItems:'center'}} onPress={()=>setPage(0)}>
+          <Image 
+          style={styles.icon}
+          source={require('./assets/footer-icons/Home.png')}
+          />
+          <Text>Main</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={{alignItems:'center'}} onPress={()=>setPage(1)}>
+          <Image          
+          style={styles.icon}
+          source={require('./assets/footer-icons/Rec.png')}
+          />
+          <Text>Wall</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={{alignItems:'center'}} onPress={()=>setPage(3)}>
+          <Image 
+          style={styles.icon}
+          source={require('./assets/footer-icons/NewPost.png')}
+          />
+          <Text>TodoList</Text>
+        </TouchableOpacity>
+          <TouchableOpacity style={{alignItems:'center'}} onPress={()=>setPage(4)}>
+            <Image 
+              style={styles.icon}
+              source={require('./assets/footer-icons/Profile.png')}
+            />
+            <Text>Profile</Text>
+          </TouchableOpacity>
+        </View>
     
         </SafeAreaView>
       );
@@ -245,15 +296,15 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     alignItems:'center',
     backgroundColor:'white'
-},
-title:{
-    marginLeft: 20,
-    fontFamily:'mp-eb',
-    fontSize:28
-},
-icon:{
-    width:30,
-    height:30
-},
+  },
+  title:{
+      marginLeft: 20,
+      fontFamily:'mp-eb',
+      fontSize:28
+  },
+  icon:{
+      width:30,
+      height:30
+  },
 
 });
