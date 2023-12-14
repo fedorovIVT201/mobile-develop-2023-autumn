@@ -61,12 +61,14 @@ export default function Lab2() {
     }
   }
   const setStatus = (todoId) =>{
-    var newTodo = todos;
-    newTodo.forEach(element => {
-      if(element.id == todoId) {element.completed = true; console.log("success")}
+    var newTodo = todos.map(element => {
+      if(element.id == todoId) {
+        element = {id: element.id, task: element.task, completed:true} 
+        console.log("success")
+      }
+      return element
     });
     setTodos(newTodo);
-    console.log(todos);
   }
 
   const ListItem = ({todo}) => {
