@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, Button, ActivityIndicator, SafeAreaView, FlatList } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity, ActivityIndicator, SafeAreaView, FlatList } from "react-native";
 import { useState, useMemo } from "react";
 
 const Lab3 = () => {
@@ -35,7 +35,7 @@ const Lab3 = () => {
   
     const renderItem = ({ item }) => (
         <View style={styles.item}>
-            <Text style={styles.title}>{item.title}</Text>
+            <Text style={styles.titleItem}>{item.title}</Text>
             <Text style={styles.author}>Author: {item.author}</Text>
             <Text style={styles.genre}>Genre: {item.genre}</Text>
         </View>
@@ -43,15 +43,24 @@ const Lab3 = () => {
   
     return (
         <View style={styles.container}>
-            <Text>Loading time: {timeapi}ms</Text>
-            <Button title='Download books' style={styles.button} onPress={fetchBooks}/>
-            {/* <Button title='Delete' style={styles.button} onPress={setBooks([])}/> */}
-            <Text>Load time from cache: {timememo}ms</Text>
-            <Button title='Load from Cache' style={styles.button} onPress={loadFromMemo}/>
+            <Text style={styles.title}>LIST OF BOOKS</Text>
+            <TouchableOpacity style={styles.firstButton} onPress={fetchBooks}>
+                <Text style={styles.textButton}>
+                Download books
+                </Text>
+            </TouchableOpacity>
+            <Text style={styles.time}>Loading time: {timeapi}ms</Text>
+            <TouchableOpacity style={styles.secondButton} onPress={loadFromMemo}>
+                <Text style={styles.textButton}>
+                Load from Cache
+                </Text>
+            </TouchableOpacity>
+            <Text style={styles.time}>Load time from cache: {timememo}ms</Text>
             {loading ? (
-                <Text>Loading...</Text>
+                <Text style={styles.time}>Loading...</Text>
             ) : (
                 <FlatList
+                    style={styles.flatlist}
                     data={books.slice(0, 10)}
                     renderItem={renderItem}
                 />
@@ -63,25 +72,75 @@ const Lab3 = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 16,
-        marginTop:20,
-        backgroundColor: '#2F3C5F'
+        // marginTop:20,
+        backgroundColor: '#2F3C5F',
+        alignItems: 'center',
     },
     item: {
-        marginBottom: 16,
-        backgroundColor: '#EFF0F6',
+        marginBottom: 28,
     },
-    title: {
-        fontSize: 20,
-        fontWeight: 'bold',
+    titleItem: {
+        color: 'white',
+        fontSize: 15,
+        fontFamily: 'Roboto',
+        fontWeight: '700',
+        marginBottom: 8,
     },
     author: {
-        fontSize: 16,
-        marginBottom: 4,
+        color: 'white',
+        fontSize: 13,
+        fontFamily: 'Roboto',
+        fontWeight: '500',
+        marginBottom: 8,
     },
     genre: {
-        fontSize: 16,
+        color: 'white',
+        fontSize: 13,
+        fontFamily: 'Roboto',
+        fontWeight: '500',
     },
+    firstButton:{
+        width: 275,
+        height: 38,
+        borderRadius: 41, 
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#EFF0F6',
+        marginTop: 34
+    },
+    secondButton:{
+        width: 275,
+        height: 38,
+        borderRadius: 41, 
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#EFF0F6',
+        marginTop: 28
+    },
+    textButton:{
+        color: '#343333',
+        fontSize: 15,
+        fontFamily: 'Roboto',
+        fontWeight: '700',
+    },
+    title:{
+        color: '#F3F4F6',
+        fontSize: 20,
+        fontFamily: 'Roboto',
+        fontWeight: '700',
+        marginTop: 57
+    },
+    time:{
+        color: '#F3F4F6',
+        fontSize: 13,
+        fontFamily: 'Roboto',
+        fontWeight: '400',
+        marginTop: 8
+    },
+    flatlist:{
+        width: 275,
+        marginTop: 38
+    }
 });
 
 export default Lab3;

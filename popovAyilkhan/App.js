@@ -2,6 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { AntDesign} from "@expo/vector-icons"
 import { Foundation } from '@expo/vector-icons'; 
+import { Image, StyleSheet } from "react-native"
 import Lab1 from "./screens/lab1";
 import Lab2 from "./screens/lab2";
 import Lab3 from "./screens/lab3";
@@ -25,17 +26,25 @@ export default function App() {
           name="lab1" 
           component={Lab1}
           options={{
-            tabBarIcon: () =>(
-              <AntDesign name="bars" size={24} color="white" />
-            )
+            tabBarLabel:() => null,
+            tabBarIcon: ({ focused, size }) =>(
+              <Image
+                source={require('./assets/brush.png')}
+                style={{ width: size, height: size, tintColor: focused ? '#327CFF' : '#FFFFFF' }}
+              />
+            ),
           }} 
         />
         <Tab.Screen 
           name="lab2" 
           component={Lab2}
           options={{
-            tabBarIcon: () =>(
-              <AntDesign name="barschart" size={24} color="white" />
+            tabBarLabel:() => null,
+            tabBarIcon: ({ focused, size }) =>(
+              <Image
+                source={require('./assets/bitcoin-btc.png')}
+                style={{ width: size, height: size, tintColor: focused ? '#327CFF' : '#FFFFFF'}}
+              />
             )
           }} 
         />
@@ -43,8 +52,12 @@ export default function App() {
           name="lab3" 
           component={Lab3}
           options={{
-            tabBarIcon: () =>(
-              <AntDesign name="bars" size={24} color="white" />
+            tabBarLabel:() => null,
+            tabBarIcon: ({ focused, size }) =>(
+              <Image
+                source={require('./assets/book.png')}
+                style={{ width: size, height: size, tintColor: focused ? '#327CFF' : '#FFFFFF' }}
+              />
             )
           }} 
         />

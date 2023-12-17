@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, Button, TouchableOpacity } from "react-native";
+import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -23,6 +23,11 @@ const Lab2 = () => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>BITCOIN RATE</Text>
+      <Image
+        style={styles.bitcoinImg}
+        source={require('../assets/bitcoin.png')}
+      />
       <Text style={styles.text}>${price}</Text>
       <TouchableOpacity style={styles.button} onPress={getData}>
         <Text style={styles.textButton}>
@@ -38,24 +43,40 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#2F3C5F',
     alignItems: 'center',
-    justifyContent: 'center',
+    // justifyContent: 'center',
+
   },
   button: {
     backgroundColor: "#EFF0F6", 
     minHeight: 38,
     minWidth: 158,
-    borderRadius: 41
+    borderRadius: 41,
+    justifyContent: 'center',
   },
   textButton: {
     fontSize: 15,
-    fontFamily: "Montserrat",
+    fontFamily: "Roboto",
+    fontWeight: "700",
     textAlign: "center",
-    textAlignVertical: 'center',
     color: "#343333",
   },
   text:{
     color: "#F3F4F6",
-    fontSize: 35
+    fontSize: 35,
+    marginBottom: 30,
+    fontFamily: "Roboto",
+    fontWeight: "700",
+  },
+  bitcoinImg:{
+    marginBottom:59
+  },
+  title:{
+    color: '#F3F4F6',
+    fontSize: 20,
+    fontFamily: 'Roboto',
+    fontWeight: "700",
+    marginBottom: 56,
+    marginTop: 120,
   }
 });
 
