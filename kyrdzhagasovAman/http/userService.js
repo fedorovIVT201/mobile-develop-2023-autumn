@@ -5,7 +5,7 @@ export const login = async (username, password) => {
     const { data } = await $host.post("api/user/login", { username, password });
     return data;
   } catch (err) {
-    return err.response.data;
+    throw new Error(err.response.data.message);
   }
 };
 
@@ -18,6 +18,6 @@ export const registration = async (username, password, role) => {
     });
     return data;
   } catch (err) {
-    return err.response.data;
+    throw new Error(err.response.data.message);
   }
 };

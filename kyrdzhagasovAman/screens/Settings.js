@@ -7,7 +7,7 @@ const Settings = () => {
   const nav = useNavigation();
 
   const logOut = async () => {
-    await AsyncStorage.clear().then(() => {
+    await AsyncStorage.removeItem("token").then(() => {
       nav.replace("Login");
     });
   };

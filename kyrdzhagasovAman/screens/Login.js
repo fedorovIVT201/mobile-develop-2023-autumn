@@ -19,17 +19,10 @@ const Login = () => {
       .then(async (data) => {
         await AsyncStorage.setItem("token", data.token);
         dispatch({ type: "LOGIN_SUCCESS", payload: data });
-        console.log(data);
-        if (data?.token) {
-          nav.replace("Tab");
-          console.log("success");
-        } else {
-          setSpan("Неверный логин или пароль");
-          console.log("Неверный логин или пароль");
-        }
+        nav.replace("Tab");
       })
       .catch((err) => {
-        console.log(err);
+        setSpan(err.message);
       });
   };
 
@@ -43,7 +36,15 @@ const Login = () => {
         gap: 10,
       }}
     >
-      <Text>{span}</Text>
+      <Text
+        style={{
+          color: "red",
+          fontSize: 16,
+          paddingBottom: 10,
+        }}
+      >
+        {span}
+      </Text>
       <Text
         style={{
           fontSize: 20,

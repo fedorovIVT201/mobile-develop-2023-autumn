@@ -7,7 +7,7 @@ const Splash = () => {
 
   checkToken = async () => {
     try {
-      let value = await AsyncStorage.getItem("TASKS").then(() => {
+      let value = await AsyncStorage.getItem("token").then(() => {
         if (value == null) {
           nav.replace("Login");
         } else {
