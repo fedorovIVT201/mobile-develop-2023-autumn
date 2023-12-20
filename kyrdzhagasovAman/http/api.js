@@ -1,16 +1,17 @@
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 
 const $host = axios.create({
-  baseURL: "http://192.168.0.3:5000/",
+  baseURL: "http://192.168.0.2:5000/",
 });
 
 const $authHost = axios.create({
-  baseURL: "http://192.168.0.3:5000/",
+  baseURL: "http://192.168.0.2:5000/",
 });
 
 const authInterceptor = (config) => {
-  config.headers.authorization = `Bearer ${localStorage.getItem("token")}`;
+  config.headers.authorization = `Bearer ${AsyncStorage.getItem("token")}`;
   return config;
 };
 

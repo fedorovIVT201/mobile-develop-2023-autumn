@@ -6,7 +6,6 @@ const initialState = {
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    // Обработка успешного входа и сохранение токенов
     case "LOGIN_SUCCESS":
       return {
         ...state,

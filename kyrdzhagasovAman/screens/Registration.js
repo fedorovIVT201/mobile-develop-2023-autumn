@@ -2,6 +2,8 @@ import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import Button from "../components/Button";
+import { registration } from "../http/userService";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Registration = () => {
   const [username, setUsername] = useState("");
@@ -10,6 +12,13 @@ const Registration = () => {
 
   const nav = useNavigation();
 
+  const signUp = async () => {
+    if (password == password2) {
+      await registration(username, password).then(() => {
+        console.log("Регистрация прошла успешно");
+      });
+    }
+  };
   return (
     <View
       style={{
@@ -43,7 +52,7 @@ const Registration = () => {
         onChangeText={(text) => setPassword2(text)}
       />
 
-      <Button title={"Регистрироваться"} onPress={() => nav.replace("Tab")} />
+      <Button title={"Зарегистрироваться"} onPress={() => signUp()} />
       <Text>Есть аккаунт?</Text>
       <TouchableOpacity onPress={() => nav.replace("Login")}>
         <Text style={{ color: "blue", borderBottomColor: "blue" }}>Войти</Text>

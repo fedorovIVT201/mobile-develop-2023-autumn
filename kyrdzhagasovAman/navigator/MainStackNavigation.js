@@ -9,8 +9,16 @@ const MainStackNavigation = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Splash" component={Splash} />
-      <Stack.Screen name="Registration" component={Registration} />
-      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen
+        name="Registration"
+        component={Registration}
+        options={{ title: "Регистрация" }}
+      />
+      <Stack.Screen
+        name="Login"
+        component={Login}
+        options={{ title: "Вход" }}
+      />
       <Stack.Screen
         name="Tab"
         component={TabNavigation}
