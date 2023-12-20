@@ -1,6 +1,6 @@
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import Button from "../components/Button";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { login } from "../http/userService";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [span, setSpan] = useState("");
 
   const dispatch = useDispatch();
   const nav = useNavigation();
@@ -17,11 +18,13 @@ const Login = () => {
     await login(username, password)
       .then(async (data) => {
         await AsyncStorage.setItem("token", data.token);
-        console.log(data);
         dispatch({ type: "LOGIN_SUCCESS", payload: data });
-        if (AsyncStorage.getItem("token")) {
+        console.log(data);
+        if (data?.token) {
           nav.replace("Tab");
+          console.log("success");
         } else {
+          setSpan("Неверный логин или пароль");
           console.log("Неверный логин или пароль");
         }
       })
@@ -40,14 +43,29 @@ const Login = () => {
         gap: 10,
       }}
     >
-      <Text>Логин</Text>
+      <Text>{span}</Text>
+      <Text
+        style={{
+          fontSize: 20,
+          fontWeight: "bold",
+        }}
+      >
+        Логин
+      </Text>
       <TextInput
         style={{ backgroundColor: "white", width: "100%", padding: 6 }}
         value={username}
         onChangeText={(text) => setUsername(text)}
       />
 
-      <Text>Пароль</Text>
+      <Text
+        style={{
+          fontSize: 20,
+          fontWeight: "bold",
+        }}
+      >
+        Пароль
+      </Text>
       <TextInput
         style={{ backgroundColor: "white", width: "100%", padding: 6 }}
         secureTextEntry={true}

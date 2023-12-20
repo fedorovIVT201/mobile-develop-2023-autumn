@@ -1,22 +1,47 @@
 import { useNavigation } from "@react-navigation/native";
-import { useEffect } from "react";
-import { ActivityIndicator, View } from "react-native";
+import { Text, View } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Splash = () => {
   const nav = useNavigation();
 
-  useEffect(() => {
-    if (AsyncStorage?.getItem("token")) {
-      console.log(AsyncStorage.getItem("token"));
-      nav.replace("Tab");
-    } else {
-      nav.replace("Login");
+  checkToken = async () => {
+    try {
+      let value = await AsyncStorage.getItem("TASKS").then(() => {
+        if (value == null) {
+          nav.replace("Login");
+        } else {
+          nav.replace("Tab");
+        }
+      });
+    } catch (error) {
+      console.log(error);
     }
-  });
+  };
+
+  setTimeout(() => {
+    checkToken();
+  }, 2000);
+
   return (
-    <View>
-      <ActivityIndicator />
+    <View
+      style={{
+        height: "100%",
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "green",
+      }}
+    >
+      <Text
+        style={{
+          fontSize: 30,
+          fontWeight: "bold",
+          color: "white",
+        }}
+      >
+        Мобильная разработка
+      </Text>
     </View>
   );
 };

@@ -13,15 +13,12 @@ const Lab4 = () => {
   });
 
   const getId = useSelector((state) => {
-    console.log("state", state);
     return state.user.id;
   });
   const getUsername = useSelector((state) => {
-    console.log("state", state);
     return state.user.username;
   });
   const getRole = useSelector((state) => {
-    console.log("state", state);
     return state.user.role;
   });
 
@@ -29,20 +26,69 @@ const Lab4 = () => {
     <View
       style={{
         padding: 14,
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
         gap: 10,
       }}
     >
-      <Text>ID</Text>
-      <Text>{getId}</Text>
-      <Text>Username</Text>
-      <Text>{getUsername}</Text>
-      <Text>role</Text>
-      <Text>{getRole}</Text>
-      <Text>asyncstorageData</Text>
-      <Text>{storageData}</Text>
+      <Text
+        style={{
+          fontSize: 24,
+          fontWeight: "bold",
+        }}
+      >
+        ID
+      </Text>
+      <Text
+        style={{
+          fontSize: 16,
+        }}
+      >
+        {getId}
+      </Text>
+      <Text
+        style={{
+          fontSize: 24,
+          fontWeight: "bold",
+        }}
+      >
+        Username
+      </Text>
+      <Text
+        style={{
+          fontSize: 16,
+        }}
+      >
+        {getUsername}
+      </Text>
+      <Text
+        style={{
+          fontSize: 24,
+          fontWeight: "bold",
+        }}
+      >
+        role
+      </Text>
+      <Text
+        style={{
+          fontSize: 16,
+        }}
+      >
+        {getRole}
+      </Text>
+      <Text
+        style={{
+          fontSize: 24,
+          fontWeight: "bold",
+        }}
+      >
+        AsyncStorage
+      </Text>
+      <Text
+        style={{
+          fontSize: 16,
+        }}
+      >
+        {storageData}
+      </Text>
     </View>
   );
 };

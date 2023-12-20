@@ -29,14 +29,28 @@ const Registration = () => {
         gap: 10,
       }}
     >
-      <Text>Логин</Text>
+      <Text
+        style={{
+          fontSize: 20,
+          fontWeight: "bold",
+        }}
+      >
+        Логин
+      </Text>
       <TextInput
         style={{ backgroundColor: "white", width: "95%", padding: 6 }}
         value={username}
         onChangeText={(text) => setUsername(text)}
       />
 
-      <Text>Пароль</Text>
+      <Text
+        style={{
+          fontSize: 20,
+          fontWeight: "bold",
+        }}
+      >
+        Пароль
+      </Text>
       <TextInput
         style={{ backgroundColor: "white", width: "95%", padding: 6 }}
         secureTextEntry={true}
@@ -44,7 +58,14 @@ const Registration = () => {
         onChangeText={(text) => setPassword(text)}
       />
 
-      <Text>Повторите пароль</Text>
+      <Text
+        style={{
+          fontSize: 20,
+          fontWeight: "bold",
+        }}
+      >
+        Повторите пароль
+      </Text>
       <TextInput
         style={{ backgroundColor: "white", width: "95%", padding: 6 }}
         secureTextEntry={true}
