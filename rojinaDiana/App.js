@@ -16,7 +16,11 @@ export default function App() {
           options={{
             tabBarLabel: "Lab1",
             tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="cloud" color={"blue"} size={20} />
+              <MaterialCommunityIcons 
+              name="cloud" 
+              color={"blue"} 
+              size={20}
+              />
             ),
           }}
         />
@@ -26,7 +30,11 @@ export default function App() {
           options={{
             tabBarLabel: "Lab2",
             tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="cloud" color={"blue"} size={20} />
+              <MaterialCommunityIcons 
+              name="cloud" 
+              color={"blue"} 
+              size={20} 
+              />
             ),
           }}
         />

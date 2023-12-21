@@ -122,7 +122,11 @@ const App = () => {
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
       <View style={styles.header}>
         <Text
-          style={{ fontWeight: "bold", fontSize: 20, color: COLORS.primary }}
+          style={{
+            fontWeight: "bold",
+            fontSize: 20,
+            color: COLORS.primary,
+          }}
         >
           TODO APP
         </Text>
