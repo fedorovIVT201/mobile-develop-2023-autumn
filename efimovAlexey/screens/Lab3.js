@@ -6,10 +6,9 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
-export default function Lab2() {
-  const [loading, setLoading] = useState(true);
+export default function Lab3() {
   const [film, setFilm] = useState({
     name: "",
     year: "",
@@ -20,47 +19,35 @@ export default function Lab2() {
     description: "",
   });
 
-  const getFilm = () => {
-    setLoading(true);
-    fetch("https://api.kinopoisk.dev/v1.3/movie/random", {
-      headers: {
-        "X-API-KEY": "HYJ3FBW-7AN4CJ1-MWDVHE2-7M1DNT8",
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => setFilm(json))
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
+  const fetchData = async () => {
+    try {
+      const response = await fetch("https://api.kinopoisk.dev/v1.3/movie/435", {
+        headers: {
+          "X-API-KEY": "HYJ3FBW-7AN4CJ1-MWDVHE2-7M1DNT8",
+          "Content-Type": "application/json",
+        },
+      });
+      const jsonData = response.json();
+      return jsonData;
+    } catch {
+      return {};
+    }
   };
 
-  useEffect(() => {
-    getFilm();
-  }, []);
+  const refresh = async () => {
+    setFilm(await fetchData());
+  };
 
-  if (loading) {
-    return (
-      <Text
-        style={{
-          flex: 1,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontSize: 23,
-          fontFamily: "Verdana",
-          textAlign: "center",
-          color: "black",
-        }}
-      >
-        Загрузка...
-      </Text>
-    );
-  }
+  const datamemo = useMemo(async () => await fetchData(), []);
+
+  useEffect(() => {
+    console.log(film.name);
+  }, [film]);
 
   return (
     <ScrollView style={styles.scrollview}>
-      <View style={[loading ? styles.containerLoading : styles.container]}>
-        <TouchableOpacity style={styles.buttonGray} onPress={() => getFilm()}>
+      <View style={[styles.container]}>
+        <TouchableOpacity style={styles.buttonGray} onPress={() => refresh()}>
           <Text
             style={{
               fontSize: 23,
@@ -69,11 +56,38 @@ export default function Lab2() {
               color: "white",
             }}
           >
-            Случайный фильм
+            Обновить без memo
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.buttonGray}
+          onPress={async () => setFilm(await datamemo)}
+        >
+          <Text
+            style={{
+              fontSize: 23,
+              fontFamily: "Verdana",
+              textAlign: "center",
+              color: "white",
+            }}
+          >
+            Обновить с memo
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.buttonGray} onPress={() => setFilm({})}>
+          <Text
+            style={{
+              fontSize: 23,
+              fontFamily: "Verdana",
+              textAlign: "center",
+              color: "white",
+            }}
+          >
+            Удалить
           </Text>
         </TouchableOpacity>
         <View style={styles.headingContainer}>
-          <img src={film.poster.url} style={styles.image} />
+          {/* <img src={film.poster.url} style={styles.image} /> */}
           <Text style={styles.name}>
             {film.name} ({film.year})
           </Text>

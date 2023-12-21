@@ -35,7 +35,7 @@ yarn-error.*
 *.tsbuildinfo
 
 # vscode
-.vscode/
+*.vscode
 
 # .idea
-*.idea/
+*.idea
