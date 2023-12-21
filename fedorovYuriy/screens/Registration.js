@@ -1,68 +1,80 @@
+import { Button, TextInput, View } from "react-native";
+import { gql, useMutation } from "@apollo/client";
 import { useState } from "react";
-import { View, StyleSheet } from "react-native";
-import Button from "../components/Button";
+import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
-import { useEffect } from "react";
-import { TextInput } from "react-native-gesture-handler";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
+const REGISTER = gql`
+  mutation ($data: RegistrationUserInput!) {
+    registerUser(data: $data) {
+      token
+    }
+  }
+`;
 const Registration = () => {
-  const [login, onChangeLogin] = useState("Login");
-  const [pass, onChangePass] = useState("Password");
+  const [login, setLogin] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
 
+  const [mutateFunction, { data, loading, error }] = useMutation(REGISTER);
   const nav = useNavigation();
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <View style={styles.colorcontainer}>
-        <View style={styles.buttoncontainer}>
-          <TextInput
-            style={styles.input}
-            onChangeText={onChangeLogin}
-            textAlign="center"
-            allowFontScaling
-            placeholder="Login"
-            placeholderTextColor="#CCCCCA"
-          />
-          <TextInput
-            style={styles.input}
-            onChangeText={onChangePass}
-            textAlign="center"
-            allowFontScaling
-            placeholder="Password"
-            placeholderTextColor="#CCCCCA"
-          />
-          <Button
-            title="Sign Up"
-            onPress={() => {
-              nav.replace("Login");
-            }}
-          />
-        </View>
-      </View>
+    <View style={{ flex: 1, gap: 10, alignItems: "center", margin: 16 }}>
+      <TextInput
+        style={{ backgroundColor: "white", width: "100%", padding: 6 }}
+        value={login}
+        onChangeText={(text) => setLogin(text)}
+      />
+      <TextInput
+        style={{ backgroundColor: "white", width: "100%", padding: 6 }}
+        value={name}
+        onChangeText={(text) => setName(text)}
+      />
+      <TextInput
+        style={{ backgroundColor: "white", width: "100%", padding: 6 }}
+        value={password}
+        onChangeText={(text) => setPassword(text)}
+      />
+      <Button
+        title={"Register"}
+        onPress={() => {
+          mutateFunction({
+            variables: {
+              data: {
+                login,
+                name,
+                password,
+              },
+            },
+          })
+            .then((data) => {
+              console.log(data);
+              const token = data?.data?.registerUser?.token;
+              Toast.show({
+                type: "success",
+                text1: "success",
+              });
+              const storeData = async () => {
+                try {
+                  await AsyncStorage.setItem("token", token);
+                } catch (e) {
+                  // saving error
+                }
+              };
+              storeData();
+              nav.goBack();
+            })
+            .catch((e) => {
+              Toast.show({
+                type: "error",
+                text1: e.message,
+              });
+            });
+        }}
+      />
     </View>
   );
 };
-const styles = StyleSheet.create({
-  buttoncontainer: {
-    marginBottom: 22,
-  },
-  colorcontainer: {
-    width: 316,
-    height: 230,
-    margin: 22,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#FFFFFF",
-    borderRadius: 25,
-  },
-  input: {
-    height: 52,
-    marginTop: 22,
-    borderWidth: 0,
-    padding: 10,
-    backgroundColor: "#F7F6F1",
-    borderRadius: 25,
-    fontSize: 18,
-  },
-});
 
 export default Registration;
