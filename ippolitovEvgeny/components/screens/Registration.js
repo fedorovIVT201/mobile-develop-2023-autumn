@@ -7,33 +7,22 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../config/firebase";
 
 const Registration = ({ navigation }) => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleRegistration = async () => {
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      navigation.navigate("Login");
-    } catch (error) {
-      console.error("Registration failed", error.message);
-    }
+  const handleRegistration = () => {
+    navigation.navigate("Login");
   };
 
   return (
     <View style={styles.container}>
       <Text>Registration</Text>
       <TextInput
-        placeholder="Email"
-        value={email}
-        onChangeText={(text) => setEmail(text)}
+        placeholder="Username"
+        value={username}
+        onChangeText={(text) => setUsername(text)}
         style={styles.input}
       />
       <TextInput

@@ -7,33 +7,22 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../config/firebase";
 
 const Login = ({ navigation }) => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async () => {
-    try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      navigation.navigate("Home");
-    } catch (error) {
-      console.error("Login failed", error.message);
-    }
+  const handleLogin = () => {
+    navigation.navigate("Home");
   };
 
   return (
     <View style={styles.container}>
       <Text>Login</Text>
       <TextInput
-        placeholder="Email"
-        value={email}
-        onChangeText={(text) => setEmail(text)}
+        placeholder="Username"
+        value={username}
+        onChangeText={(text) => setUsername(text)}
         style={styles.input}
       />
       <TextInput
