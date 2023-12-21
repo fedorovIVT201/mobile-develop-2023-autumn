@@ -1,20 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import "react-native-gesture-handler";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import TabNavigation from "./navigations/TabNavigation";
+import DrawerNavigation from "./navigations/DrawerNavigation";
+import { NavigationContainer } from "@react-navigation/native";
+import { View } from "react-native";
+import { StatusBar } from "expo-status-bar";
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>O BOJE MOY NAKONEC TO YA POSTAVIL ETOT REACT!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <View>
+        <StatusBar backgroundColor="rgb(217,217,217)" />
+      </View>
+      <DrawerNavigation />
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

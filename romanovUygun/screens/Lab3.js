@@ -39,24 +39,43 @@ const Lab3 = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Button title="refresh" onPress={refresh} />
-      <Button
-        title="useMemo"
-        onPress={async () => {
-          setData(await memo);
-        }}
-      />
-      <Button
-        title="delete"
-        onPress={() => {
-          setData([]);
-        }}
-      />
-      {data.map((d, i) => (
-        <Text key={i}>
-          {d.API} {d.Description}
-        </Text>
-      ))}
+      <ScrollView>
+        <View style={styles.blackcontainer}>
+          <Button title="Refresh" onPress={refresh} />
+          <Button
+            title="UseMemo"
+            onPress={async () => {
+              setData(await memo);
+            }}
+          />
+          <Button
+            title="Delete"
+            onPress={() => {
+              setData([]);
+            }}
+          />
+        </View>
+        <View style={styles.whitecontainer}>
+          <View
+            style={{
+              margin: 15,
+            }}
+          >
+            {data.map((d, i) => (
+              <Text
+                key={i}
+                style={{
+                  color: "rgba(36, 24, 8, 1)",
+                  fontFamily: "IBMPlexMono_400Regular",
+                  fontSize: 12,
+                }}
+              >
+                {d.API} {d.Description}
+              </Text>
+            ))}
+          </View>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -64,8 +83,23 @@ const Lab3 = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#F7F6F1",
     alignItems: "center",
+  },
+  blackcontainer: {
+    height: 202,
+    margin: 22,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#241808",
+    borderRadius: 25,
+  },
+  whitecontainer: {
+    margin: 22,
+    marginTop: 0,
+    alignItems: "center",
+    backgroundColor: "#ffff",
+    borderRadius: 25,
   },
 });
 

@@ -1,17 +1,17 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
-import Lab1 from "./screens/Lab1";
-import Lab2 from "./screens/Lab2";
+import MainStackNavigation from "./navigator/MainStackNavigation";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import authReducer from "./reducers/authReducer";
 
-const Tab = createBottomTabNavigator();
+const store = createStore(authReducer);
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="lab1" component={Lab1} />
-        <Tab.Screen name="lab2" component={Lab2} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <MainStackNavigation />
+      </NavigationContainer>
+    </Provider>
   );
 }

@@ -1,8 +1,15 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { useState, useEffect } from "react";
 
 export default function Lab2() {
+  const [loading, setLoading] = useState(true);
   const [film, setFilm] = useState({
     name: "",
     year: "",
@@ -14,6 +21,7 @@ export default function Lab2() {
   });
 
   const getFilm = () => {
+    setLoading(true);
     fetch("https://api.kinopoisk.dev/v1.3/movie/random", {
       headers: {
         "X-API-KEY": "HYJ3FBW-7AN4CJ1-MWDVHE2-7M1DNT8",
@@ -22,47 +30,94 @@ export default function Lab2() {
     })
       .then((response) => response.json())
       .then((json) => setFilm(json))
-      .catch((error) => console.error(error));
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false));
   };
 
   useEffect(() => {
     getFilm();
   }, []);
 
-  return (
-    <View style={[styles.container]}>
-      <TouchableOpacity style={styles.buttonGray} onPress={() => getFilm()}>
-        <Text
-          style={{
-            fontSize: 23,
-            fontFamily: "Verdana",
-            textAlign: "center",
-            color: "white",
-          }}
-        >
-          Случайный фильм
-        </Text>
-      </TouchableOpacity>
-      <img src={film.poster.url} style={styles.image} />
-      <Text style={styles.name}>
-        {film.name} <br /> ({film.year})
+  if (loading) {
+    return (
+      <Text
+        style={{
+          flex: 1,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: 23,
+          fontFamily: "Verdana",
+          textAlign: "center",
+          color: "black",
+        }}
+      >
+        Загрузка...
       </Text>
-      <Text style={styles.description}>{film.description}</Text>
-      <StatusBar style="auto" />
-    </View>
+    );
+  }
+
+  return (
+    <ScrollView style={styles.scrollview}>
+      <View style={[loading ? styles.containerLoading : styles.container]}>
+        <TouchableOpacity style={styles.buttonGray} onPress={() => getFilm()}>
+          <Text
+            style={{
+              fontSize: 23,
+              fontFamily: "Verdana",
+              textAlign: "center",
+              color: "white",
+            }}
+          >
+            Случайный фильм
+          </Text>
+        </TouchableOpacity>
+        <View style={styles.headingContainer}>
+          <img src={film.poster.url} style={styles.image} />
+          <Text style={styles.name}>
+            {film.name} ({film.year})
+          </Text>
+        </View>
+        <Text style={styles.description}>{film.description}</Text>
+        <StatusBar style="auto" />
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  scrollview: {
     flex: 1,
+    height: "100%",
     backgroundColor: "lightblue",
+  },
+  containerLoading: {
+    flex: 1,
+    backgroundColor: "gray",
+    opacity: 0.3,
+    display: "flex",
+    flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
+    gap: "20px",
+  },
+  container: {
+    flex: 1,
+    height: "100%",
+    padding: "20px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "start",
+    gap: "20px",
+  },
+  headingContainer: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    gap: 20,
   },
   buttonGray: {
-    position: "absolute",
-    top: 20,
     height: 60,
     width: 300,
     borderRadius: 10,
@@ -72,27 +127,18 @@ const styles = StyleSheet.create({
     backgroundColor: "orange",
   },
   image: {
-    position: "absolute",
+    maxWidth: "40%",
+    width: "100%",
+    height: "auto",
     borderRadius: 6,
-    top: 100,
-    left: 20,
-    width: 180,
-    height: 252,
   },
   name: {
+    flex: 1,
     fontSize: 21,
     textAlign: "center",
-    position: "absolute",
-    width: 150,
-    left: 220,
-    top: 100,
   },
   description: {
     fontSize: 16,
-    position: "absolute",
-    top: 365,
-    left: 20,
-    width: 350,
-    textAlign: "center",
+    textAlign: "justify",
   },
 });

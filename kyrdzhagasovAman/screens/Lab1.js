@@ -21,13 +21,13 @@ const Lab1 = () => {
           setCount(count + 1);
         }}
         title={"Кнопка"}
-      ></Button>
+      />
       <Button
         onPress={() => {
           setCount(0);
         }}
         title={"Reset"}
-      ></Button>
+      />
     </View>
   );
 };
