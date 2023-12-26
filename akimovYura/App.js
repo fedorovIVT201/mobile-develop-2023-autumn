@@ -1,77 +1,21 @@
-import { Text, TouchableOpacity, View, StyleSheet } from "react-native";
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useState } from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
+import Lab1 from "./screens/lab1";
+import Lab2 from "./screens/lab2";
+import Lab3 from "./screens/lab3";
 
+const Tab = createBottomTabNavigator();
 export default function App() {
-  const [count, setCount] = useState(1);
-
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>{count}</Text>
-      <TouchableOpacity style={styles.button}
-        onPress={() => {
-          setCount(count + 1);
-        }}
-      >
-        <Text style={styles.text}>+ 1</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button}
-        onPress={() => {
-          setCount(count - 1);
-        }}
-      >
-        <Text style={styles.text}>- 1</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button}
-        onPress={() => {
-          setCount(count * 2);
-        }}
-      >
-        <Text style={styles.text}>* 2</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button}
-        onPress={() => {
-          setCount(count / 2);
-        }}
-      >
-        <Text style={styles.text}>/ 2</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button}
-        onPress={() => {
-          setCount(count ** (1/2));
-        }}
-      >
-        <Text style={styles.text}>sqrt</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button}
-        onPress={() => {
-          setCount(count * 0);
-        }}
-      >
-        <Text style={styles.text}>reset</Text>
-      </TouchableOpacity>
-      
-    </View>
-  );
-};
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: "center",
-    alignItems: "center",
-    flex: 1,
-    gap: 10,
-    backgroundColor: "#FFEFDF",
-  },
-  text: {
-    color: "green", 
-    fontSize: 24,
-    fontWeight: "bold",
-  },
-  button: {
-    height: 40,
-    width: 140,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 20,
-    backgroundColor: "orange",
-  },
-});
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="lab1" component={Lab1} />
+        <Tab.Screen name="lab2" component={Lab2} />
+        <Tab.Screen name="lab3" component={Lab3} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  )
+}
