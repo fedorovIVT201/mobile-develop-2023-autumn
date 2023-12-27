@@ -5,6 +5,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import lab1 from "./lab1";
 import lab2 from "./lab2";
 import lab3 from "./lab3";
+import lab5 from "./lab5";
 
 const Tab = createBottomTabNavigator();
 
@@ -27,6 +28,10 @@ const TabNavigator = () => {
               : "ios-information-circle-outline";
           } else if (route.name == "lab3") {
             iconName = focused ? "bug" : "bug-outline";
+          } else if (route.name === "lab5") {
+            iconName = focused
+              ? "ios-pluscircleo"
+              : "ios-pluscircle";
           } else if (route.name === "lab4") {
             iconName = focused
               ? "ios-pluscircleo"
@@ -44,6 +49,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen name="lab2" component={lab2} />
       <Tab.Screen name="lab3" component={lab3} />
+      <Tab.Screen name="lab5" component={lab5} />
     </Tab.Navigator>
   );
 };
