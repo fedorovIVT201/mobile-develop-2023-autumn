@@ -1,11 +1,31 @@
-import { View, Text, Image, StyleSheet } from "react-native";
-import React, { useState, useEffect } from "react";
+import { View, Text, Button, StyleSheet } from "react-native";
+import React, { useState, useEffect, useMemo } from "react";
 
 const Lab3 = () => {
-    const [number, setNumber] = useState(1);
-    const [inc, setInc] = useState(0);
+  const [count, setCount] = useState(0);
+  const [time, setTime] = useState(0);
 
-    const factorial = useMemo(() => factorialOf(number), [])
+  useEffect(() => {
+    let interval = setInterval(() => setTime(time + 1), 1000);
+    return () => clearInterval(interval)
+  }, [time]);
+
+  const squaredValue = useMemo(() => {
+    return count * count;
+  }, [count]);
+
+  return (
+    <View style={styles.container}>
+      <Text>Runtime: {time} </Text>
+      <View style={styles.space}></View>
+      <View style={styles.count}>
+        <Text>Count: {count}</Text>
+        <View style={styles.space}></View>
+        <Text>Squared Value: {squaredValue}</Text>
+      </View>
+      <Button title="Increment Count" onPress={() => setCount(count + 1)} />
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
@@ -17,14 +37,10 @@ const styles = StyleSheet.create({
     flexDirection:'column',
     alignItems:'center'
   },
-  date: {
+  count: {
     justifyContent: 'center',
     flexDirection:'row',
     alignItems:'center'
-  },
-  image: {
-    height: 30,
-    width: 30,
   },
   space: {
     width: 20,
@@ -32,4 +48,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Lab2;
+export default Lab3;
