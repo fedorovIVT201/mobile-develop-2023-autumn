@@ -18,7 +18,6 @@ const MainNavigation = () => {
         <Stack.Screen name="Registration" component={Registration} />
         <Stack.Screen name="Settings" component={Settings} />
         <Stack.Screen name="Tab" component={TabNavigation} />
-        <Stack.Screen name="Lab4" component={Lab4} />
       </Stack.Navigator>
     );
   };
