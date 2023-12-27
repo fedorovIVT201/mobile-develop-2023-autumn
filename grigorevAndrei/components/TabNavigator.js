@@ -27,7 +27,11 @@ const TabNavigator = () => {
               : "ios-information-circle-outline";
           } else if (route.name == "lab3") {
             iconName = focused ? "bug" : "bug-outline";
-          }
+          } else if (route.name === "lab4") {
+            iconName = focused
+              ? "ios-pluscircleo"
+              : "ios-pluscircle";
+          } 
 
           return <Ionicons name={iconName} size={size} color={color} />;
         },
