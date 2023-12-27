@@ -1,9 +1,16 @@
-import React from 'react';
-import Lab1 from './components/lab1';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { Provider } from "react-redux";
+import store from "./store";
+import TabNavigation from "./components/TabNavigator";
 
 const App = () => {
   return (
-    <Lab1 />
+    <Provider store={store}>
+      <NavigationContainer>
+        <TabNavigation />
+      </NavigationContainer>
+    </Provider>
   );
 };
 
