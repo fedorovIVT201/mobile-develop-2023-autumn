@@ -1,68 +1,89 @@
-// Install necessary packages
-// npm install @react-native-community/async-storage apollo-boost graphql react-apollo react-apollo-hooks
-
 // Import required modules
-import { ApolloProvider } from '@apollo/client';
-import { ApolloClient, InMemoryCache } from 'apollo-boost';
-import { setContext } from 'apollo-link-context';
-import AsyncStorage from '@react-native-community/async-storage';
-import { ApolloProvider as ApolloHooksProvider } from 'react-apollo-hooks';
+import React, { useState } from 'react';
+import { View, TextInput, Button, Text } from 'react-native';
+import { ApolloProvider, useQuery, useMutation, gql } from '@apollo/client';
 import { createHttpLink } from 'apollo-link-http';
-import { onError } from 'apollo-link-error';
-import { ApolloLink } from 'apollo-link';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { ApolloClient } from '@apollo/client/core';
 
-// Define your GraphQL endpoint
-const GRAPHQL_ENDPOINT = 'https://your-graphql-endpoint.com/graphql';
+// GraphQL mutation for user login
+const LOGIN_MUTATION = gql`
+  mutation Login($username: String!, $password: String!) {
+    login(username: $username, password: $password) {
+      token
+    }
+  }
+`;
 
-// Create an HTTP link
+// GraphQL query to get user data (replace with your own query)
+const USER_QUERY = gql`
+  query GetUser {
+    user {
+      id
+      username
+    }
+  }
+`;
+
+// Apollo Client setup
 const httpLink = createHttpLink({
-  uri: GRAPHQL_ENDPOINT,
+  uri: 'your-graphql-endpoint',
 });
 
-// Create an error link to handle errors
-const errorLink = onError(({ graphQLErrors, networkError }) => {
-  if (graphQLErrors) {
-    graphQLErrors.forEach(({ message, locations, path }) => {
-      console.log(
-        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
-      );
-    });
-  }
-  if (networkError) {
-    console.log(`[Network error]: ${networkError}`);
-  }
-});
-
-// Create an auth link to add authentication headers
-const authLink = setContext(async (_, { headers }) => {
-  // Get the authentication token from AsyncStorage or any other storage
-  const token = await AsyncStorage.getItem('authToken');
-
-  // Return the headers to the context so httpLink can read them
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : '',
-    },
-  };
-});
-
-// Combine all the links
-const link = ApolloLink.from([errorLink, authLink, httpLink]);
-
-// Create the Apollo Client
 const client = new ApolloClient({
-  link,
+  link: httpLink,
   cache: new InMemoryCache(),
 });
 
-// Wrap your app with the ApolloProvider and ApolloHooksProvider
-const Lab4 = () => (
-  <ApolloProvider client={client}>
-    <ApolloHooksProvider client={client}>
-      {/* Your main app component */}
-    </ApolloHooksProvider>
-  </ApolloProvider>
-);
+// App component
+const Lab4 = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  // Mutation to handle user login
+  const [loginMutation] = useMutation(LOGIN_MUTATION, {
+    onCompleted: ({ login }) => {
+      // For simplicity, we're not handling token storage or refresh here.
+      // In a real app, use a secure storage solution.
+      console.log('Login successful. Token:', login.token);
+    },
+  });
+
+  // Query to get user data
+  const { data, loading } = useQuery(USER_QUERY);
+
+  const handleLogin = () => {
+    loginMutation({ variables: { username, password } });
+  };
+
+  return (
+    <ApolloProvider client={client}>
+      <View style={{ padding: 20 }}>
+        <Text style={{ fontSize: 20, marginBottom: 20 }}>Login</Text>
+        <TextInput
+          placeholder="Username"
+          value={username}
+          onChangeText={(text) => setUsername(text)}
+          style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginBottom: 10 }}
+        />
+        <TextInput
+          placeholder="Password"
+          value={password}
+          onChangeText={(text) => setPassword(text)}
+          secureTextEntry
+          style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginBottom: 10 }}
+        />
+        <Button title="Login" onPress={handleLogin} />
+        {loading && <Text>Loading...</Text>}
+        {data && (
+          <View>
+            <Text>User ID: {data.user.id}</Text>
+            <Text>Username: {data.user.username}</Text>
+          </View>
+        )}
+      </View>
+    </ApolloProvider>
+  );
+};
 
 export default Lab4;
