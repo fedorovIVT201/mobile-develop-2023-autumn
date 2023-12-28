@@ -2,60 +2,62 @@ import { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import Button from "../components/Button";
 import { useNavigation } from "@react-navigation/native";
-import { useEffect } from "react";
+import {
+  useFonts,
+  IBMPlexMono_400Regular,
+} from "@expo-google-fonts/ibm-plex-mono";
 import { TextInput } from "react-native-gesture-handler";
-import { gql, useMutation } from "@apollo/client";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { updateEmail } from "firebase/auth";
 import { auth } from "../firebase";
-const Registration = () => {
-  const [login, setLogin] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+import useAuth from "../hooks/useAuth";
+const ChangeEmail = () => {
+  const [email1, setEmail1] = useState("");
+  const [email2, setEmail2] = useState("");
+
+  const { user } = useAuth();
+  let [fontsLoaded] = useFonts({
+    IBMPlexMono_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
 
   const handleSubmit = async () => {
-    if (login && password) {
+    if (email1 && email2 && email1 == email2) {
       try {
-        await createUserWithEmailAndPassword(auth, login, password);
-        nav.push("Login");
+        updateEmail(user, email1);
+        nav.push("Settings");
+        console.log(email1);
       } catch (err) {
         console.log("Error:", err.message);
       }
     }
   };
+
   const nav = useNavigation();
   return (
-    <View
-      style={{
-        margin: 22,
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <View style={styles.colorcontainer}>
         <View style={styles.buttoncontainer}>
           <TextInput
-            value={login}
-            onChangeText={(text) => setLogin(text)}
             style={styles.input}
+            onChangeText={(text) => setEmail1(text)}
             textAlign="center"
             allowFontScaling
-            placeholder="Login"
+            placeholder="New Email"
             placeholderTextColor="#CCCCCA"
           />
-
           <TextInput
-            secureTextEntry
-            value={password}
-            onChangeText={(text) => setPassword(text)}
             style={styles.input}
+            onChangeText={(text) => setEmail2(text)}
             textAlign="center"
             allowFontScaling
-            placeholder="Password"
+            placeholder="Repeat Email"
             placeholderTextColor="#CCCCCA"
           />
-          <Button title="Sign Up" onPress={handleSubmit} />
+          <Button title="Change Email" onPress={handleSubmit} />
+          <Button title="Back" onPress={() => nav.push("Settings")} />
         </View>
       </View>
     </View>
@@ -67,7 +69,7 @@ const styles = StyleSheet.create({
   },
   colorcontainer: {
     width: 316,
-    height: 230,
+    height: 290,
     margin: 22,
     alignItems: "center",
     justifyContent: "center",
@@ -83,8 +85,6 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     fontSize: 18,
     fontFamily: "IBMPlexMono_400Regular",
-    color: "#CCCCCA",
   },
 });
-
-export default Registration;
+export default ChangeEmail;
