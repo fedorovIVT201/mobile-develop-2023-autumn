@@ -1,9 +1,11 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { Image } from "react-native"
 import Lab1 from "../screens/lab1";
 import Lab2 from "../screens/lab2";
 import Lab3 from "../screens/lab3";
 import Lab4 from "../screens/lab4";
+import Lab5 from "../screens/lab5";
 
 const Tab = createBottomTabNavigator();
 
@@ -70,6 +72,16 @@ const TabNavigation = () => {
             />
           )
         }} 
+      />
+      <Tab.Screen 
+        name="lab5" 
+        component={Lab5}
+        options={{
+          tabBarLabel:() => null,
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="theme-light-dark" color={color} size={size} />
+          ),
+        }}
       />
     </Tab.Navigator>
   );

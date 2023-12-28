@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import {gql, useQuery} from "@apollo/client";
 import { useEffect } from 'react';
+import { connect } from 'react-redux';
 
 
 const VIEWER = gql`
@@ -15,7 +16,7 @@ const VIEWER = gql`
 `;
 
 
-const Lab4 = () => {
+const Lab4 = ({theme}) => {
   const [name, setName] = useState("");
 
   const navigation = useNavigation();
@@ -46,7 +47,7 @@ const Lab4 = () => {
   
 
   return (
-    <View style={styles.container}>
+    <View style={theme === 'light' ? styles.containerFirst : styles.containerSecond}>
       <View style={styles.allContainer}>
         <View style={styles.containerTitle}>
           <Text style={styles.title}>Profile</Text>
@@ -77,10 +78,21 @@ const Lab4 = () => {
   );
 };
 
+
+const mapStateToProps = (state) => ({
+  theme: state.theme,
+});
+
+
 const styles = StyleSheet.create({
-  container: {
+  containerFirst: {
     flex: 1,
     backgroundColor: '#2F3C5F',
+    alignItems: 'center',
+  },
+  containerSecond: {
+    flex: 1,
+    backgroundColor: '#327CFF',
     alignItems: 'center',
   },
   allContainer:{
@@ -124,19 +136,17 @@ const styles = StyleSheet.create({
   buttonUpdate:{
     backgroundColor: "#EFF0F6", 
     height: 38,
-    width: 273,
+    width: 270,
     borderRadius: 41,
     justifyContent: 'center',
-    marginHorizontal: 13,
     marginTop: 132
   },
   button: {
     backgroundColor: "#EFF0F6", 
     height: 38,
-    width: 273,
+    width: 270,
     borderRadius: 41,
     justifyContent: 'center',
-    marginHorizontal: 13,
     marginTop: 20
   },
   textButton: {
@@ -149,4 +159,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default Lab4;
+export default connect(mapStateToProps)(Lab4);

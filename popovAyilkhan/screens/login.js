@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     borderColor: "#B8B8B8",
     borderWidth: 2,
     color: "#CCCCCC",
-    width: 231,
+    width: 270,
     height: 46
   },
   titleInput:{
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 41,
     alignItems: "center",
-    width: 231,
+    width: 270,
     height: 38,
     marginTop: 71
   },
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 6
+    paddingHorizontal: 25
   },
   linkSignIn: {
     color: "#F3F4F6",
