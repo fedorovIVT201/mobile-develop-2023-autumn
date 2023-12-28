@@ -10,8 +10,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { Image } from 'react-native';      
 const Tab = createBottomTabNavigator();
 
-const TabNavigation = () => {
-  return (
+const TabNavigation = () => (
     <Tab.Navigator screenOptions={({ route }) => ({
       headerTintColor: "rgba(42, 61, 69, 1)",
       headerStyle: {
@@ -70,5 +69,5 @@ const TabNavigation = () => {
       />
     </Tab.Navigator>
   );
-};
+
 export default TabNavigation;

@@ -6,10 +6,11 @@ import { store } from './screens/store';
 export default function App() {
   return (
     <Provider store={store}>
-    <NavigationContainer>
-      <MainStackNavigation />
-    </NavigationContainer>
+      <NavigationContainer>
+        <MainStackNavigation/>
+      </NavigationContainer>
     </Provider>
   );
 }
+
 

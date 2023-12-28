@@ -9,6 +9,7 @@ const Lab1 = () => {
     function handleClick() {
       setCount(count + 1);
     }
+
     return (
     <View style={{
       flex: 1,

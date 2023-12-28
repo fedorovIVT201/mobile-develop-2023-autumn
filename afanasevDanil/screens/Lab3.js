@@ -18,13 +18,16 @@ const Lab3 = () => {
   const memoIterate = () => {
     setMemoNum(memoizeExpensiveFunction);
   };
+
   const iterate = () => {
     setNum(expensiveFunction("iterate without memo"));
   };
+
   const resetState = () => {
     setNum(0);
     setMemoNum(0);
   };
+
   return (
     <View style={{
         flex: 1,
@@ -40,4 +43,5 @@ const Lab3 = () => {
     </View>
   );
 };
+
 export default Lab3;

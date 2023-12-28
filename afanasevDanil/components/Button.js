@@ -1,7 +1,6 @@
 import React,{ Text, TouchableOpacity, ActivityIndicator } from "react-native";
 
-const Button = ({ onPress, title, loading }) => {
-    return (
+const Button = ({ onPress, title, loading }) => (
         <TouchableOpacity
             disabled={loading}
             style={{
@@ -22,5 +21,5 @@ const Button = ({ onPress, title, loading }) => {
             )}
         </TouchableOpacity>
     );
-};
+
 export default Button;
