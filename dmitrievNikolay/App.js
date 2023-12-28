@@ -4,7 +4,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AuthNav from './Navigations/AuthNav';
 import LabsNav from './Navigations/LabsNav';
-
 const Stack = createNativeStackNavigator();
 
 export default function App() {
