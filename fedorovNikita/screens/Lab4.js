@@ -6,28 +6,32 @@ import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloClient } from '@apollo/client/core';
 
-// GraphQL mutation for user login
-const LOGIN_MUTATION = gql`
-  mutation Login($username: String!, $password: String!) {
-    login(username: $username, password: $password) {
+const LOGIN = gql`
+  mutation UserLogin($username: String!, $password: String!) {
+    login(input: { username: $username, password: $password }) {
       token
+      user {
+        id
+        username
+        email
+      }
     }
   }
 `;
 
-// GraphQL query to get user data (replace with your own query)
-const USER_QUERY = gql`
-  query GetUser {
-    user {
+const GET_ME = gql`
+  query GetMe {
+    me {
       id
       username
+      email
     }
   }
 `;
 
 // Apollo Client setup
 const httpLink = createHttpLink({
-  uri: 'your-graphql-endpoint',
+  uri: 'http://localhost:4000/graphql',
 });
 
 const client = new ApolloClient({
@@ -39,22 +43,36 @@ const client = new ApolloClient({
 const Lab4 = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [login, { loading, error, data }] = useMutation(LOGIN);
 
-  // Mutation to handle user login
-  const [loginMutation] = useMutation(LOGIN_MUTATION, {
-    onCompleted: ({ login }) => {
-      // For simplicity, we're not handling token storage or refresh here.
-      // In a real app, use a secure storage solution.
-      console.log('Login successful. Token:', login.token);
-    },
-  });
+  const handleLogin = async () => {
+    try {
+      const response = await login({ variables: { username, password } });
+      console.log('Login success:', response.data);
+      // Handle successful login (e.g., store the token in AsyncStorage)
+    } catch (error) {
+      console.error('Login error:', error.message);
+      // Handle login error
+    }
+  };
+
+
+//   Mutation to handle user login
+//   const [loginMutation, { loading: loginLoading, error: loginError, data: loginData }] = useMutation(LOGIN, {
+//     onCompleted: ({ login }) => {
+//       console.log('Login successful. Token:', login.token);
+//     },
+//   });
 
   // Query to get user data
-  const { data, loading } = useQuery(USER_QUERY);
+//   const { loading, error, data  } = useQuery(GET_ME);
 
-  const handleLogin = () => {
-    loginMutation({ variables: { username, password } });
-  };
+//   const handleLogin = () => {
+//     loginMutation({ variables: { username, password } });
+//   };
+
+//   const { loading, error, data } = useQuery(GET_ME);
+//   const [login, { loading: loginLoading, error: loginError, data: loginData }] = useMutation(LOGIN);
 
   return (
     <ApolloProvider client={client}>
