@@ -8,12 +8,25 @@ import {
   TouchableOpacity,
   TextInput,
   Alert,
+  Image,
 } from "react-native";
 
 import Icon from "react-native-vector-icons/FontAwesome";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function Lab2() {
+export default function Lab2({ navigation }) {
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <TouchableOpacity>
+          <Image
+            style={styles.notif}
+            source={require("../assets/header-icons/notif.png")}
+          />
+        </TouchableOpacity>
+      ),
+    });
+  }, [navigation]);
   const [todos, setTodos] = useState([
     {
       id: 1,
@@ -131,29 +144,77 @@ export default function Lab2() {
   };
 
   return (
-    <View style={styles.list}>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{
-          padding: 20,
-          paddingBottom: 100,
-        }}
-        data={todos}
-        renderItem={({ item }) => <ListItem todo={item} />}
-      />
+    <View style={styles.main}>
+      <View style={styles.list}>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{
+            padding: 20,
+            paddingBottom: 100,
+          }}
+          data={todos}
+          renderItem={({ item }) => (
+            <ListItem todo={item} />
+          )}
+        />
 
-      <View style={styles.inpadd}>
-        <View style={styles.inputContainer}>
-          <TextInput
-            placeholder="Новая тудушка"
-            value={textInput}
-            onChangeText={(text) => setTextInput(text)}
-          />
-        </View>
-        <TouchableOpacity onPress={addTodo}>
-          <View style={styles.iconContainer}>
-            <Icon name="plus" color={"#fff"} size={20} />
+        <View style={styles.inpadd}>
+          <View style={styles.inputContainer}>
+            <TextInput
+              placeholder="Новая тудушка"
+              value={textInput}
+              onChangeText={(text) => setTextInput(text)}
+            />
           </View>
+          <TouchableOpacity onPress={addTodo}>
+            <View style={styles.iconContainer}>
+              <Icon name="plus" color={"#fff"} size={20} />
+            </View>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={styles.footer}>
+        <TouchableOpacity
+          style={{ alignItems: "center" }}
+          onPress={() => navigation.navigate("Main")}
+        >
+          <Image
+            style={styles.icon}
+            source={require("../assets/footer-icons/Home.png")}
+          />
+
+          <Text>Main</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={{ alignItems: "center" }}
+          onPress={() => navigation.navigate("Rec")}
+        >
+          <Image
+            style={styles.icon}
+            source={require("../assets/footer-icons/Rec.png")}
+          />
+          <Text>Wall</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{ alignItems: "center" }}
+          onPress={() => navigation.navigate("ToDoList")}
+        >
+          <Image
+            style={styles.icon}
+            source={require("../assets/footer-icons/NewPost.png")}
+          />
+          <Text>TodoList</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{ alignItems: "center" }}
+          onPress={() => navigation.navigate("Profile")}
+        >
+          <Image
+            style={styles.icon}
+            source={require("../assets/footer-icons/Profile.png")}
+          />
+          <Text>Profile</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -161,6 +222,13 @@ export default function Lab2() {
 }
 
 const styles = StyleSheet.create({
+  main: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "space-between",
+    paddingBottom: 10,
+    backgroundColor: "#fff",
+  },
   list: {
     flex: 1,
     marginTop: 8,
@@ -210,5 +278,23 @@ const styles = StyleSheet.create({
     elevation: 12,
     borderRadius: 7,
     marginVertical: 10,
+  },
+  icon: {
+    width: 30,
+    height: 30,
+  },
+  footer: {
+    height: 64,
+    width: "100%",
+    justifyContent: "space-around",
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "white",
+  },
+  notif: {
+    width: 24,
+    height: 24,
+    marginRight: 21,
+    resizeMode: "contain",
   },
 });
