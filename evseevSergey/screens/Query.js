@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Button } from "react-native";
 import { useQuery, gql } from "@apollo/client";
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 if (__DEV__) {
@@ -31,6 +31,13 @@ const DisplayUsers = () => {
         </View>
         //ITS WORKINGG!!!
       ))}
+      <Button
+        title="Refresh"
+        onPress={() => {
+          GET_USERS;
+          console.log(data);
+        }}
+      />
     </View>
   );
 };

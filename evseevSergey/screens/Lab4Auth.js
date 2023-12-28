@@ -8,6 +8,7 @@ const Lab4Auth = () => {
     <View>
       <View>
         <Text>First Mutation Screen</Text>
+        <PassUsers />
       </View>
       <View>
         <Text>First Display Screen</Text>
