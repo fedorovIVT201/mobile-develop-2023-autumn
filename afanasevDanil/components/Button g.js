@@ -1,6 +1,6 @@
 import React, { Text, TouchableOpacity, ActivityIndicator } from "react-native";
 
-const Button = ({ onPress, title, loading }) => (
+const Buttong = ({ onPress, title, loading }) => (
   <TouchableOpacity
     disabled={loading}
     style={{
@@ -9,7 +9,7 @@ const Button = ({ onPress, title, loading }) => (
       alignItems: "center",
       justifyContent: "center",
       borderRadius: 14,
-      backgroundColor: "red",
+      backgroundColor: "green",
     }}
     onPress={onPress}
   >
@@ -21,4 +21,4 @@ const Button = ({ onPress, title, loading }) => (
   </TouchableOpacity>
 );
 
-export default Button;
+export default Buttong;
