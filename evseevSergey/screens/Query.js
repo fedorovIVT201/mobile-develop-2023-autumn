@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text } from "react-native";
 import { useQuery, gql } from "@apollo/client";
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
@@ -8,12 +8,11 @@ if (__DEV__) {
   loadErrorMessages();
 }
 const GET_USERS = gql`
-  query GetUsers {
-    users(id: "a") {
-      id
-      login
-      pass
-    }
+  query getAllUsers {
+    id
+    name
+    login
+    pass
   }
 `;
 

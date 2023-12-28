@@ -1,12 +1,18 @@
 import React from "react";
 import { View, Text } from "react-native";
-import DisplayUsers from "./index";
+import DisplayUsers from "./Query";
+import PassUsers from "./Mutations";
 
 const Lab4Auth = () => {
   return (
     <View>
-      <Text>First Apollo screen</Text>
-      <DisplayUsers />
+      <View>
+        <Text>First Mutation Screen</Text>
+      </View>
+      <View>
+        <Text>First Display Screen</Text>
+        <DisplayUsers />
+      </View>
     </View>
   );
 };

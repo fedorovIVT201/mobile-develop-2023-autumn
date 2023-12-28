@@ -1,6 +1,6 @@
 import "react-native-gesture-handler";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import TabNavigation from "./navigations/TabNavigation";
+import MainStackNavigation from "./navigations/MainStackNavigation";
 import DrawerNavigation from "./navigations/DrawerNavigation";
 import { NavigationContainer } from "@react-navigation/native";
 import { View } from "react-native";
@@ -15,7 +15,7 @@ import {
 const Tab = createBottomTabNavigator();
 
 const client = new ApolloClient({
-  uri: "http://192.168.0.4:4000/",
+  uri: "http://192.168.0.4:4000/graphql",
   cache: new InMemoryCache(),
 });
 
@@ -30,4 +30,5 @@ export default function App() {
       </NavigationContainer>
     </ApolloProvider>
   );
+  r;
 }
