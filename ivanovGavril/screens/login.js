@@ -8,11 +8,12 @@ import {
   View,
 } from "react-native";
 import { auth } from "./firebase";
+import { useDispatch } from "react-redux";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const dispatch = useDispatch();
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
@@ -38,6 +39,8 @@ const LoginScreen = ({ navigation }) => {
       .signInWithEmailAndPassword(email, password)
       .then((userCredentials) => {
         const user = userCredentials.user;
+        console.log(userCredentials);
+        dispatch({ type: "LOGIN_SUCCESS", payload: userCredentials });
         console.log("Logged in with:", user.email);
       })
       .catch((error) => alert(error.message));

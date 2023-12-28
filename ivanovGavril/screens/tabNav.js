@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Lab3, { Lab3Part1, Lab3Part2 } from "./lab3";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import SignOut from "./signOut";
+import Lab5 from "./lab5";
 
 const Stack = createStackNavigator();
 
@@ -41,6 +42,7 @@ export default function TabNav() {
       <Tab.Screen name={"lab1"} component={Lab1}></Tab.Screen>
       <Tab.Screen name={"lab2"} component={Lab2}></Tab.Screen>
       <Tab.Screen name={"lab3"} component={Lab3Stack}></Tab.Screen>
+      <Tab.Screen name={"lab5"} component={Lab5}></Tab.Screen>
       <Tab.Screen name={"logout"} component={SignOut}></Tab.Screen>
     </Tab.Navigator>
   );
