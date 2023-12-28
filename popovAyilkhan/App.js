@@ -1,34 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
-import { useState } from 'react';
+import { NavigationContainer } from "@react-navigation/native";
+import MainNavigation from "./navigation/mainNavigation";
+import { ApolloProvider} from '@apollo/client'
+import { Provider } from "react-redux";
+import client from "./apollo/client";
+import store from "./src/store";
 
 
 export default function App() {
-  
-  const [displayText, setDisplayText] = useState('Hello');
-
-  const changeText = () => {
-    if (displayText === 'Hello') {
-      setDisplayText('world!');
-    } else {
-      setDisplayText('Hello');
-    }
-  };
-  
   return (
-    <View style={styles.container}>
-      <Text>{displayText}</Text>
-      <Button title='Press' onPress={changeText}/>
-      <StatusBar style="auto" />
-    </View>
+    <ApolloProvider client={client}>
+      <Provider store={store}>
+        <NavigationContainer>
+          <MainNavigation/>
+        </NavigationContainer>
+      </Provider>
+    </ApolloProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

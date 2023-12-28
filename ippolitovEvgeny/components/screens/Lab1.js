@@ -5,35 +5,34 @@ import {
   TouchableOpacity,
   StatusBar,
   StyleSheet,
+  ScrollView,
 } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { setBgColor } from "../Redux/colorSlice";
 
 const Lab1 = ({ navigation }) => {
-  const [bgColor, setBgColor] = useState("");
+  const dispatch = useDispatch();
+  const bgColor = useSelector((state) => state.color.bgColor);
+
+  const colorButton = (color, text) => {
+    const textColor = color === "white" ? "black" : "white";
+    return (
+      <TouchableOpacity
+        style={[styles.colorChangeButton, { backgroundColor: color }]}
+        onPress={() => dispatch(setBgColor(color))}
+      >
+        <Text style={{ color: textColor }}>{text}</Text>
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <View style={[styles.container, { backgroundColor: bgColor }]}>
-      <TouchableOpacity
-        style={styles.colorChangeButton}
-        onPress={() => setBgColor("white")}
-      >
-        <Text>White</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={styles.colorChangeButton}
-        onPress={() => setBgColor("red")}
-      >
-        <Text>Red</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={styles.colorChangeButton}
-        onPress={() => setBgColor("blue")}
-      >
-        <Text>Blue</Text>
-      </TouchableOpacity>
-
-      <StatusBar style="auto" />
+      <View style={styles.buttonContainer}>
+        {colorButton("white", "white")}
+        {colorButton("#FF1717", "red")}
+        {colorButton("#1E78FF", "blue")}
+      </View>
     </View>
   );
 };
@@ -44,16 +43,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  text: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "white",
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
   },
   colorChangeButton: {
-    backgroundColor: "lightblue",
     padding: 10,
-    margin: 5,
+    margin: 9,
     borderRadius: 5,
+    width: 100,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
