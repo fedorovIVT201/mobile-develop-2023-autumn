@@ -12,17 +12,7 @@ const Tab = createBottomTabNavigator();
 const LabsNav = () => {
   return (
     <Provider store={store}>
-    <Tab.Navigator screenOptions={{tabBarContentContainerStyle: {
-          alignItems: 'center',
-          justifyContent: 'center',
-        },
-        tabBarItemStyle: {
-          width: 70,
-          paddingHorizontal: 0,
-          position: 'relative',
-          padding: 0,
-          height: 45,
-        },}}>
+    <Tab.Navigator>
       <Tab.Screen name="Lab1" component={Lab1} options={{
           tabBarLabel: "Lab 1",
           tabBarIcon: ({ color, size }) => (
