@@ -1,26 +1,46 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { useState } from "react";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { useState, useEffect } from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
+import Lab1 from "./Screens/Lab1";
+import Lab2 from "./Screens/Lab2";
 
 
+const Tab = createBottomTabNavigator();
 export default function App() {
   const [number, setNumber] = useState(1);
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>{number}</Text>
-      <TouchableOpacity style={styles.button}
-        onPress={() => {
-          setNumber(number * 2)
-        }}>
-        <Text style={styles.text}>x2</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button}
-          onPress={() => {
-            setNumber(number / 2);
-          }}>
-        <Text style={styles.text}>/2</Text>
-      </TouchableOpacity>
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator>
+
+        <Tab.Screen name="Lab1" component={Lab1}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <View>
+                <Image
+                  source={require("./icons/ico1.png")}
+                  style={styles.img}
+                />
+              </View>
+            ),
+          }}
+        />
+        <Tab.Screen name="Lab2" component={Lab2}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <View>
+                <Image
+                  source={require("./icons/ico2.png")}
+                  style={styles.img}
+                />
+              </View>
+            ),
+          }}
+        />
+
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
 
@@ -43,4 +63,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "blue",
   },
+  img: {
+    height: 30,
+    width: 30,
+  }
 });
