@@ -11,6 +11,7 @@ import {
 import { StatusBar } from "expo-status-bar";
 import Lent from "../components/Lent";
 import Stories from "../components/Stories";
+import { Footer } from "../components/Footer";
 
 export default function Main({ navigation, route }) {
   var storiess = route.params?.storie;
@@ -36,50 +37,7 @@ export default function Main({ navigation, route }) {
 
       <Lent post={postss} />
 
-      <View style={styles.footer}>
-        <TouchableOpacity
-          style={{ alignItems: "center" }}
-          onPress={() => navigation.navigate("Main")}
-        >
-          <Image
-            style={styles.icon}
-            source={require("../assets/footer-icons/Home.png")}
-          />
-
-          <Text>Main</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={{ alignItems: "center" }}
-          onPress={() => navigation.navigate("Rec")}
-        >
-          <Image
-            style={styles.icon}
-            source={require("../assets/footer-icons/Rec.png")}
-          />
-          <Text>Wall</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{ alignItems: "center" }}
-          onPress={() => navigation.navigate("ToDoList")}
-        >
-          <Image
-            style={styles.icon}
-            source={require("../assets/footer-icons/NewPost.png")}
-          />
-          <Text>TodoList</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{ alignItems: "center" }}
-          onPress={() => navigation.navigate("Profile")}
-        >
-          <Image
-            style={styles.icon}
-            source={require("../assets/footer-icons/Profile.png")}
-          />
-          <Text>Profile</Text>
-        </TouchableOpacity>
-      </View>
+      <Footer navigation = {navigation}/>
     </View>
   );
 }
