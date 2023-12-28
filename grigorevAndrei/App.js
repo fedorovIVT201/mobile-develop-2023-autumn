@@ -1,17 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { Provider } from "react-redux";
-import store from "./store";
-import StackNavigation from "./components/StackNavigation";
+import React from "react";
+import Lab1 from "./components/lab1";
 
 const App = () => {
-  return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <StackNavigation />
-      </NavigationContainer>
-    </Provider>
-  );
+  return <Lab1 />;
 };
 
 export default App;
