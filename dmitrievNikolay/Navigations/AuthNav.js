@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/core'
 import React, { useEffect, useState } from 'react'
-import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { auth } from '../firebase'
 
 const AuthNav = () => {
@@ -42,7 +42,7 @@ const AuthNav = () => {
   return (
     <KeyboardAvoidingView
       style={styles.container}
-      behavior="padding"
+      behavior={Platform.OS === "ios" ? 'padding': "height"}
     >
       <View style={styles.inputContainer}>
         <TextInput

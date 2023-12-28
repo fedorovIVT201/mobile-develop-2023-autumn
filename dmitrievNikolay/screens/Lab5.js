@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, FlatList, TextInput, Button, Text } from 'react-native';
+import { View, FlatList, TextInput, Text } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
+import Button from "../components/Button";
 import { addTodo, toggleTodo, removeTodo } from '../screens/Lab5action';
 
 const TodoListScreen = () => {
@@ -24,11 +25,12 @@ const TodoListScreen = () => {
   };
 
   return (
-    <View>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <TextInput
         placeholder="Enter a task"
         value={text}
         onChangeText={setText}
+        style={{color: '#171E2B',fontSize: 15}}
       />
       <Button title="Add" onPress={handleAddTodo} />
       <FlatList
@@ -39,7 +41,17 @@ const TodoListScreen = () => {
             <Text>Text: {item.text}</Text>
             <Button
               title={item.completed ? 'Completed' : 'Incomplete'}
-              onPress={() => handleToggleTodo(item.id)}
+              onPress={() => handleToggleTodo(item.id
+                )}
+                style={{
+                  marginTop: 10,
+                  height: 20,
+                  width: "100%",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: 14,
+                  backgroundColor: "#171E2B",
+                }}
             />
             <Button
               title="Remove"
