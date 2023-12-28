@@ -8,11 +8,13 @@ if (__DEV__) {
   loadErrorMessages();
 }
 const GET_USERS = gql`
-  query getAllUsers {
-    id
-    name
-    login
-    pass
+  query {
+    getAllUsers {
+      id
+      name
+      login
+      pass
+    }
   }
 `;
 
@@ -22,10 +24,10 @@ const DisplayUsers = () => {
   if (error) return <Text>Error : {error.message}</Text>;
   return (
     <View>
-      {Object.values(data).map((users) => (
+      {data.getAllUsers.map((users) => (
         <View key={users.id}>
+          <Text>{users.name}</Text>
           <Text>{users.login}</Text>
-          <Text>{users.pass}</Text>
         </View>
         //ITS WORKINGG!!!
       ))}
