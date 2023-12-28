@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 
 import * as Font from "expo-font";
 import Rec from "./screens/Rec";
@@ -9,8 +9,6 @@ import Main from "./screens/Main";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-
-
 
 const Stack = createStackNavigator();
 
@@ -239,79 +237,74 @@ export default function App() {
     },
   ]);
 
-
   if (fonts) {
-    return(
-    <NavigationContainer>
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Main" 
-        component={Main} 
-        initialParams={{storie: stories, post: posts}}
-        options={{
-          title: "Главная", 
-          headerTitleStyle:{
-            fontFamily: "mp-eb",
-            fontSize: 28,
-            marginLeft: -168,
-            marginBottom: 10
-          },
-
-        }}
-      />
-      <Stack.Screen 
-        name="ToDoList" 
-        component={Lab2} 
-        options={{
-          title: "ToDoList", 
-          headerTitleStyle:{
-            fontFamily: "mp-eb",
-            fontSize: 28,
-            marginLeft: -168,
-            marginBottom: 10
-          },
-          headerLeft:()=>null,
-          gesturesEnabled: false,
-        }}
-      />
-      <Stack.Screen
-      
-        name="Profile"
-        component={Profile}
-        initialParams={{post: posts}}
-        options={{
-          title: "Профиль", 
-          headerTitleStyle:{
-            fontFamily: "mp-eb",
-            fontSize: 28,
-            marginLeft: -168,
-            marginBottom: 10
-          },
-          headerLeft:()=>null,
-          gesturesEnabled: false,
-        }}
-        
-      />
-      <Stack.Screen 
-        name="Rec" 
-        component={Rec}
-        initialParams={{post: posts}} 
-        options={{
-          title: "Рекомендации", 
-          headerTitleStyle:{
-            fontFamily: "mp-eb",
-            fontSize: 28,
-            marginLeft: -128,
-            marginBottom: 10
-          },
-          headerLeft:()=>null,
-          gesturesEnabled: false,
-
-        }}
-      />
-    </Stack.Navigator>
-  </NavigationContainer>
-    )
+    return (
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Main"
+            component={Main}
+            initialParams={{ storie: stories, post: posts }}
+            options={{
+              title: "Главная",
+              headerTitleStyle: {
+                fontFamily: "mp-eb",
+                fontSize: 28,
+                marginLeft: -168,
+                marginBottom: 10,
+              },
+            }}
+          />
+          <Stack.Screen
+            name="ToDoList"
+            component={Lab2}
+            options={{
+              title: "ToDoList",
+              headerTitleStyle: {
+                fontFamily: "mp-eb",
+                fontSize: 28,
+                marginLeft: -168,
+                marginBottom: 10,
+              },
+              headerLeft: () => null,
+              gesturesEnabled: false,
+            }}
+          />
+          <Stack.Screen
+            name="Profile"
+            component={Profile}
+            initialParams={{ post: posts }}
+            options={{
+              title: "Профиль",
+              headerTitleStyle: {
+                fontFamily: "mp-eb",
+                fontSize: 28,
+                marginLeft: -168,
+                marginBottom: 10,
+              },
+              headerLeft: () => null,
+              gesturesEnabled: false,
+            }}
+          />
+          <Stack.Screen
+            name="Rec"
+            component={Rec}
+            initialParams={{ post: posts }}
+            options={{
+              title: "Рекомендации",
+              headerTitleStyle: {
+                fontFamily: "mp-eb",
+                fontSize: 28,
+                marginLeft: -128,
+                marginBottom: 10,
+              },
+              headerLeft: () => null,
+              gesturesEnabled: false,
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
   } else {
     return (
       <AppLoading
@@ -322,5 +315,3 @@ export default function App() {
     );
   }
 }
-
-

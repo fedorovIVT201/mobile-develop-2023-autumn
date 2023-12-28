@@ -12,12 +12,12 @@ import {
 
 import * as Font from "expo-font";
 const numColumns = 3;
-export default function Profile({navigation,route}) {
+export default function Profile({ navigation, route }) {
   const [posts, setPosts] = useState(
     Object.values(route.params?.post)[0]
   );
 
-  React.useLayoutEffect(()=>{
+  React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity>
@@ -28,136 +28,137 @@ export default function Profile({navigation,route}) {
         </TouchableOpacity>
       ),
     });
-}, [navigation])
+  }, [navigation]);
   return (
     <View style={styles.main}>
-    <View style={{ height: 432, backgroundColor: "black" }}>
-      <View style={styles.profile}>
-        <View style={styles.head}>
-          <View style={styles.bgFill}>
-            <Image
-              style={styles.filler}
-              source={require("../assets/rec4.png")}
-            />
-            <Text style={styles.prName}>
-              Que {"\n"}
-              (designed by Darina Tagrova)
-            </Text>
-          </View>
+      <View
+        style={{ height: 432, backgroundColor: "black" }}
+      >
+        <View style={styles.profile}>
+          <View style={styles.head}>
+            <View style={styles.bgFill}>
+              <Image
+                style={styles.filler}
+                source={require("../assets/rec4.png")}
+              />
+              <Text style={styles.prName}>
+                Que {"\n"}
+                (designed by Darina Tagrova)
+              </Text>
+            </View>
 
-          <View style={styles.desc}>
-            <Image
-              style={styles.profPic}
-              source={require("../assets/footer-icons/Profile.png")}
-            />
-            <View style={styles.descText}>
-              <View>
-                <Text style={styles.usName}>404 Team</Text>
-              </View>
-              <View>
-                <Text style={styles.usStatus}>
-                  В ресторане
-                </Text>
-              </View>
-              <View>
-                <Text style={styles.newInfo}>
-                  Укажите информацию о себе
-                </Text>
-              </View>
-              <View style={styles.pubButton}>
-                <Text style={styles.Public}>
-                  Опубликовать
-                </Text>
+            <View style={styles.desc}>
+              <Image
+                style={styles.profPic}
+                source={require("../assets/footer-icons/Profile.png")}
+              />
+              <View style={styles.descText}>
+                <View>
+                  <Text style={styles.usName}>
+                    404 Team
+                  </Text>
+                </View>
+                <View>
+                  <Text style={styles.usStatus}>
+                    В ресторане
+                  </Text>
+                </View>
+                <View>
+                  <Text style={styles.newInfo}>
+                    Укажите информацию о себе
+                  </Text>
+                </View>
+                <View style={styles.pubButton}>
+                  <Text style={styles.Public}>
+                    Опубликовать
+                  </Text>
+                </View>
               </View>
             </View>
           </View>
-        </View>
 
-        <View style={styles.stats}>
-          <View style={styles.statBox}>
-            <Text style={styles.stNum}>12</Text>
-            <Text style={styles.stText}>Публикации</Text>
-          </View>
-          <View style={styles.statBox}>
-            <Text style={styles.stNum}>276</Text>
-            <Text style={styles.stText}>Подписчики</Text>
-          </View>
-          <View style={styles.statBox}>
-            <Text style={styles.stNum}>89</Text>
-            <Text style={styles.stText}>Подписки</Text>
-          </View>
-          <View style={styles.statBox}>
-            <Text style={styles.stNum}>13</Text>
-            <Text style={styles.stText}>Рестораны</Text>
+          <View style={styles.stats}>
+            <View style={styles.statBox}>
+              <Text style={styles.stNum}>12</Text>
+              <Text style={styles.stText}>Публикации</Text>
+            </View>
+            <View style={styles.statBox}>
+              <Text style={styles.stNum}>276</Text>
+              <Text style={styles.stText}>Подписчики</Text>
+            </View>
+            <View style={styles.statBox}>
+              <Text style={styles.stNum}>89</Text>
+              <Text style={styles.stText}>Подписки</Text>
+            </View>
+            <View style={styles.statBox}>
+              <Text style={styles.stNum}>13</Text>
+              <Text style={styles.stText}>Рестораны</Text>
+            </View>
           </View>
         </View>
-      </View>
-      <View style={styles.posts}>
-      <View style={styles.lent}>
-      <FlatList
-        numColumns={3}
-        data={posts}
-        renderItem={({ item }) => (
-          <View style={styles.post}>
-            <Image
-              style={styles.postPicture}
-              source={{ uri: item.img }}
-              resizeMode="center"
+        <View style={styles.posts}>
+          <View style={styles.lent}>
+            <FlatList
+              numColumns={3}
+              data={posts}
+              renderItem={({ item }) => (
+                <View style={styles.post}>
+                  <Image
+                    style={styles.postPicture}
+                    source={{ uri: item.img }}
+                    resizeMode="center"
+                  />
+                </View>
+              )}
             />
           </View>
-        )}
-      />
-    </View>
+        </View>
       </View>
-     
+      <View style={styles.footer}>
+        <TouchableOpacity
+          style={{ alignItems: "center" }}
+          onPress={() => navigation.navigate("Main")}
+        >
+          <Image
+            style={styles.icon}
+            source={require("../assets/footer-icons/Home.png")}
+          />
+
+          <Text>Main</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={{ alignItems: "center" }}
+          onPress={() => navigation.navigate("Rec")}
+        >
+          <Image
+            style={styles.icon}
+            source={require("../assets/footer-icons/Rec.png")}
+          />
+          <Text>Wall</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{ alignItems: "center" }}
+          onPress={() => navigation.navigate("ToDoList")}
+        >
+          <Image
+            style={styles.icon}
+            source={require("../assets/footer-icons/NewPost.png")}
+          />
+          <Text>TodoList</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{ alignItems: "center" }}
+          onPress={() => navigation.navigate("Profile")}
+        >
+          <Image
+            style={styles.icon}
+            source={require("../assets/footer-icons/Profile.png")}
+          />
+          <Text>Profile</Text>
+        </TouchableOpacity>
+      </View>
     </View>
-     <View style={styles.footer}>
-
-     <TouchableOpacity
-       style={{ alignItems: "center" }}
-       onPress={() => navigation.navigate("Main")}>
-       
-       <Image
-         style={styles.icon}
-         source={require("../assets/footer-icons/Home.png")}
-       />
-
-       <Text>Main</Text>
-
-     </TouchableOpacity>
-
-     <TouchableOpacity
-       style={{ alignItems: "center" }}
-       onPress={() => navigation.navigate("Rec")}
-     >
-       <Image
-         style={styles.icon}
-         source={require("../assets/footer-icons/Rec.png")}
-       />
-       <Text>Wall</Text>
-     </TouchableOpacity>
-     <TouchableOpacity
-       style={{ alignItems: "center" }}
-       onPress={() => navigation.navigate("ToDoList")}
-     >
-       <Image
-         style={styles.icon}
-         source={require("../assets/footer-icons/NewPost.png")}
-       />
-       <Text>TodoList</Text>
-     </TouchableOpacity>
-     <TouchableOpacity
-       style={{ alignItems: "center" }}
-       onPress={() => navigation.navigate("Profile")}
-     >
-       <Image
-         style={styles.icon}
-         source={require("../assets/footer-icons/Profile.png")}
-       />
-       <Text>Profile</Text>
-     </TouchableOpacity>
-   </View>
-   </View>
   );
 }
 
@@ -167,7 +168,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "space-between",
     paddingBottom: 10,
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
   },
   profile: {
     height: 380,
@@ -285,7 +286,7 @@ const styles = StyleSheet.create({
   icon: {
     width: 30,
     height: 30,
-  }, 
+  },
   footer: {
     height: 64,
     width: "100%",

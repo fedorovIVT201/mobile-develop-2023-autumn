@@ -8,14 +8,14 @@ import {
   TouchableOpacity,
   TextInput,
   Alert,
-  Image
+  Image,
 } from "react-native";
 
 import Icon from "react-native-vector-icons/FontAwesome";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function Lab2({navigation}) {
-  React.useLayoutEffect(()=>{
+export default function Lab2({ navigation }) {
+  React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity>
@@ -26,7 +26,7 @@ export default function Lab2({navigation}) {
         </TouchableOpacity>
       ),
     });
-}, [navigation])
+  }, [navigation]);
   const [todos, setTodos] = useState([
     {
       id: 1,
@@ -140,84 +140,83 @@ export default function Lab2({navigation}) {
           <Icon name="trash-o" size={20} color={"#fff"} />
         </TouchableOpacity>
       </View>
-
     );
   };
 
   return (
     <View style={styles.main}>
-    <View style={styles.list}>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{
-          padding: 20,
-          paddingBottom: 100,
-        }}
-        data={todos}
-        renderItem={({ item }) => <ListItem todo={item} />}
-      />
+      <View style={styles.list}>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{
+            padding: 20,
+            paddingBottom: 100,
+          }}
+          data={todos}
+          renderItem={({ item }) => (
+            <ListItem todo={item} />
+          )}
+        />
 
-      <View style={styles.inpadd}>
-        <View style={styles.inputContainer}>
-          <TextInput
-            placeholder="Новая тудушка"
-            value={textInput}
-            onChangeText={(text) => setTextInput(text)}
-          />
-        </View>
-        <TouchableOpacity onPress={addTodo}>
-          <View style={styles.iconContainer}>
-            <Icon name="plus" color={"#fff"} size={20} />
+        <View style={styles.inpadd}>
+          <View style={styles.inputContainer}>
+            <TextInput
+              placeholder="Новая тудушка"
+              value={textInput}
+              onChangeText={(text) => setTextInput(text)}
+            />
           </View>
+          <TouchableOpacity onPress={addTodo}>
+            <View style={styles.iconContainer}>
+              <Icon name="plus" color={"#fff"} size={20} />
+            </View>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={styles.footer}>
+        <TouchableOpacity
+          style={{ alignItems: "center" }}
+          onPress={() => navigation.navigate("Main")}
+        >
+          <Image
+            style={styles.icon}
+            source={require("../assets/footer-icons/Home.png")}
+          />
+
+          <Text>Main</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={{ alignItems: "center" }}
+          onPress={() => navigation.navigate("Rec")}
+        >
+          <Image
+            style={styles.icon}
+            source={require("../assets/footer-icons/Rec.png")}
+          />
+          <Text>Wall</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{ alignItems: "center" }}
+          onPress={() => navigation.navigate("ToDoList")}
+        >
+          <Image
+            style={styles.icon}
+            source={require("../assets/footer-icons/NewPost.png")}
+          />
+          <Text>TodoList</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{ alignItems: "center" }}
+          onPress={() => navigation.navigate("Profile")}
+        >
+          <Image
+            style={styles.icon}
+            source={require("../assets/footer-icons/Profile.png")}
+          />
+          <Text>Profile</Text>
         </TouchableOpacity>
       </View>
-    </View>
-    <View style={styles.footer}>
-
-      <TouchableOpacity
-        style={{ alignItems: "center" }}
-        onPress={() => navigation.navigate("Main")}>
-        
-        <Image
-          style={styles.icon}
-          source={require("../assets/footer-icons/Home.png")}
-        />
-
-        <Text>Main</Text>
-
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={{ alignItems: "center" }}
-        onPress={() => navigation.navigate("Rec")}
-      >
-        <Image
-          style={styles.icon}
-          source={require("../assets/footer-icons/Rec.png")}
-        />
-        <Text>Wall</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={{ alignItems: "center" }}
-        onPress={() => navigation.navigate("ToDoList")}
-      >
-        <Image
-          style={styles.icon}
-          source={require("../assets/footer-icons/NewPost.png")}
-        />
-        <Text>TodoList</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={{ alignItems: "center" }}
-        onPress={() => navigation.navigate("Profile")}
-      >
-        <Image
-          style={styles.icon}
-          source={require("../assets/footer-icons/Profile.png")}
-        />
-        <Text>Profile</Text>
-      </TouchableOpacity>
-    </View>
     </View>
   );
 }
@@ -228,8 +227,9 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "space-between",
     paddingBottom: 10,
-    backgroundColor: "#fff"
-  },list: {
+    backgroundColor: "#fff",
+  },
+  list: {
     flex: 1,
     marginTop: 8,
   },
@@ -282,7 +282,7 @@ const styles = StyleSheet.create({
   icon: {
     width: 30,
     height: 30,
-  }, 
+  },
   footer: {
     height: 64,
     width: "100%",
@@ -296,5 +296,5 @@ const styles = StyleSheet.create({
     height: 24,
     marginRight: 21,
     resizeMode: "contain",
-  }
+  },
 });

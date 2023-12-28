@@ -14,11 +14,11 @@ import {
 import * as Font from "expo-font";
 
 const numColumns = 3;
-export default function Rec({navigation,route}) {
+export default function Rec({ navigation, route }) {
   const [posts, setPosts] = useState(
     Object.values(route.params?.post)[0]
   );
-  React.useLayoutEffect(()=>{
+  React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity>
@@ -29,71 +29,69 @@ export default function Rec({navigation,route}) {
         </TouchableOpacity>
       ),
     });
-}, [navigation])
+  }, [navigation]);
   return (
     <View style={styles.main}>
-    <View style={styles.lent}>
-      <FlatList
-        horizontal={false}
-        numColumns={3}
-        data={posts}
-        renderItem={({ item }) => (
-          <View style={styles.post}>
-            <Image
-              style={styles.postPicture}
-              source={{ uri: item.img }}
-              resizeMode="center"
-            />
-          </View>
-        )}
-      />
-    </View>
-    <View style={styles.footer}>
-
-      <TouchableOpacity
-        style={{ alignItems: "center" }}
-        onPress={() => navigation.navigate("Main")}>
-        
-        <Image
-          style={styles.icon}
-          source={require("../assets/footer-icons/Home.png")}
+      <View style={styles.lent}>
+        <FlatList
+          horizontal={false}
+          numColumns={3}
+          data={posts}
+          renderItem={({ item }) => (
+            <View style={styles.post}>
+              <Image
+                style={styles.postPicture}
+                source={{ uri: item.img }}
+                resizeMode="center"
+              />
+            </View>
+          )}
         />
+      </View>
+      <View style={styles.footer}>
+        <TouchableOpacity
+          style={{ alignItems: "center" }}
+          onPress={() => navigation.navigate("Main")}
+        >
+          <Image
+            style={styles.icon}
+            source={require("../assets/footer-icons/Home.png")}
+          />
 
-        <Text>Main</Text>
+          <Text>Main</Text>
+        </TouchableOpacity>
 
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={{ alignItems: "center" }}
-        onPress={() => navigation.navigate("Rec")}
-      >
-        <Image
-          style={styles.icon}
-          source={require("../assets/footer-icons/Rec.png")}
-        />
-        <Text>Wall</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={{ alignItems: "center" }}
-        onPress={() => navigation.navigate("ToDoList")}
-      >
-        <Image
-          style={styles.icon}
-          source={require("../assets/footer-icons/NewPost.png")}
-        />
-        <Text>TodoList</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={{ alignItems: "center" }}
-        onPress={() => navigation.navigate("Profile")}
-      >
-        <Image
-          style={styles.icon}
-          source={require("../assets/footer-icons/Profile.png")}
-        />
-        <Text>Profile</Text>
-      </TouchableOpacity>
-    </View>
+        <TouchableOpacity
+          style={{ alignItems: "center" }}
+          onPress={() => navigation.navigate("Rec")}
+        >
+          <Image
+            style={styles.icon}
+            source={require("../assets/footer-icons/Rec.png")}
+          />
+          <Text>Wall</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{ alignItems: "center" }}
+          onPress={() => navigation.navigate("ToDoList")}
+        >
+          <Image
+            style={styles.icon}
+            source={require("../assets/footer-icons/NewPost.png")}
+          />
+          <Text>TodoList</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{ alignItems: "center" }}
+          onPress={() => navigation.navigate("Profile")}
+        >
+          <Image
+            style={styles.icon}
+            source={require("../assets/footer-icons/Profile.png")}
+          />
+          <Text>Profile</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -104,7 +102,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "space-between",
     paddingBottom: 10,
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
   },
   lent: {
     flex: 1,
@@ -125,7 +123,7 @@ const styles = StyleSheet.create({
   icon: {
     width: 30,
     height: 30,
-  }, 
+  },
   footer: {
     height: 64,
     width: "100%",
@@ -139,5 +137,5 @@ const styles = StyleSheet.create({
     height: 24,
     marginRight: 21,
     resizeMode: "contain",
-  }
+  },
 });
