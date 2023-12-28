@@ -1,26 +1,26 @@
 import React, { useState } from "react";
-import { Text, View,StyleSheet, TouchableOpacity } from "react-native";
-import {Button} from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import { Button } from 'react-native';
 
 
 const lab1 = () => {
   const [isSad, setIsSad] = useState(true);
 
   return (
-    
+
     <View style={styles.container}>
-    <Text style={styles.commonText}>
-      Ya doter, and I {isSad ? 'died' : 'didnt die'}!
-    </Text >
-    <Button 
-      style={styles.commonButton} 
-      onPress={() => {setIsSad(false);}}
-      disabled={!isSad}
-      title={isSad ? 'Are you sad?' : 'I am sad!'} >
-    </Button>
+      <Text style={styles.commonText}>
+        Ya doter, and I {isSad ? 'died' : 'didnt die'}!
+      </Text >
+      <Button
+        style={styles.commonButton}
+        onPress={() => { setIsSad(false); }}
+        disabled={!isSad}
+        title={isSad ? 'Are you sad?' : 'I am sad!'} >
+      </Button>
 
 
-  </View>
+    </View>
 
 
 
