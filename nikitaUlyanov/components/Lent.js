@@ -18,6 +18,7 @@ export default function Lent(post) {
   );
   return (
     <View style={styles.lent}>
+
       <FlatList
         data={posts}
         renderItem={({ item }) => (

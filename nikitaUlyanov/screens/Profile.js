@@ -11,12 +11,26 @@ import {
 } from "react-native";
 
 import * as Font from "expo-font";
-
-export default function Profile(post) {
+const numColumns = 3;
+export default function Profile({navigation,route}) {
   const [posts, setPosts] = useState(
-    Object.values(post)[0]
+    Object.values(route.params?.post)[0]
   );
+
+  React.useLayoutEffect(()=>{
+    navigation.setOptions({
+      headerRight: () => (
+        <TouchableOpacity>
+          <Image
+            style={styles.menu}
+            source={require("../assets/header-icons/menu.png")}
+          />
+        </TouchableOpacity>
+      ),
+    });
+}, [navigation])
   return (
+    <View style={styles.main}>
     <View style={{ height: 432, backgroundColor: "black" }}>
       <View style={styles.profile}>
         <View style={styles.head}>
@@ -78,12 +92,83 @@ export default function Profile(post) {
           </View>
         </View>
       </View>
-      <View style={styles.posts}></View>
+      <View style={styles.posts}>
+      <View style={styles.lent}>
+      <FlatList
+        numColumns={3}
+        data={posts}
+        renderItem={({ item }) => (
+          <View style={styles.post}>
+            <Image
+              style={styles.postPicture}
+              source={{ uri: item.img }}
+              resizeMode="center"
+            />
+          </View>
+        )}
+      />
     </View>
+      </View>
+     
+    </View>
+     <View style={styles.footer}>
+
+     <TouchableOpacity
+       style={{ alignItems: "center" }}
+       onPress={() => navigation.navigate("Main")}>
+       
+       <Image
+         style={styles.icon}
+         source={require("../assets/footer-icons/Home.png")}
+       />
+
+       <Text>Main</Text>
+
+     </TouchableOpacity>
+
+     <TouchableOpacity
+       style={{ alignItems: "center" }}
+       onPress={() => navigation.navigate("Rec")}
+     >
+       <Image
+         style={styles.icon}
+         source={require("../assets/footer-icons/Rec.png")}
+       />
+       <Text>Wall</Text>
+     </TouchableOpacity>
+     <TouchableOpacity
+       style={{ alignItems: "center" }}
+       onPress={() => navigation.navigate("ToDoList")}
+     >
+       <Image
+         style={styles.icon}
+         source={require("../assets/footer-icons/NewPost.png")}
+       />
+       <Text>TodoList</Text>
+     </TouchableOpacity>
+     <TouchableOpacity
+       style={{ alignItems: "center" }}
+       onPress={() => navigation.navigate("Profile")}
+     >
+       <Image
+         style={styles.icon}
+         source={require("../assets/footer-icons/Profile.png")}
+       />
+       <Text>Profile</Text>
+     </TouchableOpacity>
+   </View>
+   </View>
   );
 }
 
 const styles = StyleSheet.create({
+  main: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "space-between",
+    paddingBottom: 10,
+    backgroundColor: "#fff"
+  },
   profile: {
     height: 380,
     width: "100%",
@@ -196,5 +281,32 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#FF4401",
     marginTop: 8,
+  },
+  icon: {
+    width: 30,
+    height: 30,
+  }, 
+  footer: {
+    height: 64,
+    width: "100%",
+    justifyContent: "space-around",
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "white",
+  },
+  menu: {
+    width: 24,
+    height: 24,
+    marginRight: 21,
+    resizeMode: "contain",
+  },
+  post: {
+    flex: 1,
+    backgroundColor: "white",
+    margin: 1,
+  },
+  postPicture: {
+    width: "100%",
+    height: Dimensions.get("window").width / numColumns,
   },
 });

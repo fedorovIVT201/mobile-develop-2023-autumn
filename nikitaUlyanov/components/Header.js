@@ -16,8 +16,9 @@ const fonts = () =>
     "mp-m": require("../assets/fonts/Manrope-Medium.ttf"),
   });
 
-export default function Header({ title, page }) {
+export default function Header({ title }) {
   const [font, setFont] = useState(false);
+  var page = 0;
   if (font) {
     if (page == 0) {
       return (
