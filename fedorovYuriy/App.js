@@ -5,7 +5,7 @@ import Toast from "react-native-toast-message";
 import store from "./redux/store";
 import { Provider } from "react-redux";
 const client = new ApolloClient({
-  uri: "https://current--fedorovivt201s-team-06qdkb.apollographos.net/graphql",
+  uri: "http://localhost:4000/",
   cache: new InMemoryCache(),
 });
 export default function App() {

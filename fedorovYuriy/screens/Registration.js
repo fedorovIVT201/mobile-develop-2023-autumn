@@ -1,80 +1,101 @@
-import { Button, TextInput, View } from "react-native";
-import { gql, useMutation } from "@apollo/client";
 import { useState } from "react";
-import Toast from "react-native-toast-message";
+import { View, StyleSheet } from "react-native";
+import Button from "../components/Button";
 import { useNavigation } from "@react-navigation/native";
+import { useEffect } from "react";
+import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
+import { gql, useMutation } from "@apollo/client";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-const REGISTER = gql`
-  mutation ($data: RegistrationUserInput!) {
-    registerUser(data: $data) {
-      token
-    }
-  }
-`;
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
 const Registration = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
 
-  const [mutateFunction, { data, loading, error }] = useMutation(REGISTER);
+  const handleSubmit = async () => {
+    if (login && password) {
+      try {
+        await createUserWithEmailAndPassword(auth, login, password);
+        nav.push("Login");
+      } catch (err) {
+        console.log("Error:", err.message);
+      }
+    }
+  };
   const nav = useNavigation();
   return (
-    <View style={{ flex: 1, gap: 10, alignItems: "center", margin: 16 }}>
-      <TextInput
-        style={{ backgroundColor: "white", width: "100%", padding: 6 }}
-        value={login}
-        onChangeText={(text) => setLogin(text)}
-      />
-      <TextInput
-        style={{ backgroundColor: "white", width: "100%", padding: 6 }}
-        value={name}
-        onChangeText={(text) => setName(text)}
-      />
-      <TextInput
-        style={{ backgroundColor: "white", width: "100%", padding: 6 }}
-        value={password}
-        onChangeText={(text) => setPassword(text)}
-      />
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "rgb(221, 201, 180)",
+      }}
+    >
       <Button
-        title={"Register"}
+        title={"Back"}
         onPress={() => {
-          mutateFunction({
-            variables: {
-              data: {
-                login,
-                name,
-                password,
-              },
-            },
-          })
-            .then((data) => {
-              console.log(data);
-              const token = data?.data?.registerUser?.token;
-              Toast.show({
-                type: "success",
-                text1: "success",
-              });
-              const storeData = async () => {
-                try {
-                  await AsyncStorage.setItem("token", token);
-                } catch (e) {
-                  // saving error
-                }
-              };
-              storeData();
-              nav.goBack();
-            })
-            .catch((e) => {
-              Toast.show({
-                type: "error",
-                text1: e.message,
-              });
-            });
+          nav.replace("Login");
         }}
       />
+      <View style={styles.colorcontainer}>
+        <View style={styles.buttoncontainer}>
+          <TextInput
+            value={login}
+            onChangeText={(text) => setLogin(text)}
+            style={styles.input}
+            textAlign="center"
+            allowFontScaling
+            placeholder="Email"
+            placeholderTextColor="#CCCCCA"
+          />
+
+          <TextInput
+            secureTextEntry
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+            style={styles.input}
+            textAlign="center"
+            allowFontScaling
+            placeholder="Password"
+            placeholderTextColor="#CCCCCA"
+          />
+          <Button title="Sign Up" onPress={handleSubmit} />
+        </View>
+      </View>
     </View>
   );
 };
+const styles = StyleSheet.create({
+  buttoncontainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  colorcontainer: {
+    width: 316,
+    height: 290,
+    margin: 22,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(117, 92, 89, 0.31)",
+    borderRadius: 25,
+  },
+  input: {
+    width: 258,
+    height: 50,
+    marginBottom: 22,
+    padding: 10,
+    backgroundColor: "rgba(117, 92, 89, 0.31)",
+    borderRadius: 25,
+    fontSize: 20,
+  },
+  button: {
+    alignItems: "center",
+    backgroundColor: "#DDDDDD",
+    padding: 10,
+  },
+});
 
 export default Registration;
