@@ -3,7 +3,6 @@ import { useState } from "react";
 import { View} from "react-native";
 import Button from "../components/Button";
 import { useNavigation } from "@react-navigation/native";
-import { useEffect } from "react";
 import { TextInput } from "react-native-gesture-handler";
 
 const Registration = () => {
@@ -14,7 +13,6 @@ const Registration = () => {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
           <TextInput
-            style={styles.input}
             onChangeText={onChangeLogin}
             textAlign="center"
             allowFontScaling

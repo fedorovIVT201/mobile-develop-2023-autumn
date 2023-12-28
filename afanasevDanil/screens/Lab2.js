@@ -26,7 +26,7 @@ const Lab2 = () => {
         <View
             style={{
                 flex: 1,
-                backgroundColor: '#fff',
+                backgroundColor: "rgb(255,192,203)",
                 alignItems: 'center',
                 justifyContent: 'center',
             }}

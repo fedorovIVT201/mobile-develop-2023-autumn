@@ -11,7 +11,7 @@ const MainStackNavigation = () => {
     <Stack.Navigator>
       <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="Registration" component={Registration} />
-      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Login" component={Login} style={{Color: "rgb(255,192,203)"}} />
       <Stack.Screen name="Tab" component={TabNavigation} />
     </Stack.Navigator>
   );
