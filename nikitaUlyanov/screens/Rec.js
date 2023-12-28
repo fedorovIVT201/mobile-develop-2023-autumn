@@ -12,8 +12,9 @@ import {
 } from "react-native";
 
 import * as Font from "expo-font";
-
+import { Footer } from "../components/Footer";
 const numColumns = 3;
+
 export default function Rec({ navigation, route }) {
   const [posts, setPosts] = useState(
     Object.values(route.params?.post)[0]
@@ -48,50 +49,7 @@ export default function Rec({ navigation, route }) {
           )}
         />
       </View>
-      <View style={styles.footer}>
-        <TouchableOpacity
-          style={{ alignItems: "center" }}
-          onPress={() => navigation.navigate("Main")}
-        >
-          <Image
-            style={styles.icon}
-            source={require("../assets/footer-icons/Home.png")}
-          />
-
-          <Text>Main</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={{ alignItems: "center" }}
-          onPress={() => navigation.navigate("Rec")}
-        >
-          <Image
-            style={styles.icon}
-            source={require("../assets/footer-icons/Rec.png")}
-          />
-          <Text>Wall</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{ alignItems: "center" }}
-          onPress={() => navigation.navigate("ToDoList")}
-        >
-          <Image
-            style={styles.icon}
-            source={require("../assets/footer-icons/NewPost.png")}
-          />
-          <Text>TodoList</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{ alignItems: "center" }}
-          onPress={() => navigation.navigate("Profile")}
-        >
-          <Image
-            style={styles.icon}
-            source={require("../assets/footer-icons/Profile.png")}
-          />
-          <Text>Profile</Text>
-        </TouchableOpacity>
-      </View>
+      <Footer navigation={navigation}/>
     </View>
   );
 }
@@ -119,18 +77,6 @@ const styles = StyleSheet.create({
   postPicture: {
     width: "100%",
     height: Dimensions.get("window").width / numColumns,
-  },
-  icon: {
-    width: 30,
-    height: 30,
-  },
-  footer: {
-    height: 64,
-    width: "100%",
-    justifyContent: "space-around",
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "white",
   },
   menu: {
     width: 24,

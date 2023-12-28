@@ -13,6 +13,7 @@ import {
 
 import Icon from "react-native-vector-icons/FontAwesome";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Footer } from "../components/Footer";
 
 export default function Lab2({ navigation }) {
   React.useLayoutEffect(() => {
@@ -173,50 +174,7 @@ export default function Lab2({ navigation }) {
           </TouchableOpacity>
         </View>
       </View>
-      <View style={styles.footer}>
-        <TouchableOpacity
-          style={{ alignItems: "center" }}
-          onPress={() => navigation.navigate("Main")}
-        >
-          <Image
-            style={styles.icon}
-            source={require("../assets/footer-icons/Home.png")}
-          />
-
-          <Text>Main</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={{ alignItems: "center" }}
-          onPress={() => navigation.navigate("Rec")}
-        >
-          <Image
-            style={styles.icon}
-            source={require("../assets/footer-icons/Rec.png")}
-          />
-          <Text>Wall</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{ alignItems: "center" }}
-          onPress={() => navigation.navigate("ToDoList")}
-        >
-          <Image
-            style={styles.icon}
-            source={require("../assets/footer-icons/NewPost.png")}
-          />
-          <Text>TodoList</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{ alignItems: "center" }}
-          onPress={() => navigation.navigate("Profile")}
-        >
-          <Image
-            style={styles.icon}
-            source={require("../assets/footer-icons/Profile.png")}
-          />
-          <Text>Profile</Text>
-        </TouchableOpacity>
-      </View>
+      <Footer navigation={navigation}/>
     </View>
   );
 }
