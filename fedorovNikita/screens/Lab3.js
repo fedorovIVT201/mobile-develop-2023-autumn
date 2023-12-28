@@ -1,4 +1,5 @@
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import Button from "../components/Button";
 import React, { useState, useEffect, useMemo } from "react";
 
 const Lab3 = () => {
