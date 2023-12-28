@@ -1,20 +1,20 @@
 import { createStore } from "redux";
 
 const initialState = {
-  color: "white"
+  color: "white",
 };
 
-export const changeColor = color => ({
-    type: "CHANGE_COLOR",
-    payload: color
-  });
+export const changeColor = (color) => ({
+  type: "CHANGE_COLOR",
+  payload: color,
+});
 
 const colorReducer = (state = initialState, action) => {
   switch (action.type) {
     case "CHANGE_COLOR":
       return {
         ...state,
-        color: action.payload
+        color: action.payload,
       };
     default:
       return state;

@@ -1,4 +1,4 @@
-import React,{ useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { View, Text } from "react-native";
 import Button from "../components/Button";
 
@@ -29,12 +29,14 @@ const Lab3 = () => {
   };
 
   return (
-    <View style={{
+    <View
+      style={{
         flex: 1,
         backgroundColor: "rgb(255,192,203)",
-        alignItems: 'center',
-        justifyContent: 'center',
-    }}>
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       <Text>Результат сложного вычисления: {memoNum}</Text>
       <Button title={"Вычислить с Memo"} onPress={memoIterate} />
       <Text>Результат сложного вычисления без usememo: {num}</Text>
