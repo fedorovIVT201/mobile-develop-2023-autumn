@@ -101,16 +101,15 @@ const styles = StyleSheet.create({
     borderColor: "#B8B8B8",
     borderWidth: 2,
     color: "#CCCCCC",
-    width: 231,
+    width: 270,
     height: 46
   },
   button: {
     backgroundColor: "#EFF0F6", 
     height: 38,
-    width: 235,
+    width: 270,
     borderRadius: 41,
     justifyContent: 'center',
-    marginHorizontal: 33,
     marginTop:67
   },
   textButton: {

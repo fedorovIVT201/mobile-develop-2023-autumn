@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
         fontWeight: '500',
     },
     firstButton:{
-        width: 275,
+        width: 270,
         height: 38,
         borderRadius: 41, 
         justifyContent: 'center',
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
         marginTop: 34
     },
     secondButton:{
-        width: 275,
+        width: 270,
         height: 38,
         borderRadius: 41, 
         justifyContent: 'center',

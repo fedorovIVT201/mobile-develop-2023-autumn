@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     marginTop: 120
   }, 
   button:{
-    width: 205,
+    width: 270,
     height: 38,
     backgroundColor: '#EFF0F6',
     marginTop: 133,

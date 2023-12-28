@@ -136,19 +136,17 @@ const styles = StyleSheet.create({
   buttonUpdate:{
     backgroundColor: "#EFF0F6", 
     height: 38,
-    width: 273,
+    width: 270,
     borderRadius: 41,
     justifyContent: 'center',
-    marginHorizontal: 13,
     marginTop: 132
   },
   button: {
     backgroundColor: "#EFF0F6", 
     height: 38,
-    width: 273,
+    width: 270,
     borderRadius: 41,
     justifyContent: 'center',
-    marginHorizontal: 13,
     marginTop: 20
   },
   textButton: {

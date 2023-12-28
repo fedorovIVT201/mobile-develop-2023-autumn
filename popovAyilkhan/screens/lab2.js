@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: "#EFF0F6", 
     minHeight: 38,
-    minWidth: 158,
+    width: 270,
     borderRadius: 41,
     justifyContent: 'center',
   },
