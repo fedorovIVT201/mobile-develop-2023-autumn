@@ -6,13 +6,13 @@ import "firebase/compat/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDfALGOc0gax4Eqanvr1jcwauhLsM0w3N4",
-  authDomain: "mobile-development-75ae6.firebaseapp.com",
-  databaseURL: "https://mobile-development-75ae6-default-rtdb.firebaseio.com",
-  projectId: "mobile-development-75ae6",
-  storageBucket: "mobile-development-75ae6.appspot.com",
-  messagingSenderId: "508837048392",
-  appId: "1:508837048392:web:9a08e7abe1f3933066687d",
+  apiKey: "AIzaSyCg2nlRAVb16wRgmKggOKoZM-sLT5WEibU",
+  authDomain: "lab4-7d97f.firebaseapp.com",
+  projectId: "lab4-7d97f",
+  storageBucket: "lab4-7d97f.appspot.com",
+  messagingSenderId: "469691099912",
+  appId: "1:469691099912:web:e08576726e420916a7dabd",
+  measurementId: "G-764RDF97PR",
 };
 
 // Initialize Firebase
