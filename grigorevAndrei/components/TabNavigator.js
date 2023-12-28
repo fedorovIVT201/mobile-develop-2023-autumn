@@ -30,13 +30,9 @@ const TabNavigator = () => {
           } else if (route.name == "lab3") {
             iconName = focused ? "bug" : "bug-outline";
           } else if (route.name === "lab5") {
-            iconName = focused
-              ? "ios-pluscircleo"
-              : "ios-pluscircle";
+            iconName = focused ? "ios-pluscircleo" : "ios-pluscircle";
           } else if (route.name === "lab4") {
-            iconName = focused
-              ? "ios-pluscircleo"
-              : "ios-pluscircle";
+            iconName = focused ? "ios-pluscircleo" : "ios-pluscircle";
           } else if (route.name == "Выйти") {
             iconName = focused
               ? "ios-information-circle"

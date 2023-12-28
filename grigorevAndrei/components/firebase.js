@@ -10,7 +10,7 @@ const firebaseConfig = {
   projectId: "fir-auth-ee797",
   storageBucket: "fir-auth-ee797.appspot.com",
   messagingSenderId: "527412355783",
-  appId: "1:527412355783:web:1baac367d9a142df3214e2"
+  appId: "1:527412355783:web:1baac367d9a142df3214e2",
 };
 
 // Initialize Firebase

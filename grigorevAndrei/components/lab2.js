@@ -17,7 +17,6 @@ const lab2 = () => {
   const handleColorChange = (color) => {
     setBackgroundColor(color);
   };
-
   return (
     <View
       style={{

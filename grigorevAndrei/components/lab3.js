@@ -14,7 +14,6 @@ const Lab3 = (navigation) => {
   const [num1, setNum1] = useState("");
   const [num2, setNum2] = useState("");
   const [count, setCount] = useState(0);
-
   const increment = () => {
     setCount((c) => c + 1);
   };

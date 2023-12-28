@@ -13,12 +13,10 @@ const lab5 = () => {
     setCounterOne(counterOne + 1);
     dispatch(counterSlice.actions.increment());
   };
-
   const incrementTwo = () => {
     setCounterTwo(counterTwo - 1);
     dispatch(counterSlice.actions.decrement());
   };
-
   const reset = () => {
     setCounterOne(0);
     setCounterTwo(0);
@@ -32,23 +30,23 @@ const lab5 = () => {
 
   return (
     <View style={styles.container}>
-      { }
+      {}
       <Text style={styles.taskText}>{counterOne}</Text>
 
-      { }
+      {}
       <TouchableOpacity style={styles.button} onPress={incrementOne}>
         <Text style={styles.buttonText}>Plus</Text>
       </TouchableOpacity>
 
-      { }
+      {}
       <Text style={styles.taskText}>{counterTwo}</Text>
 
-      { }
+      {}
       <TouchableOpacity style={styles.button} onPress={incrementTwo}>
         <Text style={styles.buttonText}>Minus</Text>
       </TouchableOpacity>
 
-      { }
+      {}
       <TouchableOpacity style={styles.button} onPress={reset}>
         <Text style={styles.buttonText}>Reset</Text>
       </TouchableOpacity>
