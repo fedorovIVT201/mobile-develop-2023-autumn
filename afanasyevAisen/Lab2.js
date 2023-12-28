@@ -6,15 +6,13 @@ const TodoList = () => {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    // Здесь код для инициализационных действий, например, загрузка данных из локального хранилища
-    // Пример: loadTodos();
+
   }, []);
 
   const addTodo = () => {
     if (todo.length > 0) {
       setTodos([...todos, todo]);
       setTodo('');
-      // Опционально: сохранение списка дел в локальное хранилище
     }
   };
 
